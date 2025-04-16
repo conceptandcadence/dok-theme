@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "hero_7Bzixa": {
       "type": "hero",
@@ -77,7 +77,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/brand-pillar-1c.png",
-            "title": "Hassle-Free fun  for everyone",
+            "title": "Hassle-Free fun for everyone",
             "text": "",
             "link_label": "",
             "link": ""

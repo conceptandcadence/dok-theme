@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-page",
@@ -82,7 +82,7 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/Group_3316.jpg",
-            "caption": "Better quality &  pet-focused Design",
+            "caption": "Better quality & pet-focused Design",
             "heading": "",
             "text": "<p>Better quality & better design makes better products. We select top-tier materials, prioritizing durability and longevity in every aspect of our creations. Our relentless pursuit of excellence extends beyond durability; it encompasses a deep understanding of pet behavior and preferences. Each design element is crafted with precision, ensuring ergonomic comfort, safety, and functionality for our furry companions. </p><p>By seamlessly blending superior quality and pet-focused design, we don't just create products; we cultivate experiences that enrich the lives of pets and their devoted owners, fostering stronger, more joyful connections.</p>",
             "button_label": "",
