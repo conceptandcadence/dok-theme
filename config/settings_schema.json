@@ -4,8 +4,8 @@
     "theme_name": "Dawn",
     "theme_version": "15.2.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
     "name": "t:settings_schema.logo.name",
@@ -14,6 +14,12 @@
         "type": "image_picker",
         "id": "logo",
         "label": "t:settings_schema.logo.settings.logo_image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "transparent_logo",
+        "label": "Alternate Logo",
+				"info": "For use on transparent backgrounds"
       },
       {
         "type": "range",
@@ -1447,6 +1453,27 @@
         "id": "show_cart_note",
         "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_warranty",
+        "label": "t:settings_schema.cart.settings.show_cart_warranty.label",
+        "default": false
+      },
+			{
+        "type": "text",
+        "id": "cart_warranty_headline",
+        "label": "t:settings_schema.cart.settings.cart_warranty_headline.label"
+      },
+			{
+        "type": "richtext",
+        "id": "cart_warranty_text",
+        "label": "t:settings_schema.cart.settings.show_cart_warranty.label"
+      },
+			{
+        "type": "image_picker",
+        "id": "cart_warranty_icon",
+        "label": "t:settings_schema.logo.settings.cart_warranty_icon.label"
       },
       {
         "type": "header",

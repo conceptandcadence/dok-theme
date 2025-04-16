@@ -4,28 +4,43 @@
 {%- style -%}
   @media screen and (max-width: 749px) {
     .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+      padding-bottom: calc({{settings.media_shadow_vertical_offset | at_least: 0}}px + 2rem);
     }
   }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+<div class='collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient'>
+  <div class='collection-hero__inner page-width-nopadding tw-flex {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
+    <div class='page-width tw-flex md:tw-flex-row tw-flex-col-reverse tw-gap-2 tw-w-full tw-justify-between tw-my8'>
+      <h1 class='tw-pt-6 tw-pb-12 md:tw-py-20 tw-text-[32px] md:tw-text-[48px] tw-font-medium tw-tracking-normal'>
+        <span class='visually-hidden'>{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
 
       {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+        <div class='tw-py-12 md:tw-py-20 rte'>{{ collection.description }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.menu != blank -%}
+        <ul class='tw-pt-8 tw-pb-5 md:tw-py-20 tw-flex tw-items-center tw-gap-2'>
+          {%- for link in section.settings.menu.links -%}
+            <li>
+              <a
+                href='{{ link.url }}'
+                class='{% if link.active %} tw-border-yellow{% else %} tw-border-[#EFEBDF]{% endif %} tw-mr-6 tw-tracking-normal tw-text-[16px] tw-font-medium tw-pb-[2px] tw-border-b-2 tw-border-solid hover:tw-border-yellow tw-transition-colors tw-duration-300'
+              >
+                {{ link.title | escape }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
       {%- endif -%}
     </div>
 
     {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
+      <div class='collection-hero__image-container media gradient'>
         <img
-          srcset="
+          srcset='
             {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
             {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
             {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
@@ -33,12 +48,12 @@
             {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
             {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
             {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
+          '
+          src='{{ collection.image | image_url: width: 750 }}'
+          sizes='(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)'
+          alt='{{ collection.image.alt | escape }}'
+          width='{{ collection.image.width }}'
+          height='{{ collection.image.height }}'
         >
       </div>
     {%- endif -%}
@@ -72,6 +87,11 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Collection Menu"
     }
   ]
 }

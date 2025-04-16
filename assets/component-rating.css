@@ -4,7 +4,6 @@
 
 .rating {
   display: inline-block;
-  margin: 0;
 }
 
 .product .rating-star {
@@ -18,7 +17,7 @@
 }
 
 .rating-star {
-  --color-rating-star: rgb(var(--color-foreground));
+  --color-rating-star: #f9c33c;
   --percent: calc(
     (
         var(--rating) / var(--rating-max) + var(--rating-decimal) *
@@ -43,6 +42,13 @@
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.card .rating-star::before {
+  font-size: 18px;
+  letter-spacing: 0;
+  padding-bottom: 3px;
+  display: block;
 }
 
 .rating-text {

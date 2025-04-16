@@ -17,30 +17,118 @@
 {%- endstyle -%}
 
 {%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class='main-blog page-width section-{{ section.id }}-padding max-md:!tw-px-0'>
+    <h1 class='title--primary tw-sr-only{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
       {{ blog.title | escape }}
     </h1>
 
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+    <div class='blog-articles{% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}'>
       {%- for article in blog.articles -%}
-        <div
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {%- render 'article-card',
-            article: article,
-            media_height: section.settings.image_height,
-            media_aspect_ratio: article.image.aspect_ratio,
-            show_image: section.settings.show_image,
-            show_date: section.settings.show_date,
-            show_author: section.settings.show_author,
-            show_excerpt: true
-          -%}
-        </div>
+        {% if forloop.index == 1 %}
+          {%- if article.image -%}
+            <header
+              class='article-template__hero-container tw-p-10 tw-pb-14 lg:tw-flex lg:tw-flex-row-reverse lg:tw-p-0 {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} tw-bg-[#EFEBDF] color-scheme-2 gradient lg:tw-p-10 lg:tw-mb-24 lg:tw-rounded-[15px]'
+            >
+              {% assign aspect_ratio = 1 | divided_by: article.image.aspect_ratio | times: 100 | append: '%' %}
+              <div
+                class='article-header-module article-template__hero article-template__hero-{{ block.settings.image_height }} media tw-rounded-[15px] lg:tw-w-1/2 lg:tw-rounded-[15px]'
+                {% if article.image %}
+                  style='--aspect-ratio: {{ aspect_ratio }}; padding-bottom: {{ aspect_ratio }};'
+                {% endif %}
+              >
+                <style>
+                  @media screen and (min-width: 990px) {
+                    .article-template__hero {
+                      padding-bottom: calc(var(--aspect-ratio) * 0.4) !important;
+                    }
+                  }
+                </style>
+                <img
+                  srcset='
+                    {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                    {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                    {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                    {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                    {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                    {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                    {{ article.image | image_url }} {{ article.image.width }}w
+                  '
+                  sizes='(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw'
+                  src='{{ article.image | image_url: width: 1100 }}'
+                  loading='eager'
+                  fetchpriority='high'
+                  width='{{ article.image.width }}'
+                  height='{{ article.image.height }}'
+                  alt='{{ article.image.alt | escape }}'
+                  class='tw-rounded-[15px]'
+                >
+              </div>
+
+              <div
+                class='article-header-module article-header-module-text lg:tw-rounded-[15px] tw-p-[56px] lg:tw-w-1/2 lg:tw-justify-between lg:tw-flex lg:tw-flex-col {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} color-{{ section.settings.color_scheme }} gradient'
+                {{ block.shopify_attributes }}
+              >
+                <h1
+                  class='article-template__title tw-text-[28px] tw-font-medium tw-tracking-normal tw-py-10 lg:tw-text-[48px] lg:tw-leading-[56px] lg:tw-py-0'
+                >
+                  {{ article.title | escape }}
+                </h1>
+                {%- if section.settings.show_date or section.settings.show_author -%}
+                  <div class='tw-flex tw-justify-between tw-mt-12 tw-items-center'>
+                    {%- if section.settings.show_date -%}
+                      <span class='tw-text-[14px] tw-font-medium tw-tracking-normal lg:tw-text-[18px]'>
+                        {{- article.published_at | time_tag: format: 'date' -}}
+                      </span>
+                    {%- endif -%}
+                    {%- if section.settings.show_author -%}
+                      <span class='tw-text-[14px] tw-font-medium tw-tracking-normal lg:tw-text-[18px]'>
+                        <span>{{ article.author }}</span>
+                      </span>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if article.excerpt != blank -%}
+                  <div class='tw-flex tw-flex-col tw-justify-start tw-mt-12 tw-items-start tw-text-[16px] tw-font-normal tw-leading-[22px] lg:tw-pr-[15%]'>
+                    <span>{{ article.excerpt }}</span>
+                    <a
+                      class='tw-mt-12 button button--primary'
+                      href='{{ article.url }}'
+                      class='button'
+                      >Read More</a
+                    >
+                  </div>
+                {%- else -%}
+                  <div>
+                    <a
+                      class='tw-mt-12 button button--primary'
+                      href='{{ article.url }}'
+                      class='button'
+                      >Read More</a
+                    >
+                  </div>
+                {%- endif -%}
+              </div>
+            </header>
+          {%- endif -%}
+        {% else %}
+          <div
+            class='blog-articles__article article max-md:!tw-px-8  max-md:!tw-pt-4{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style='--animation-order: {{ forloop.index }};'
+            {% endif %}
+          >
+            {%- render 'article-card',
+              article: article,
+              media_height: section.settings.image_height,
+              media_aspect_ratio: article.image.aspect_ratio,
+              show_image: section.settings.show_image,
+              show_date: section.settings.show_date,
+              show_author: section.settings.show_author,
+              show_excerpt: false
+            -%}
+          </div>
+        {% endif %}
       {%- endfor -%}
     </div>
 
@@ -49,6 +137,9 @@
     {%- endif -%}
   </div>
 {%- endpaginate -%}
+
+{% style %}
+{% endstyle %}
 
 {% schema %}
 {
@@ -119,6 +210,12 @@
       "id": "show_author",
       "default": false,
       "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
     },
     {
       "type": "paragraph",

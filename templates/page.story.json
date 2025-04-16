@@ -1,0 +1,144 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_title": true,
+        "title": "Meet the team",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "multicolumn_h6WiFD": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_EaXbRm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bio-cam_29f659f3-2bdc-4ad2-b720-14db3ac92d65.jpg",
+            "title": "Cam",
+            "text": "<p>Camron, the ex-mechanical engineer turned e-commerce expert, thrives in the great outdoors with his loved ones. His senior pup, Jet, offers expert opinions on all things DOK—a true canine consultant in the world of new products.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_QiQVfm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/bio-dom_941f5f41-e0d6-4609-ac62-ac0dfca44578.jpg",
+            "title": "Dom",
+            "text": "<p>Dominic, a former materials engineer turned pet product innovator, finds his Zen in nature's beauty. He's cared for countless senior dogs but now lives happily with his rescue cat, Sam.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_EaXbRm",
+        "column_QiQVfm"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "two-third",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multirow_fFGqB9": {
+      "type": "multirow",
+      "blocks": {
+        "row_pBJD8A": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Group_3311.jpg",
+            "caption": "Our Philosophy",
+            "heading": "",
+            "text": "<p>At DOK, our brand philosophy is simple yet profound: we exist to craft solutions that directly address everyday challenges. Rooted in our passion for enhancing connections, our products are meticulously designed to foster seamless interactions between individuals and their cherished furry companions. We believe that the essence of joy resides in the simple moments, and our commitment lies in amplifying these experiences. </p><p>Through innovative design and functionality, we aspire to infuse each day with an extra dash of delight and playfulness. Our dedication to creating tools that facilitate a deeper bond between pets and their owners is at the heart of everything we do. At DOK, we're not just about products; we're about transforming routine moments into opportunities for shared happiness and unforgettable memories.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_WyaaCM": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Group_3316.jpg",
+            "caption": "Better quality &  pet-focused Design",
+            "heading": "",
+            "text": "<p>Better quality & better design makes better products. We select top-tier materials, prioritizing durability and longevity in every aspect of our creations. Our relentless pursuit of excellence extends beyond durability; it encompasses a deep understanding of pet behavior and preferences. Each design element is crafted with precision, ensuring ergonomic comfort, safety, and functionality for our furry companions. </p><p>By seamlessly blending superior quality and pet-focused design, we don't just create products; we cultivate experiences that enrich the lives of pets and their devoted owners, fostering stronger, more joyful connections.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_b9fWEe": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Group_3317.jpg",
+            "caption": "20 years of collective product experience",
+            "heading": "",
+            "text": "<p>DOK's journey is spearheaded by its founders, Dom and Cam, two individuals whose combined expertise boasts an impressive 20 years of collective product experience. Hailing from a robust engineering background, their passion for innovation and problem-solving fuels the brand's DNA. Their collaborative synergy lays the foundation for DOK's commitment to excellence, blending technical precision with creative ingenuity. </p><p>With a shared vision to revolutionize pet products, Dom and Cam infuse their seasoned expertise into every facet of the brand, ensuring that each creation seamlessly marries functionality, durability, and pet-centric design. Their entrepreneurial spirit and profound understanding of product development resonate through DOK's offerings, setting a standard for superior quality and thoughtful design in the realm of pet accessories.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_Heib3i": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/Group_3318.jpg",
+            "caption": "We believe in customer connection & service",
+            "heading": "",
+            "text": "<p>At DOK, our commitment to customer service transcends transactions; it's about fostering genuine connections. As pet parents ourselves, we empathize with the deep bond shared between owners and their beloved companions. We understand that our customers possess invaluable insights into their pets' needs, and we cherish this knowledge. </p><p>Our dedication to exemplary service is rooted in this mutual understanding, ensuring that we not only listen but actively collaborate with our customers, valuing their expertise and insights in crafting solutions that truly resonate with their furry friends.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_pBJD8A",
+        "row_WyaaCM",
+        "row_b9fWEe",
+        "row_Heib3i"
+      ],
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "alternate_background": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multicolumn_h6WiFD",
+    "multirow_fFGqB9"
+  ]
+}

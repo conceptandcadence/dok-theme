@@ -1,0 +1,719 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
+  {%- style -%}
+    @media screen and (max-width: 749px) {
+      #Banner-{{ section.id }}::before,
+      #Banner-{{ section.id }} .banner__media::before,
+      #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+
+    @media screen and (min-width: 750px) {
+      #Banner-{{ section.id }}::before,
+      #Banner-{{ section.id }} .banner__media::before {
+        padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{%- style -%}
+  #Banner-{{ section.id }}::after {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign full_width = '100vw'
+  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+
+  if section.settings.image_behavior == 'ambient'
+    assign half_width = '60vw'
+    assign full_width = '120vw'
+    assign stacked_sizes = '(min-width: 750px) 60vw, 120vw'
+    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
+  elsif section.settings.image_behavior == 'fixed' or section.settings.image_behavior == 'zoom-in'
+    assign half_width = '100vw'
+    assign stacked_sizes = '100vw'
+  else
+    assign half_width = '50vw'
+    assign stacked_sizes = '(min-width: 750px) 50vw, 100vw'
+  endif
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+{% capture content %}
+	<div
+		id='Banner-{{ section.id }}'
+		class='gsap-media-reveal banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.video != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'
+	>
+		{%- if section.settings.video != blank -%}
+			<div class='banner__media media{% if section.settings.image == blank and section.settings.video == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
+				{% if section.settings.video != blank %}
+					{% render 'responsive-video',
+						video: section.settings.video, tw-transition-opacity tw-duration-300',
+						video_class: 'responsive-video-media tw-object-cover tw-min-h-full tw-absolute tw-min-w-full tw-h-full tw-w-full',
+						defer: false,
+						autoplay: true,
+						muted: true
+					%}
+				{% endif %}
+			</div>
+		{%- elsif section.settings.image != blank -%}
+			<div class='banner__media media{% if section.settings.image == blank and section.settings.video == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
+				{%- liquid
+					assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
+					if section.settings.video != blank
+						assign image_class = 'banner__media-image-half'
+					endif
+					if section.settings.video != blank and section.settings.stack_images_on_mobile
+						assign sizes = stacked_sizes
+					else
+						assign sizes = full_width
+					endif
+				-%}
+				{{
+					section.settings.image
+					| image_url: width: 3840
+					| image_tag:
+						width: section.settings.image.width,
+						height: image_height,
+						class: image_class,
+						sizes: sizes,
+						widths: widths,
+						fetchpriority: fetch_priority
+				}}
+			</div>
+		{%- endif -%}
+		<div class='banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'>
+			<div class='gsap-text'>
+				<div class='translateY'>
+					<div class='opacity'>
+						<div class='banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient'>
+								{%- for block in section.blocks -%}
+									{%- case block.type -%}
+										{%- when 'heading' -%}
+											<h2
+												class='banner__heading inline-richtext tw-tracking-normal {{ block.settings.heading_size }}'
+												{{ block.shopify_attributes }}
+											>
+												{{ block.settings.heading }}
+											</h2>
+										{%- when 'text' -%}
+											<div class='banner__text rte tw-tracking-normal tw-max-w-[500px] {{ block.settings.text_style }}' {{ block.shopify_attributes }}>
+												<p>{{ block.settings.text }}</p>
+											</div>
+										{%- when 'buttons' -%}
+											<div
+												class='banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}'
+												{{ block.shopify_attributes }}
+											>
+												{%- if block.settings.button_label_1 != blank -%}
+													<a
+														{% if block.settings.button_link_1 == blank %}
+															role='link' aria-disabled='true'
+														{% else %}
+															href='{{ block.settings.button_link_1 }}'
+														{% endif %}
+														class='button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %} tw-tracking-normal'
+													>
+														{{- block.settings.button_label_1 | escape -}}
+													</a>
+												{%- endif -%}
+												{%- if block.settings.button_label_2 != blank -%}
+													<a
+														{% if block.settings.button_link_2 == blank %}
+															role='link' aria-disabled='true'
+														{% else %}
+															href='{{ block.settings.button_link_2 }}'
+														{% endif %}
+														class='button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}'
+													>
+														{{- block.settings.button_label_2 | escape -}}
+													</a>
+												{%- endif -%}
+											</div>
+									{%- endcase -%}
+								{%- endfor -%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endcapture %}
+
+<div class='gsap track'>
+  <div class='overlay'>
+    <div class='shape'>
+      <div class='scale'>
+        <div class='rotate'>
+          <div class='img'>
+            <svg
+              class='hsc-img-path'
+              xml:space='preserve'
+              viewBox='0 0 1000 1001'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+                    {% case section.settings.mask_shape %}
+              {% when 'badge' %}
+                    		<path class="hsc-img-path" id="video-clip-path" fill-rule="evenodd" clip-rule="evenodd" d="M999.999 0.574219H-0.000732422V1000.57H999.999V0.574219ZM504.206 453.5C501.677 451.741 498.321 451.741 495.792 453.5C493.944 454.786 491.609 455.155 489.454 454.504C486.505 453.613 483.313 454.65 481.452 457.104C480.091 458.898 477.984 459.972 475.733 460.018C472.654 460.081 469.938 462.054 468.926 464.963C468.187 467.09 466.515 468.762 464.388 469.501C461.479 470.514 459.506 473.229 459.443 476.309C459.396 478.56 458.323 480.666 456.529 482.026C454.075 483.888 453.038 487.08 453.929 490.028C454.581 492.184 454.211 494.519 452.925 496.367C451.166 498.896 451.166 502.252 452.925 504.781C454.211 506.63 454.581 508.965 453.929 511.12C453.038 514.068 454.075 517.261 456.529 519.122C458.323 520.482 459.396 522.589 459.443 524.84C459.506 527.92 461.479 530.635 464.388 531.647C466.515 532.387 468.187 534.059 468.926 536.186C469.938 539.095 472.654 541.067 475.733 541.131C477.984 541.177 480.091 542.25 481.452 544.044C483.313 546.498 486.505 547.535 489.454 546.645C491.609 545.993 493.944 546.362 495.792 547.648C498.321 549.407 501.677 549.407 504.206 547.648C506.055 546.362 508.39 545.993 510.545 546.645C513.494 547.535 516.685 546.498 518.547 544.044C519.908 542.25 522.014 541.177 524.265 541.131C527.345 541.067 530.06 539.095 531.072 536.186C531.812 534.059 533.484 532.387 535.61 531.647C538.52 530.635 540.492 527.92 540.556 524.84C540.602 522.589 541.675 520.482 543.469 519.122C545.924 517.261 546.961 514.068 546.069 511.12C545.418 508.965 545.788 506.63 547.073 504.781C548.832 502.252 548.832 498.896 547.073 496.367C545.788 494.519 545.418 492.184 546.069 490.028C546.961 487.08 545.924 483.888 543.469 482.026C541.675 480.666 540.602 478.56 540.556 476.309C540.492 473.229 538.52 470.514 535.61 469.501C533.484 468.762 531.812 467.09 531.072 464.963C530.06 462.054 527.345 460.081 524.265 460.018C522.014 459.972 519.908 458.898 518.547 457.104C516.685 454.65 513.494 453.613 510.545 454.504C508.39 455.155 506.055 454.786 504.206 453.5Z" />
+                    	{% else %}
+                    		<path class="hsc-img-path" id="video-clip-path" fill-rule="evenodd" clip-rule="evenodd" d="M0 0.370117H1000V1000.37H0V0.370117ZM550 500.37C550 527.984 527.614 550.37 500 550.37C472.386 550.37 450 527.984 450 500.37C450 472.756 472.386 450.37 500 450.37C527.614 450.37 550 472.756 550 500.37Z" />
+                    {% endcase %}
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='content-wrapper'>
+      <div class='width'>
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</div>
+<script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const container = document.querySelector('#Banner-{{ section.id }}');
+    const timeline = document.querySelector('#Banner-{{ section.id }} .gsap');
+  const track = document.querySelector('.track');
+    const text = document.querySelector('#Banner-{{ section.id }} {{ section.settings.text }}');
+  const video = document.querySelector('.content-wrapper .width');
+
+    const multiplier = {{ section.settings.timeline_duration | default: 3 }};
+    const offset = 1;
+    const tl = gsap.timeline({ paused: true });
+
+  tl.to(video, {
+      duration: 1,
+  	width: '100vw',
+  	borderRadius: 0,
+      ease: 'Expo.easeIn'
+    });
+
+  tl.to(video, {
+  	duration: 0.25,
+  	scale: 1,
+  	ease: 'Expo.easeIn'
+  });
+    tl.to(text, {
+  	duration: 0.75,
+  	translateY: 0,
+  	ease: 'Power2.easeIn'
+  });
+    tl.to(text, {
+  	duration: 0.5,
+  	opacity: 1,
+  	ease: 'Power2.easeIn',
+  delay: 2
+  });
+
+    // Create an Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          //if (entry.isIntersecting) {
+          if (1 === 1) {
+            // Start observing scroll when container is in view
+            window.addEventListener('scroll', handleScroll);
+            // Initial check
+            handleScroll();
+          } else {
+            // Remove scroll listener when container is out of view
+            window.removeEventListener('scroll', handleScroll);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when at least 10% of the container is visible
+      },
+    );
+
+    // Function to handle scroll
+    function handleScroll() {
+      const containerRect = container.getBoundingClientRect();
+      const containerTop = containerRect.top;
+      const containerHeight = containerRect.height;
+      const windowHeight = window.innerHeight;
+      const scrolled = window.pageYOffset - container.offsetTop;
+      const viewportBottom = window.pageYOffset + window.innerHeight;
+
+      const containerScrollY = window.pageYOffset - document.querySelector('.gsap').offsetTop + windowHeight;
+      const containerScrollYPercent = containerScrollY / containerHeight;
+      const timelineScrollYPercent = (containerScrollY / containerHeight) * (1 / multiplier);
+
+      const offsetScrollYPercent = containerScrollYPercent - offset;
+
+      const videoContainer = document.querySelector('.content-wrapper');
+
+  	if (timelineScrollYPercent > 0.8) {
+  		videoContainer.classList.add('inset');
+      } else {
+  		videoContainer.classList.remove('inset');
+      }
+
+      tl.progress(offsetScrollYPercent);
+      document.body.style.setProperty('--scroll', offsetScrollYPercent);
+    }
+
+    // Start observing the container
+    observer.observe(container);
+  });
+</script>
+
+{% style %}
+  	#shopify-section-{{ section.id }} {
+  		margin-top: 300px;
+  	}
+  	#shopify-section-{{ section.id }} .gsap .overlay {
+  		position: sticky;
+  		height: 100vh;
+  		top: 0;
+  	}
+  	#shopify-section-{{ section.id }} .gsap {{ section.settings.text }} {
+  		transform: translatey(5vw);
+  		opacity: 0;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap.track {
+  		height: calc(100vh * {{ section.settings.timeline_duration | default: 3 }});
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .content-wrapper {
+  		width: 100%;
+  		height: 100%;
+  		z-index: -1;
+  		width: 100%;
+  		height: 100vh;
+  		position: absolute;
+  		top: 0%;
+  		bottom: 0%;
+  		left: 0%;
+  		right: 0%;
+  		padding: 0;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap-media-reveal {
+  		position: relative;
+  		overflow: hidden;
+  		height: 100%;
+  		min-height: 100% !important;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .shape {
+  		display: flex;
+  		justify-content: center;
+  		align-items: center;
+  		height: 100%;
+  		pointer-events: none;
+  display: none !important;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .img svg {
+  		width: 100%;
+  		height: 100%;
+  		fill: var(--gradient-background);
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .img svg .hsc-img-path {
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .overlay {
+  		overflow: hidden;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .banner__content {
+  		height: 100vh !important;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .content-wrapper .width {
+  		width: 100vmin;
+  		min-width: 100vmin;
+  		max-width: 100%;
+  		border-radius: 2000px;
+  		margin: 0 auto;
+  		transition: all 0.25s ease-in-out;
+  		overflow: hidden;
+  		padding: 0;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset {
+  		border-radius: 20px !important;
+  		overflow: hidden !important;
+  		padding: 0 24px !important;
+  		transition: all 1s ease-in-out;
+  		border-radius: 20px !important;
+  		margin: 24px 0;
+  		height: calc(100% - 48px);
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset .width {
+  		border-radius: 20px !important;
+  		overflow: hidden !important;
+  		height: 100%;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset .responsive-video, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .responsive-video-media, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .gsap-media-reveal, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .banner::after {
+  		border-radius: 20px !important;
+  		overflow: hidden !important;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .video-html {
+  		min-width: 100%;
+  		min-height: 100%;
+  		max-width: none;
+  		max-height: none;
+  		height: auto;
+  		width: auto;
+  	}
+
+  	#shopify-section-{{ section.id }} .gsap .banner__media {
+  		height: 100vh !important;
+  		width: 100vw !important;
+  	}
+{% endstyle %}
+{% schema %}
+{
+  "name": "Scrolljack Media",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "t:sections.image-banner.settings.image_overlay_opacity.label",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.image-banner.settings.image_height.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.image-banner.settings.image_height.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.image-banner.settings.image_height.options__3.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.image-banner.settings.image_height.options__4.label"
+        }
+      ],
+      "default": "medium",
+      "label": "t:sections.image-banner.settings.image_height.label",
+      "info": "t:sections.image-banner.settings.image_height.info"
+    },
+    {
+      "type": "range",
+      "id": "timeline_duration",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "unit": "x",
+      "label": "Scrolljack Scale"
+    },
+    {
+      "type": "number",
+      "id": "offset",
+      "default": 1,
+      "label": "Offset"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Content Selector",
+      "default": ".gsap-text"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__1.label"
+        },
+        {
+          "value": "top-center",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__2.label"
+        },
+        {
+          "value": "top-right",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__3.label"
+        },
+        {
+          "value": "middle-left",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__4.label"
+        },
+        {
+          "value": "middle-center",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__5.label"
+        },
+        {
+          "value": "middle-right",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__6.label"
+        },
+        {
+          "value": "bottom-left",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__7.label"
+        },
+        {
+          "value": "bottom-center",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__8.label"
+        },
+        {
+          "value": "bottom-right",
+          "label": "t:sections.image-banner.settings.desktop_content_position.options__9.label"
+        }
+      ],
+      "default": "middle-center",
+      "label": "t:sections.image-banner.settings.desktop_content_position.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_box",
+      "default": true,
+      "label": "t:sections.image-banner.settings.show_text_box.label"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-banner.settings.desktop_content_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.image-banner.settings.desktop_content_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-banner.settings.desktop_content_alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.image-banner.settings.desktop_content_alignment.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.animation.content"
+    },
+    {
+      "type": "select",
+      "id": "mask_shape",
+      "options": [
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "badge",
+          "label": "Badge"
+        }
+      ],
+      "default": "circle",
+      "label": "Mask Shape"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-banner.settings.mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-banner.settings.mobile_content_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.image-banner.settings.mobile_content_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-banner.settings.mobile_content_alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.image-banner.settings.mobile_content_alignment.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_images_on_mobile",
+      "default": true,
+      "label": "t:sections.image-banner.settings.stack_images_on_mobile.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_below",
+      "default": true,
+      "label": "t:sections.image-banner.settings.show_text_below.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.image-banner.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.image-banner.blocks.heading.settings.heading.default",
+          "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-banner.blocks.text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "t:sections.image-banner.blocks.text.settings.text.default",
+          "label": "t:sections.image-banner.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.image-banner.blocks.buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "t:sections.image-banner.blocks.buttons.settings.button_label_1.default",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "default": false,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_2.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_2.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "default": false,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_2.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolljack Media"
+    }
+  ]
+}
+{% endschema %}

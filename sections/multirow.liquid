@@ -42,19 +42,19 @@
   endunless
 -%}
 
-<div class="multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="multirow__inner page-width">
+<div class='multirow{% if section.settings.alternate_background %} alternate-bg{% endif %} section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}'>
+  <div class='multirow__inner page-width page-width--narrow'>
     {%- for block in section.blocks -%}
       <div
-        class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class='image-with-text isolate {{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'
         {{ block.shopify_attributes }}
       >
-        <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
-          <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+        <div class='image-with-text__grid grid grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}'>
+          <div class='image-with-text__media-item tw-rounded-[15px] image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item'>
             <div
-              class="image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}"
+              class='tw-relative tw-rounded-[15px] image-with-text__media image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} global-media-settings{% if block.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %} lg:tw-mr-[48px]'
               {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
-                style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
+                style='padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;'
               {% endif %}
             >
               {%- if block.settings.image != blank -%}
@@ -70,31 +70,33 @@
               {%- else -%}
                 {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}
-            </div>
-          </div>
-          <div class="image-with-text__text-item grid__item">
-            <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
               {%- if block.settings.caption -%}
-                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
+                <p class='caption-title tw-absolute tw-leading-tight tw-left-0 tw-top-0 tw-text-[24px] lg:tw-text-[28px] tw-text-white tw-font-medium tw-p-[24px] tw-tracking-normal tw-max-w-1/2'>
                   {{ block.settings.caption | escape }}
                 </p>
               {%- endif -%}
+            </div>
+          </div>
+          <div class='image-with-text__text-item grid__item'>
+            <div class='image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}'>
               {%- if block.settings.heading -%}
-                <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
+                <h2 class='image-with-text__heading {{ section.settings.heading_size }} rte'>
                   {{ block.settings.heading }}
                 </h2>
               {%- endif -%}
               {%- if block.settings.text -%}
-                <div class="image-with-text__text rte {{ section.settings.text_style }}">{{ block.settings.text }}</div>
+                <div class='image-with-text__text rte tw-tracking-normal {{ section.settings.text_style }}'>
+                  {{ block.settings.text }}
+                </div>
               {%- endif -%}
               {%- if block.settings.button_label != blank -%}
                 <a
                   {% if block.settings.button_link == blank %}
-                    role="link" aria-disabled="true"
+                    role='link' aria-disabled='true'
                   {% else %}
-                    href="{{ block.settings.button_link }}"
+                    href='{{ block.settings.button_link }}'
                   {% endif %}
-                  class="button button--{{ section.settings.button_style }}"
+                  class='button button--{{ section.settings.button_style }}'
                 >
                   {{ block.settings.button_label | escape }}
                 </a>
@@ -106,6 +108,71 @@
     {%- endfor -%}
   </div>
 </div>
+
+{% style %}
+  .multirow .narrow {
+    max-width: 1152px;
+  }
+  .multirow .image-with-text__content > * + * {
+    margin-top: 0;
+  }
+  .multirow .image-with-text__content {
+    padding-top: 0 !important;
+  }
+  .image-with-text__text.body {
+    font-size: 14px;
+  }
+  .image-with-text__text.body > * {
+    margin-bottom: 12px;
+  }
+  @media screen and (min-width: 990px) {
+    :root {
+      --grid-desktop-horizontal-spacing-xl: calc(var(--grid-desktop-horizontal-spacing) * 2);
+    }
+    .multirow .caption-title {
+      max-width: 70% !important;
+    }
+  }
+  @media screen and (min-width: 990px) {
+    .multirow .image-with-text__media-item.grid__item,
+    .multirow .image-with-text__text-item.grid__item {
+      width: calc(50% - var(--grid-desktop-horizontal-spacing-xl) / 2) !important;
+      max-width: calc(50% - var(--grid-desktop-horizontal-spacing-xl) / 2) !important;
+    }
+    .multirow .image-with-text__grid {
+      column-gap: var(--grid-desktop-horizontal-spacing-xl) !important;
+    }
+    .image-with-text__content {
+      padding: 6rem 0 7rem;
+    }
+  }
+  @media screen and (max-width: 989px) {
+    .multirow .image-with-text__content {
+      padding-top: 36px !important;
+    }
+  }
+  @media screen and (min-width: 990px) {
+    .image-with-text__text.body {
+      font-size: 18px;
+    }
+    .multirow .image-with-text {
+      border-radius: 15px;
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+    .multirow .image-with-text__content {
+    }
+    .multirow.alternate-bg .image-with-text:nth-child(even) {
+      background-color: rgb(var(--color-background)) !important;
+    }
+    .multirow.alternate-bg .image-with-text:nth-child(even) .image-with-text__content {
+      padding-left: 48px !important;
+    }
+  }
+  .multirow img {
+    border-radius: 15px;
+  }
+{% endstyle %}
 
 {% schema %}
 {
@@ -345,6 +412,12 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "alternate_background",
+      "default": true,
+      "label": "Alternate Background"
     }
   ],
   "blocks": [
@@ -378,7 +451,6 @@
         {
           "type": "text",
           "id": "button_label",
-          "default": "t:sections.multirow.blocks.row.settings.button_label.default",
           "label": "t:sections.multirow.blocks.row.settings.button_label.label"
         },
         {

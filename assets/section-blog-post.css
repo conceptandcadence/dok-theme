@@ -51,11 +51,13 @@
   .article-template__hero-large {
     height: 82.5rem;
   }
+  .article-template__hero-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
 
 .article-template header {
-  margin-top: 4.4rem;
-  margin-bottom: 2rem;
   line-height: calc(0.8 / var(--font-body-scale));
 }
 
@@ -89,7 +91,14 @@
 
 .article-template__content {
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 7.5%;
+  padding: 24px;
+}
+
+@media screen and (min-width: 990px) {
+  .article-template__content {
+    margin-top: 7.5%;
+  }
 }
 
 .article-template__social-sharing {
@@ -172,4 +181,10 @@
 
 .article-template__back:last-child {
   margin-bottom: 3.2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .article-template__hero {
+    padding-bottom: 100% !important;
+  }
 }

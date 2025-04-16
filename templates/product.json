@@ -1,17 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "caption": {
           "type": "text",
@@ -21,183 +24,184 @@
           }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
+        },
+        "reviews_hqb8WH": {
+          "type": "reviews",
+          "disabled": true,
+          "settings": {}
+        },
+        "judge_me_reviews_review_snippet_widget_eLyzBj": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "options_VBrAzH": {
+          "type": "options",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "button",
+            "swatch_shape": "circle"
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector"
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "show_quantity_selector": true
           }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials",
-            "icon": "leather",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Dimensions",
-            "icon": "ruler",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-3": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Care Instructions",
-            "icon": "heart",
-            "content": "",
-            "page": ""
-          }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
+        "callouts_NYNjRr": {
+          "type": "callouts",
+          "settings": {}
         }
       },
       "block_order": [
-        "vendor",
         "title",
         "caption",
         "price",
+        "reviews_hqb8WH",
+        "judge_me_reviews_review_snippet_widget_eLyzBj",
+        "options_VBrAzH",
         "variant_picker",
-        "quantity_selector",
         "buy_buttons",
         "description",
-        "collapsible-row-0",
-        "collapsible-row-1",
-        "collapsible-row-2",
-        "collapsible-row-3",
-        "share"
+        "callouts_NYNjRr"
       ],
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "stacked",
+        "color_scheme": "scheme-1",
         "media_size": "large",
         "constrain_to_viewport": true,
-        "mobile_thumbnails": "hide",
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
         "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "enable_video_looping": true,
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
-    "image-with-text": {
-      "type": "image-with-text",
-      "blocks": {
-        "image-with-text-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image with text",
-            "heading_size": "h1"
-          }
-        },
-        "image-with-text-1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "image-with-text-0",
-        "image-with-text-1"
-      ],
+    "product_features_UtUKKb": {
+      "type": "product-features",
       "settings": {
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "color_scheme": "scheme-2",
-        "mobile_content_alignment": "left",
+        "description_style": "body",
+        "collection": "",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
+    "product_specs_PawptB": {
+      "type": "product-specs",
+      "settings": {
+        "title": "Find the size that's right for your dog",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_4fmBJt": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{% if product.metafields.reviews.rating_count > 0 %}\n<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/Frame_7.gif?v=1742168851\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>\n{% else %}\n<style>\n#shopify-section-{{ section.id }} { display: none !important; }\n</style>\n{% endif %}",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "17421346288e9e3ba1": {
+      "type": "apps",
       "blocks": {
-        "column-0": {
-          "type": "column",
+        "judge_me_reviews_review_widget_CGJd9t": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_CGJd9t"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "product_usage_zn88xQ": {
+      "type": "product-usage",
+      "blocks": {
+        "video_ABhbWj": {
+          "type": "video",
           "settings": {
-            "title": "Free Shipping",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Docks",
+            "video": "shopify://files/videos/usage-dock3.mp4"
           }
         },
-        "column-1": {
-          "type": "column",
+        "video_KyjQGJ": {
+          "type": "video",
           "settings": {
-            "title": "Hassle-Free Exchanges",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "title": "Boats",
+            "video": "shopify://files/videos/usage-boat2.mp4"
+          }
+        },
+        "video_grqa4J": {
+          "type": "video",
+          "settings": {
+            "title": "Pools",
+            "video": "shopify://files/videos/usage-pool2.mp4"
           }
         }
       },
       "block_order": [
-        "column-0",
-        "column-1"
+        "video_ABhbWj",
+        "video_KyjQGJ",
+        "video_grqa4J"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {h2 {max-width: 280px; }}"
       ],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
+        "title": "Perfect for wherever you take your dog—or they take you...",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-5",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
+        "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "image_ratio": "square",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
@@ -205,12 +209,147 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "image_with_faq_3zptGy": {
+      "type": "image-with-faq",
+      "blocks": {
+        "question_gXB4kn": {
+          "type": "question",
+          "settings": {
+            "title": "What PSI do I inflate the Dog-DOK to?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        },
+        "question_mgyWyK": {
+          "type": "question",
+          "settings": {
+            "title": "Can I use the Dog-DOK in my pool?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        },
+        "question_gL6fgp": {
+          "type": "question",
+          "settings": {
+            "title": "How do I fold and store the Dog-DOK?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        },
+        "question_Dhgxt3": {
+          "type": "question",
+          "settings": {
+            "title": "What is included with the Dog-DOK?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        },
+        "question_UAjYA9": {
+          "type": "question",
+          "settings": {
+            "title": "Is there a warranty on the Dog-DOK?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        },
+        "question_pJxQLG": {
+          "type": "question",
+          "settings": {
+            "title": "What are the dimensions when inflated?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        },
+        "question_xnLx3d": {
+          "type": "question",
+          "settings": {
+            "title": "Can this fold up for storage on a boat?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_gXB4kn",
+        "question_mgyWyK",
+        "question_gL6fgp",
+        "question_Dhgxt3",
+        "question_UAjYA9",
+        "question_pJxQLG",
+        "question_xnLx3d"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "image": "shopify://shop_images/2155C37A-2EFD-4409-8EB1-76B41A436235.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "scrolljack_media_Kb4a8j": {
+      "type": "scrolljack-media",
+      "blocks": {
+        "heading_rcqagc": {
+          "type": "heading",
+          "settings": {
+            "heading": "Splash with Confidence",
+            "heading_size": "h1"
+          }
+        },
+        "text_mHt4BC": {
+          "type": "text",
+          "settings": {
+            "text": "We offer a 1 year manufacturer warranty on all Dog DOKs and an extended warranty that provides coverage for up to 4 years.",
+            "text_style": "body"
+          }
+        },
+        "buttons_iBq8Ky": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "learn more",
+            "button_link_1": "shopify://products/extended-warranty",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_rcqagc",
+        "text_mHt4BC",
+        "buttons_iBq8Ky"
+      ],
+      "settings": {
+        "video": "shopify://files/videos/pdp-footer-warranty.mp4",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "timeline_duration": 3,
+        "offset": 1,
+        "text": ".gsap-text",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mask_shape": "circle",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
     }
   },
   "order": [
     "main",
-    "image-with-text",
-    "multicolumn",
-    "related-products"
+    "product_features_UtUKKb",
+    "product_specs_PawptB",
+    "custom_liquid_4fmBJt",
+    "17421346288e9e3ba1",
+    "product_usage_zn88xQ",
+    "related-products",
+    "image_with_faq_3zptGy",
+    "scrolljack_media_Kb4a8j"
   ]
 }

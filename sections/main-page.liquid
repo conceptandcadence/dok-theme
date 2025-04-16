@@ -14,14 +14,41 @@
   }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+<div class='page-width page-width--narrow section-{{ section.id }}-padding'>
+  <div class='tw-pt-[80px] md:tw-pt-[90px]'>
+    {% if section.settings.show_title %}
+      <h1 class='main-page-title page-title h0 tw-tracking-normal tw-text-center {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
+        {% if section.settings.title != blank %}
+          {{ section.settings.title | escape }}
+        {% else %}
+          {{ page.title | escape }}
+        {% endif %}
+      </h1>
+    {% endif %}
+    {% if page.content != blank %}
+      <div class='page-content-wrapper tw-rounded-[20px] tw-p-8 md:tw-p-12 lg:tw-p-24 lg:tw-mt-24 tw-tracking-normal tw-text-[16px] rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'>
+        {{ page.content }}
+      </div>
+    {% endif %}
   </div>
 </div>
+
+{% style %}
+  .page-content-wrapper {
+    background-color: rgb(var(--color-background));
+  }
+  .page-content-wrapper > * {
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+  .rte a {
+    border-bottom: solid 2px #f9c33c;
+    transition: border-bottom 0.3s ease;
+  }
+  .rte a:hover {
+    border-bottom: 2px solid #000;
+  }
+{% endstyle %}
 
 {% schema %}
 {
@@ -32,6 +59,17 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "default": true,
+      "label": "Show Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Custom Title"
     },
     {
       "type": "range",

@@ -227,11 +227,12 @@
 }
 
 @media screen and (max-width: 749px) {
+  /*
   .banner--mobile-bottom .banner__media,
   .banner--stacked:not(.banner--mobile-bottom) .banner__media {
     position: relative;
   }
-
+*/
   .banner--stacked.banner--adapt .banner__content {
     height: auto;
   }
@@ -444,6 +445,7 @@
 
 .banner__heading {
   margin-bottom: 0;
+  line-height: 1.2;
 }
 
 .banner__box .banner__heading + * {
@@ -481,7 +483,7 @@
 }
 
 .banner__box > * + .banner__buttons {
-  margin-top: 2rem;
+  margin-top: 3.5rem;
 }
 
 @media screen and (max-width: 749px) {

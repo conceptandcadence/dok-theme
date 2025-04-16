@@ -220,3 +220,12 @@ cart-items {
     gap: 1rem;
   }
 }
+
+#WarrantyUpsellButton {
+  min-height: 3rem !important;
+  font-size: 12px !important;
+}
+
+.warranty-upsell:hover .warranty-upsell__text a {
+  text-decoration: underline;
+}

@@ -1,0 +1,41 @@
+{%- if media -%}
+	{% assign srcset = srcset | default: '550,1100,1445,1680,2048,2200,2890,4096' | split: ',' %}
+	{% assign sizes = sizes 	| default: '(min-width: 750px) calc(100vw - 22rem), 1100px' %}
+	{% capture srcset_values %}
+		{%- for src in srcset -%}
+			{% assign src_width = src | plus: 0 %}
+			{%- if media.width >= src_width -%}{{ media | image_url: width: src_width }} {{src_width}}w,{%- endif -%}
+			{%- if media.width >= src_width -%}
+				{%- assign width = src_width -%}
+				{%- assign height = src_width | divided_by: media.aspect_ratio -%}
+			{%- endif -%}
+		{%- endfor -%}
+		{{ media | image_url }} {{ media.width }}w
+	{% endcapture %}
+	
+	<img
+		id="{{ id }}"
+		class="{{ classes }}"
+		srcset="{{ srcset_values }}"
+		sizes="{{ sizes }}"
+		src="{{ media | image_url: width: 1445 }}"
+		alt="{{ title | default: media.alt | escape }}"
+		{% if defer %}loading="lazy"{% endif %}
+		width="{{ width }}"
+		height="{{ height }}"
+		data-media-id="{{ media.id }}"
+		data-ar="{{ media.aspect_ratio  }}"
+		{% if data %}{{ data }}{% endif %}
+	>
+{%- endif -%}
+
+{% assign media = nil %}
+{% assign id = nil %}
+{% assign classes = nil %}
+{% assign defer = nil %}
+{% assign title = nil %}
+{% assign data = nil %}
+{% assign srcset = nil %}
+{% assign sizes = nil %}
+{% assign width = nil %}
+{% assign height = nil %}
