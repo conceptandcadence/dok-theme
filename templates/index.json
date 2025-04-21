@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_7Bzixa": {
       "type": "hero",
@@ -34,6 +34,11 @@
       "block_order": [
         "heading_hMEJ4B",
         "buttons_xVKj7K"
+      ],
+      "custom_css": [
+        ".banner__media,.banner::after,.banner__media::after {border-bottom-right-radius: 18px; border-bottom-left-radius: 18px;}",
+        ".banner {background-color: #efebdf; padding-bottom: 24px;}",
+        "@media screen and (min-width: 750px) {.banner__media, .banner::after, .banner__media::after {border-bottom-right-radius: 48px; border-bottom-left-radius: 48px; }}"
       ],
       "settings": {
         "video": "shopify://files/videos/dok-pdp-video2up.mp4",
@@ -409,7 +414,7 @@
         "buttons_CjUrWU"
       ],
       "settings": {
-        "image": "shopify://shop_images/material.jpg",
+        "image": "shopify://shop_images/DSC_0195C.jpg",
         "image_overlay_opacity": 0,
         "image_height": "medium",
         "timeline_duration": 3,

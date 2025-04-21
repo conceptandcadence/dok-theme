@@ -117,7 +117,7 @@
     </div>
 
     <div class='hpms-hotspot tw-absolute tw-bottom-0 tw-left-0 tw-w-full tw-h-[100vw] tw-flex tw-flex-col tw-items-center tw-justify-center'>
-      <div class='hpms-hotspot-trigger-wrapper tw-w-[380px] tw-h-[202px] tw-absolute tw-bottom-[25%] tw-left-1/2 tw-z-10 tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2'>
+      <div class='hpms-hotspot-trigger-wrapper tw-w-[400px] tw-h-[202px] tw-absolute tw-bottom-[25%] tw-left-1/2 tw-z-10 tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2'>
         <div class='hpms-hotspot-trigger tw-size-12 lg:tw-size-20 tw-bg-[#F7F5EF] tw-absolute tw-bottom-[15%] tw-left-1/2 tw-z-10 tw-rounded-full tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2 tw-translate-y-2/3'>
           <div class='tw-size-8 lg:tw-size-12 tw-bg-[#F9C33C] tw-rounded-full tw-shadow-md'>
             <span class='tw-sr-only'> Click for details </span>
@@ -289,8 +289,17 @@
       }
 
       #section2 {
-        background-color: blue;
-      }
+  		border-bottom-right-radius: 18px;
+  		border-bottom-left-radius: 18px;
+  	overflow: hidden;
+  	}
+
+  	@media screen and (min-width: 750px) {
+  		#section2 {
+  			border-bottom-right-radius: 48px;
+  			border-bottom-left-radius: 48px;
+  		}
+  	}
 
       .static-button {
         position: absolute;

@@ -24,7 +24,7 @@
       </div>
     {% endif %}
 
-    <div class=' color-{{ section.settings.section_color_scheme_inner }} tw-rounded-[20px] tw-p-8'>
+    <div class=' color-{{ section.settings.section_color_scheme_inner }} tw-rounded-[20px] tw-p-8 max-md:tw-p-[8px] max-md:tw-mx-[-16px]'>
       {% if product.metafields.compare.specifications != blank %}
         {% for compare_product in product.metafields.compare.products.value %}
           <div
@@ -34,18 +34,22 @@
             <div class='product-specs__header tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-relative'>
               {% if product.metafields.compare.products != blank %}
                 <div class='tw-pt-4 lg:tw-pt-16 tw-px-8 lg:tw-px-0 tw-flex tw-justify-center tw-items-center'>
-                  <ul class='tw-inline-flex tw-gap-4 tw-justify-center tw-border tw-border-white/30 tw-rounded-full tw-p-2 lg:tw-p-3'>
-                    {% for compare_list__product in product.metafields.compare.products.value %}
-                      <li>
-                        <button
-                          class='button spec-button tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12{% if compare_product.handle == compare_list__product.handle %} active{% endif %}'
-                          data-handle='{{ compare_list__product.handle }}'
-                        >
-                          <span class='tw-text-[10px] lg:tw-text-[14px]'>{{ compare_list__product.title }}</span>
-                        </button>
-                      </li>
-                    {% endfor %}
-                  </ul>
+                  <div class='tw-flex tw-justify-start tw-items-center tw-border tw-border-white/30 tw-rounded-full max-md:tw-overflow-scroll'>
+                    <ul class='tw-inline-flex tw-gap-4 tw-justify-center tw-p-2 lg:tw-p-3'>
+                      {% for compare_list__product in product.metafields.compare.products.value %}
+                        <li>
+                          <button
+                            class='button spec-button tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12{% if compare_product.handle == compare_list__product.handle %} active{% endif %}'
+                            data-handle='{{ compare_list__product.handle }}'
+                          >
+                            <span class='tw-text-[10px] lg:tw-text-[14px] tw-whitespace-nowrap'>
+                              {{- compare_list__product.title -}}
+                            </span>
+                          </button>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 </div>
               {% endif %}
               <div class='product-specs__media tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-cursor-none'>
@@ -85,7 +89,7 @@
               </div>
             </div>
 
-            <div class='product-specs__list tw-my-12 tw-py-12 tw-overflow-hidden tw-relative tw-flex lg:tw-gap-12 tw-flex-col md:tw-flex-row lg:tw-mb-0 lg:tw-pb-0'>
+            <div class='product-specs__list tw-my-12 tw-py-12 tw-overflow-hidden tw-relative tw-flex lg:tw-gap-12 tw-flex-col md:tw-flex-row lg:tw-mb-0 lg:tw-pb-0 max-md:tw-px-[16px]'>
               <ul class='tw-w-full md:tw-w-1/2'>
                 {% if compare_product.metafields.compare.specifications.value.platform_length != blank %}
                   <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>

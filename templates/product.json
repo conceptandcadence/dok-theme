@@ -123,31 +123,7 @@
         "section_color_scheme": "scheme-1",
         "section_color_scheme_inner": "scheme-4",
         "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "custom_liquid_4fmBJt": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "{% if product.metafields.reviews.rating_count > 0 %}\n<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/Frame_7.gif?v=1742168851\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>\n{% else %}\n<style>\n#shopify-section-{{ section.id }} { display: none !important; }\n</style>\n{% endif %}",
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "17421346288e9e3ba1": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_CGJd9t": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_CGJd9t"
-      ],
-      "settings": {
-        "include_margins": true
+        "padding_bottom": 0
       }
     },
     "product_usage_zn88xQ": {
@@ -187,8 +163,32 @@
         "title": "Perfect for wherever you take your dog—or they take you...",
         "section_color_scheme": "scheme-1",
         "section_color_scheme_inner": "scheme-5",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36
+      }
+    },
+    "custom_liquid_4fmBJt": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{% if product.metafields.reviews.rating_count > 0 %}\n<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/Frame_7.gif?v=1742168851\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>\n{% else %}\n<style>\n#shopify-section-{{ section.id }} { display: none !important; }\n</style>\n{% endif %}",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "17421346288e9e3ba1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_CGJd9t": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_CGJd9t"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "related-products": {
@@ -345,9 +345,9 @@
     "main",
     "product_features_UtUKKb",
     "product_specs_PawptB",
+    "product_usage_zn88xQ",
     "custom_liquid_4fmBJt",
     "17421346288e9e3ba1",
-    "product_usage_zn88xQ",
     "related-products",
     "image_with_faq_3zptGy",
     "scrolljack_media_Kb4a8j"
