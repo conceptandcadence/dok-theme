@@ -133,30 +133,21 @@
           "type": "video",
           "settings": {
             "title": "Docks",
-            "video": "shopify://files/videos/usage-dock3.mp4",
-            "product1": "dog-dok-mini",
-            "product2": "dog-dok",
-            "product3": ""
+            "video": "shopify://files/videos/usage-dock3.mp4"
           }
         },
         "video_KyjQGJ": {
           "type": "video",
           "settings": {
             "title": "Boats",
-            "video": "shopify://files/videos/usage-boat2.mp4",
-            "product1": "dog-dok-mini",
-            "product2": "dog-dok",
-            "product3": ""
+            "video": "shopify://files/videos/usage-boat2.mp4"
           }
         },
         "video_grqa4J": {
           "type": "video",
           "settings": {
             "title": "Pools",
-            "video": "shopify://files/videos/usage-pool2.mp4",
-            "product1": "dog-dok-mini",
-            "product2": "dog-dok",
-            "product3": ""
+            "video": "shopify://files/videos/usage-pool2.mp4"
           }
         }
       },
@@ -170,6 +161,7 @@
       ],
       "settings": {
         "title": "Perfect for wherever you take your dog—or they take you...",
+        "collection": "dog-dok",
         "section_color_scheme": "scheme-1",
         "section_color_scheme_inner": "scheme-5",
         "padding_top": 0,
