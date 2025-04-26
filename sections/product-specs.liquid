@@ -88,9 +88,9 @@
                 {% endif %}
                 {% if compare_product.id != product.id %}
                   <div class=' tw-flex tw-flex-col tw-justify-between tw-items-end md:tw-items-center'>
-                    <button class="color-scheme-1 button button--primary tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12">
+                    <a href="{{ compare_product.url }}" class="color-scheme-1 button button--primary tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12">
                       <span class="tw-text-[14px] tw-whitespace-nowrap">Shop Now</span>
-                    </button>
+                    </a>
                   </div>
                 {% endif %}
               </div>
