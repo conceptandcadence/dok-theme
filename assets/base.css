@@ -2391,8 +2391,9 @@ input[type='checkbox'] {
 
 /* Main Header Layout */
 .header-wrapper {
-  display: block;
+  display: flex;
   position: relative;
+  justify-content: center;
   background-color: rgb(var(--color-background));
 }
 
@@ -3805,4 +3806,8 @@ body .jdgm-row-profile {
   body .jdgm-rev__header {
     padding-top: 20px !important;
   }
+}
+
+.metafield-rich_text_field p {
+  margin-bottom: 8px;
 }
