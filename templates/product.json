@@ -149,12 +149,36 @@
             "title": "Pools",
             "video": "shopify://files/videos/usage-pool2.mp4"
           }
+        },
+        "video_mjqPre": {
+          "type": "video",
+          "settings": {
+            "title": "Dogs",
+            "video": "shopify://files/videos/usage-dock3.mp4"
+          }
+        },
+        "video_FtdEMC": {
+          "type": "video",
+          "settings": {
+            "title": "Kids",
+            "video": "shopify://files/videos/usage-boat2.mp4"
+          }
+        },
+        "video_yNQTHt": {
+          "type": "video",
+          "settings": {
+            "title": "Adults",
+            "video": "shopify://files/videos/usage-pool2.mp4"
+          }
         }
       },
       "block_order": [
         "video_ABhbWj",
         "video_KyjQGJ",
-        "video_grqa4J"
+        "video_grqa4J",
+        "video_mjqPre",
+        "video_FtdEMC",
+        "video_yNQTHt"
       ],
       "custom_css": [
         "@media screen and (max-width: 749px) {h2 {max-width: 280px; }}"
