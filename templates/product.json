@@ -62,6 +62,15 @@
         "callouts_NYNjRr": {
           "type": "callouts",
           "settings": {}
+        },
+        "collapsible_tab_kiN4Ue": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What's Included",
+            "icon": "box",
+            "content": "{{ block.settings.page.content }}",
+            "page": ""
+          }
         }
       },
       "block_order": [
@@ -74,7 +83,8 @@
         "variant_picker",
         "buy_buttons",
         "description",
-        "callouts_NYNjRr"
+        "callouts_NYNjRr",
+        "collapsible_tab_kiN4Ue"
       ],
       "settings": {
         "enable_sticky_info": true,
