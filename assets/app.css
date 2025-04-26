@@ -1329,6 +1329,10 @@ video {
   background-color: #f9c33c !important;
 }
 
+.\!tw-border-\[\#f9c33c\] {
+  background-color: #f9c33c !important;
+}
+
 .tw-bg-black\/50 {
   background-color: rgb(0 0 0 / 0.5);
 }
