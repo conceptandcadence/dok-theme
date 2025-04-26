@@ -67,8 +67,8 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "What's Included",
-            "icon": "box",
-            "content": "{{ block.settings.page.content }}",
+            "icon": "none",
+            "content": "{{ product.metafields.details.contents | metafield_tag }}",
             "page": ""
           }
         }
