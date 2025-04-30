@@ -135,31 +135,31 @@ class CartDrawerItems extends CartItems {
 
 customElements.define('cart-drawer-items', CartDrawerItems);
 
-document.querySelector('body')?.addEventListener('click', (event) => {
-  console.log(event.target);
-  event.preventDefault();
-  let variantId = event.target.dataset.variant;
-  let formData = {
-   'items': [{
-    'id': event.target.dataset.variant,
-    'quantity': 1
-    }]
-  };
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(response => {
-    return response.json();
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-  
+document.addEventListener("click", function(e){
+  const target = e.target.closest('#cart-upsell-submit');
+  if(target){
+    event.preventDefault();
+    let variantId = event.target.dataset.variant;
+    let formData = {
+     'items': [{
+      'id': event.target.dataset.variant,
+      'quantity': 1
+      }]
+    };
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
 });
-
 
 
