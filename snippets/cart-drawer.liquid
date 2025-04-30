@@ -518,7 +518,7 @@
         {% endfor %}
 
         <div class='cart-drawer__footer' {{ block.shopify_attributes }}>
-          {% if qualifying_item_in_cart and warranty_in_cart == false %}
+          {% if qualifying_item_in_cart and warranty_in_cart != false %}
             {% for variant in warranty_product.variants %}
               {% if variant.title == qualifying_item_in_cart.product.title %}
                 <div class='warranty-upsell tw-flex tw-items-center tw-gap-6 tw-bg-[#233644] tw-rounded-[15px] tw-p-4 tw-relative tw-mb-6'>
