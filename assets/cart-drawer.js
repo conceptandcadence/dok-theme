@@ -141,7 +141,8 @@ class CartDrawer extends HTMLElement {
         .then(response => {
           const responseText = response.text();
           const newHtml = new DOMParser().parseFromString(responseText, "text/html");//.querySelector('.cart-items').innerHTML;
-          console.log(newHtml)
+          console.log(responseText)
+            console.log(newHtml)
           //document.querySelector('.cart-items').innerHTML = newHtml;
           //return newHtml;
           //this.open(document.querySelector('#cart-upsell-submit'))
