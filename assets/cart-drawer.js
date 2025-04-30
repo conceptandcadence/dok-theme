@@ -114,6 +114,7 @@ class CartDrawer extends HTMLElement {
     this.activeElement = element;
   }
   addWarranty() {
+    console.log('addWarranty()')
     document.querySelector('body').addEventListener("click", function(e){
       const target = e.target.closest('#cart-upsell-submit');
       if(target){
