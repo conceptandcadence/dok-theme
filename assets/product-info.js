@@ -480,7 +480,7 @@ if (!customElements.get('product-info')) {
           const current = this.quantityForm.querySelector(selector);
           const updated = quantityFormUpdated.querySelector(selector);
           if (!current || !updated) continue;
-          if (selector === '.quantity__input') {
+          if (selector === '.quantity') {
             const attributes = [
               'data-cart-quantity',
               'data-min',
