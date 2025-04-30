@@ -32,6 +32,12 @@
 -%}
 
 <div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+  <style>
+    .collection-card-wrapper .card__information {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  </style>
   <div
     class="
       card
