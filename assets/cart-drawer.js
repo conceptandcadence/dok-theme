@@ -113,7 +113,7 @@ class CartDrawer extends HTMLElement {
     this.activeElement = element;
   }
   
-  document.addEventListener("click", function(e){
+  window.addEventListener("click", function(e){
     const target = e.target.closest('#cart-upsell-submit');
     if(target){
       event.preventDefault();
