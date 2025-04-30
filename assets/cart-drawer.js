@@ -135,7 +135,8 @@ class CartDrawerItems extends CartItems {
 
 customElements.define('cart-drawer-items', CartDrawerItems);
 
-document.querySelector('#cart-upsell-submit')?.addEventListener('click', (event) => {
+document.querySelector('body')?.addEventListener('click', (event) => {
+  console.log(event.target);
   event.preventDefault();
   let variantId = event.target.dataset.variant;
   let formData = {
