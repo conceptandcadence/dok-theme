@@ -126,6 +126,7 @@ class CartDrawer extends HTMLElement {
           'quantity': 1
           }]
         };
+        this.close();
         fetch(window.Shopify.routes.root + 'cart/add.js', {
           method: 'POST',
           headers: {
@@ -134,9 +135,8 @@ class CartDrawer extends HTMLElement {
           body: JSON.stringify(formData)
         })
         .then(response => {
+          this.open(document.querySelector('#cart-upsell-submit'))
           return response.json();
-          //this.open(document.querySelector('#cart-upsell-submit'))
-          this.close()
         })
         .catch((error) => {
           console.error('Error:', error);
