@@ -464,7 +464,7 @@ if (!customElements.get('product-info')) {
       }
 
       updateQuantityRules(sectionId, html) {
-        return
+        return // TODO: Fix this properly
         if (!this.quantityInput) return;
         this.setQuantityBoundries();
 
