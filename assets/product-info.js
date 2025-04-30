@@ -464,6 +464,7 @@ if (!customElements.get('product-info')) {
       }
 
       updateQuantityRules(sectionId, html) {
+        return
         if (!this.quantityInput) return;
         this.setQuantityBoundries();
 
@@ -480,7 +481,7 @@ if (!customElements.get('product-info')) {
           const current = this.quantityForm.querySelector(selector);
           const updated = quantityFormUpdated.querySelector(selector);
           if (!current || !updated) continue;
-          if (selector === '.quantity') {
+          if (selector === '.quantity__input') {
             const attributes = [
               'data-cart-quantity',
               'data-min',
