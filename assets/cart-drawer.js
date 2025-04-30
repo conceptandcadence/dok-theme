@@ -126,11 +126,7 @@ class CartDrawer extends HTMLElement {
           'quantity': 1
           }]
         };
-/*
-        document.querySelector('cart-drawer').classList.remove('active');
-        removeTrapFocus(document.querySelector('cart-drawer'));
-        document.body.classList.remove('overflow-hidden');
-*/
+
         fetch(window.Shopify.routes.root + 'cart/add.js', {
           method: 'POST',
           headers: {
@@ -147,6 +143,28 @@ class CartDrawer extends HTMLElement {
           //return newHtml;
           //this.open(document.querySelector('#cart-upsell-submit'))
           //return response.json();
+
+        fetch(window.Shopify.routes.root + 'cart.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => {
+          const responseText = response.text();
+          const newHtml = new DOMParser().parseFromString(responseText, "text/html");//.querySelector('.cart-items').innerHTML;
+          console.log(responseText)
+            console.log(newHtml)
+          //document.querySelector('.cart-items').innerHTML = newHtml;
+          //return newHtml;
+          //this.open(document.querySelector('#cart-upsell-submit'))
+          //return response.json();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+          
         })
         .catch((error) => {
           console.error('Error:', error);
