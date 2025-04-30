@@ -137,7 +137,7 @@ class CartDrawer extends HTMLElement {
           body: JSON.stringify(formData)
         })
         .then(response => {
-          this.open(document.querySelector('#cart-upsell-submit'))
+          //this.open(document.querySelector('#cart-upsell-submit'))
           //return response.json();
         })
         .catch((error) => {
