@@ -50,9 +50,7 @@ class CartDrawer extends HTMLElement {
         const focusElement =
           this.querySelector('.drawer__inner') ||
           this.querySelector('.drawer__close');
-        if (focusElement) {
-          trapFocus(containerToTrapFocusOn, focusElement);
-        }
+        trapFocus(containerToTrapFocusOn, focusElement);
       },
       { once: true },
     );
@@ -104,7 +102,7 @@ class CartDrawer extends HTMLElement {
     });
 
     setTimeout(() => {
-      this.querySelector('#CartDrawer-Overlay')?.addEventListener(
+      this.querySelector('#CartDrawer-Overlay').addEventListener(
         'click',
         this.close.bind(this),
       );
@@ -115,7 +113,7 @@ class CartDrawer extends HTMLElement {
   getSectionInnerHTML(html, selector = '.shopify-section') {
     return new DOMParser()
       .parseFromString(html, 'text/html')
-      .querySelector(selector)?.innerHTML;
+      .querySelector(selector).innerHTML;
   }
 
   getSectionsToRender() {
