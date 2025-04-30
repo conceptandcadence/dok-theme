@@ -122,7 +122,7 @@
     "currency_code_enabled": true,
     "cart_type": "drawer",
     "show_vendor": false,
-    "show_cart_note": true,
+    "show_cart_note": false,
     "show_cart_warranty": true,
     "cart_warranty_headline": "Smooth sailing starts here",
     "cart_warranty_text": "<p>Extend your [product] warranty to 4 years of coverage. This can only available at time of purchase. <a href=\"/products/extended-warranty\" title=\"Extended Warranty\">Learn more</a>.</p>",
