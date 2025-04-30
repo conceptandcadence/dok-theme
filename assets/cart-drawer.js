@@ -134,29 +134,29 @@ class CartDrawer extends HTMLElement {
           },
           body: JSON.stringify(formData)
         })
-        .then(response1 => {
-          fetch(window.Shopify.routes.root + 'cart.js', {
-            method: 'POST',
+        .then(response1 => response1.json())
+        .then(() => {
+          // After adding to cart, fetch the updated cart contents
+          return fetch(window.Shopify.routes.root + 'cart.js', {
+            method: 'GET',  // Changed to GET request
             headers: {
               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          })
-          .then(response2 => {
-            const responseText = response2.text();
-            //const newHtml = new DOMParser().parseFromString(responseText, "text/html").querySelector('cart-drawer-items');
-            console.log(responseText)
-            const newHtml = new DOMParser().parseFromString(responseText, "text/html");
-            console.log(newHtml)
-
-            //document.querySelector('cart-drawer-items').innerHTML = newHtml;
-            //return newHtml;
-            //this.open(document.querySelector('#cart-upsell-submit'))
-            //return response.json();
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });          
+            }
+          });
+        })
+        .then(response2 => response2.json())  // Parse JSON response
+        .then(cartData => {
+          // Fetch the cart drawer HTML
+          return fetch('?section_id=cart-drawer');
+        })
+        .then(response => response.text())
+        .then(responseText => {
+          const newHtml = new DOMParser().parseFromString(responseText, "text/html").querySelector('cart-drawer-items');
+          if (newHtml) {
+            document.querySelector('cart-drawer-items').innerHTML = newHtml.innerHTML;
+          }
+          // Open the cart drawer
+          document.querySelector('cart-drawer').open();
         })
         .catch((error) => {
           console.error('Error:', error);
