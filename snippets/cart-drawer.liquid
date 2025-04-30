@@ -455,16 +455,6 @@
         </form>
       </cart-drawer-items>
       <div class="drawer__footer">
-        {%- if settings.show_cart_warranty -%}
-          <details id='Details-CartDrawer'>
-            <summary>
-              <span class='summary__title'>
-                {{ 'sections.cart.note' | t }}
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </span>
-            </summary>
-          </details>
-        {%- endif -%}
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>
@@ -488,7 +478,116 @@
         <!-- Start blocks -->
         <!-- Subtotals -->
 
+        {% assign warranty_in_cart = false %}
+        {% assign qualifying_item_in_cart = false %}
+        {% assign warranty_product = all_products['extended-warranty'] %}
+        {% comment %}Check for ramp or dock products in the cart {% endcomment %}
+        {% for item in cart.items %}
+          {% if item.product.type == 'Ramp' or item.product.type == 'Dock' %}
+            {% assign qualifying_item_in_cart = item %}
+          {% endif %}
+        {% endfor %}
+
+        {% comment %}Check for warranty in the cart {% endcomment %}
+        {% for item in cart.items %}
+          {% if item.product.type == 'Warranty' %}
+            {% assign warranty_in_cart = true %}
+          {% endif %}
+        {% endfor %}
+
         <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
+          {% if qualifying_item_in_cart and warranty_in_cart == false %}
+            {% for variant in warranty_product.variants %}
+              {% if variant.title == qualifying_item_in_cart.product.title %}
+                <div class='warranty-upsell tw-flex tw-items-center tw-gap-6 tw-bg-[#233644] tw-rounded-[15px] tw-p-4 tw-relative tw-mb-6'>
+                  <a href='{{ variant.url }}' class='tw-absolute tw-inset-0 tw-z-0 tw-cursor-pointer'
+                    ><span class='tw-sr-only'>{{ variant.title }}</span></a
+                  >
+                  {% if settings.cart_warranty_icon != blank %}
+                    {% render 'responsive-image',
+                      media: settings.cart_warranty_icon,
+                      classes: 'img responsive-image motion-reduce tw-rounded-[5px] tw-w-[100px] tw-h-[100px] tw-object-cover',
+                      defer: true
+                    %}
+                  {% endif %}
+                  <div class='tw-flex tw-flex-col tw-gap-1'>
+                    <div class='tw-text-[13px] tw-tracking-normal tw-leading-normal tw-font-medium tw-text-white tw-mb-1'>
+                      {{ settings.cart_warranty_headline }}
+                    </div>
+                    <div class='warranty-upsell__text tw-text-[11px] tw-tracking-normal tw-leading-[1.25] tw-text-white'>
+                      {{ settings.cart_warranty_text | replace: '[product]', variant.title }}
+                    </div>
+
+                    <form
+                      method='post'
+                      action='/cart/add'
+                      id='product-form-extended-warranty'
+                      accept-charset='UTF-8'
+                      class='form'
+                      enctype='multipart/form-data'
+                      novalidate='novalidate'
+                      data-type='add-to-cart-form'
+                      class='tw-relative tw-z-10'
+                    >
+                      <input type='hidden' name='form_type' value='product'>
+                      <input type='hidden' name='utf8' value='✓'>
+                      <input
+                        type='hidden'
+                        name='id'
+                        value='{{ variant.id }}'
+                        class='product-variant-id'
+                      >
+                      <input type='hidden' name='product-id' value='{{ warranty_product.id }}'>
+                      <input type='hidden' name='section-id' value='{{ section.id }}'>
+                      <input
+                        type='hidden'
+                        name='quantity'
+                        id='Quantity-template--{{ section.id }}__main'
+                        data-cart-quantity='1'
+                        data-min='1'
+                        min='1'
+                        step='1'
+                        value='1'
+                        form='product-form-template--{{ section.id }}__main'
+                      >
+                      <div class='product-form__buttons tw-flex tw-justify-between tw-items-center'>
+                        <button
+                          id='WarrantyUpsellButton'
+                          type='submit'
+                          name='add'
+                          class='product-form__submit button button--full-width button--primary tw-mb-2 tw-mt-4 tw-py-2'
+                          aria-haspopup='dialog'
+                        >
+                          <span>Add to cart</span>
+
+                          <div class='loading__spinner hidden'>
+                            <svg xmlns='http://www.w3.org/2000/svg' class='spinner' viewBox='0 0 66 66'>
+                              <circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle>
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </form>
+
+                    <div class='tw-hidden tw-items-center tw-gap-8'>
+                      <a
+                        class='tw-underline tw-text-[12px] tw-text-white tw-pt-2 tw-tracking-normal tw-leading-normal tw-mb-3'
+                        href='/cart/add?id={{variant.id}}&quantity=1'
+                        >Add for {{ variant.price | money_without_trailing_zeros -}}
+                      </a>
+                      <a
+                        class='tw-underline tw-text-[12px] tw-text-white tw-pt-2 tw-tracking-normal tw-leading-normal tw-mb-3'
+                        href='{{variant.url}}'
+                        >Learn more
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          
           <div>
             {%- if cart.cart_level_discount_applications.size > 0 -%}
               <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
