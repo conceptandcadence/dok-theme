@@ -134,7 +134,7 @@ class CartDrawer extends HTMLElement {
           },
           body: JSON.stringify(formData)
         })
-        .then(response1 => {
+        .then(response => {
           fetch(window.Shopify.routes.root + 'cart.js', {
             method: 'POST',
             headers: {
@@ -142,12 +142,11 @@ class CartDrawer extends HTMLElement {
             },
             body: JSON.stringify(formData)
           })
-          .then(response2 => {
-            const responseText = response2.text();
+          .then(response => {
+            const responseText = response.text();
             //const newHtml = new DOMParser().parseFromString(responseText, "text/html").querySelector('cart-drawer-items');
             console.log(responseText)
             console.log(newHtml)
-            const newHtml = new DOMParser().parseFromString(responseText, "text/html")
             //document.querySelector('cart-drawer-items').innerHTML = newHtml;
             //return newHtml;
             //this.open(document.querySelector('#cart-upsell-submit'))
