@@ -156,6 +156,7 @@ class CartDrawer extends HTMLElement {
             document.querySelector('cart-drawer-items').innerHTML = newHtml.innerHTML;
           }
           // Open the cart drawer
+          document.querySelector('.warranty-upsell').remove()
           document.querySelector('cart-drawer').open();
         })
         .catch((error) => {
