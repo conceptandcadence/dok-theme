@@ -139,11 +139,11 @@ window.addEventListener('#add-to-cart-form').on('click', (event) => {
   event.preventDefault();
   let variantId = event.target.dataset.variant;
   let formData = {
- 'items': [{
-  'id': event.target.dataset.variant,
-  'quantity': 1
-  }]
-};
+   'items': [{
+    'id': event.target.dataset.variant,
+    'quantity': 1
+    }]
+  };
   fetch(window.Shopify.routes.root + 'cart/add.js', {
     method: 'POST',
     headers: {
