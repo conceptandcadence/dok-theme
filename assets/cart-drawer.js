@@ -126,7 +126,9 @@ class CartDrawer extends HTMLElement {
           'quantity': 1
           }]
         };
-        this.close();
+    this.classList.remove('active');
+    removeTrapFocus(this.activeElement);
+    document.body.classList.remove('overflow-hidden');
         fetch(window.Shopify.routes.root + 'cart/add.js', {
           method: 'POST',
           headers: {
