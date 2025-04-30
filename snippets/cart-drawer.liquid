@@ -500,7 +500,7 @@
           {% if qualifying_item_in_cart and warranty_in_cart == false %}
             {% for variant in warranty_product.variants %}
               {% if variant.title == qualifying_item_in_cart.product.title %}
-                {% assign qualifying_variant = variant %}
+                {% assign warranty_variant = variant %}
                 <div class='warranty-upsell tw-flex tw-items-center tw-gap-6 tw-bg-[#233644] tw-rounded-[15px] tw-p-4 tw-relative tw-mb-6'>
                   <a href='{{ variant.url }}' class='tw-absolute tw-inset-0 tw-z-0 tw-cursor-pointer'
                     ><span class='tw-sr-only'>{{ variant.title }}</span></a
@@ -520,16 +520,16 @@
                       {{ settings.cart_warranty_text | replace: '[product]', variant.title }}
                     </div>
 
-                    {% assign product_form_id = 'quick-add-cart-upsell' %}
+                    {% assign product_form_id = warranty_variant.id %}
     
                     <button
                       id='{{ product_form_id }}-submit'
                       type='submit'
                       name='add'
-                      class='quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} card--horizontal__quick-add animate-arrow{% endif %}'
+                      class='quick-add__submit button button--full-width button--secondary'
                       aria-haspopup='dialog'
-                      aria-labelledby='{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}'
-                      data-product-url='{{ card_product.url }}'
+                      aria-labelledby='{{ product_form_id }}-submit'
+                      data-product-url='{{ warranty_product.url }}'
                     >
                       Add to Cart
                     </button>
