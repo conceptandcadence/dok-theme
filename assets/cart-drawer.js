@@ -140,7 +140,7 @@ class CartDrawer extends HTMLElement {
         })
         .then(response => {
           const responseText = response.text();
-          console.log(response)
+          console.log(responseText)
           const newHtml = new DOMParser().parseFromString(responseText, "text/html").querySelector('cart-drawer-items').innerHTML;
           //document.querySelector('cart-drawer-items')?.innerHTML = newHtml;
           return newHtml;
