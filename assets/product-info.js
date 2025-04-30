@@ -476,7 +476,7 @@ if (!customElements.get('product-info')) {
           '.quantity__label',
         ];
         for (let selector of selectors) {
-          console.log(this.quantityForm)
+          console.log(selector)
           const current = this.quantityForm.querySelector(selector);
           const updated = quantityFormUpdated.querySelector(selector);
           if (!current || !updated) continue;
