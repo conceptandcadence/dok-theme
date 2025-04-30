@@ -1473,7 +1473,7 @@
 			{
         "type": "image_picker",
         "id": "cart_warranty_icon",
-        "label": "t:settings_schema.logo.settings.cart_warranty_icon.label"
+        "label": "Warranty icon"
       },
       {
         "type": "header",
