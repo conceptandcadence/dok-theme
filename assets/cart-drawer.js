@@ -134,3 +134,31 @@ class CartDrawerItems extends CartItems {
 }
 
 customElements.define('cart-drawer-items', CartDrawerItems);
+
+window.addEventListener('#add-to-cart-form').on('click', (event) => {
+  event.preventDefault();
+  let variantId = event.target.dataset.variant;
+  let formData = {
+ 'items': [{
+  'id': event.target.dataset.variant,
+  'quantity': 1
+  }]
+};
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+  
+});
+
+
+
