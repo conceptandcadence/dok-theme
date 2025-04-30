@@ -112,6 +112,33 @@ class CartDrawer extends HTMLElement {
   setActiveElement(element) {
     this.activeElement = element;
   }
+  
+  document.addEventListener("click", function(e){
+    const target = e.target.closest('#cart-upsell-submit');
+    if(target){
+      event.preventDefault();
+      let variantId = event.target.dataset.variant;
+      let formData = {
+       'items': [{
+        'id': event.target.dataset.variant,
+        'quantity': 1
+        }]
+      };
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+  });
 }
 
 customElements.define('cart-drawer', CartDrawer);
@@ -134,32 +161,5 @@ class CartDrawerItems extends CartItems {
 }
 
 customElements.define('cart-drawer-items', CartDrawerItems);
-
-document.addEventListener("click", function(e){
-  const target = e.target.closest('#cart-upsell-submit');
-  if(target){
-    event.preventDefault();
-    let variantId = event.target.dataset.variant;
-    let formData = {
-     'items': [{
-      'id': event.target.dataset.variant,
-      'quantity': 1
-      }]
-    };
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-    .then(response => {
-      return response.json();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
-});
 
 
