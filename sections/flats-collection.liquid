@@ -66,7 +66,7 @@
     id='collection-{{ section.id }}'
     data-id='{{ section.id }}'
   >
-    <div class='tw-flex tw-flex-col tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-z-1 tw-justify-end'>
+    <div class='flats-container tw-flex tw-flex-col tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-z-1 tw-justify-end'>
       <svg viewBox='0 0 120 28' class='tw-h-auto tw-w-full'>
         <defs>
         	<mask id="xxx">
@@ -83,8 +83,7 @@
           <span class='visually-hidden'>DOK</span>
         </div>
       </div>
-    </div>
-    <div class='tw-absolute tw-top-[100px] tw-left-0 tw-w-full tw-px-[48px] lg:tw-px-[0px] lg:tw-top-0 lg:tw-max-w-[430px] tw-z-1 collection__title title-wrapper title-wrapper--no-top-margin{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}'>
+                      <div class='tw-absolute tw-top-[100px] tw-left-0 tw-w-full tw-px-[48px] lg:tw-px-[0px] lg:tw-top-0 lg:tw-max-w-[430px] tw-z-1 collection__title title-wrapper title-wrapper--no-top-margin{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}'>
       {%- if section.settings.title != blank -%}
         <h2 class='title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} tw-tracking-normal tw-leading-tight tw-text-[28px] lg:tw-text-[36px]'>
           {{ section.settings.title }}
@@ -102,6 +101,8 @@
           {%- endif %}
         </div>
       {%- endif -%}
+    </div>
+
     </div>
 
 		<swiper-container
