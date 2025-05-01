@@ -108,7 +108,7 @@
 												{{ block.settings.heading }}
 											</h2>
 										{%- when 'text' -%}
-											<div class='banner__text rte tw-tracking-normal tw-max-w-[500px] {{ block.settings.text_style }}' {{ block.shopify_attributes }}>
+											<div class='banner__text rte tw-tracking-normal tw-max-w-[500px] 2xl:tw-max-w-[40vw] {{ block.settings.text_style }}' {{ block.shopify_attributes }}>
 												<p>{{ block.settings.text }}</p>
 											</div>
 										{%- when 'buttons' -%}
@@ -272,115 +272,135 @@
 </script>
 
 {% style %}
-  	#shopify-section-{{ section.id }} {
-  		margin-top: 300px;
-  	}
-  	#shopify-section-{{ section.id }} .gsap .overlay {
-  		position: sticky;
-  		height: 100vh;
-  		top: 0;
-  	}
-  	#shopify-section-{{ section.id }} .gsap {{ section.settings.text }} {
-  		transform: translatey(5vw);
-  		opacity: 0;
-  	}
+    	#shopify-section-{{ section.id }} {
+    		margin-top: 300px;
+    	}
+    	#shopify-section-{{ section.id }} .gsap .overlay {
+    		position: sticky;
+    		height: 100vh;
+    		top: 0;
+    	}
+    	#shopify-section-{{ section.id }} .gsap {{ section.settings.text }} {
+    		transform: translatey(5vw);
+    		opacity: 0;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap.track {
-  		height: calc(100vh * {{ section.settings.timeline_duration | default: 3 }});
-  	}
+    	#shopify-section-{{ section.id }} .gsap.track {
+    		height: calc(100vh * {{ section.settings.timeline_duration | default: 3 }});
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .content-wrapper {
-  		width: 100%;
-  		height: 100%;
-  		z-index: -1;
-  		width: 100%;
-  		height: 100vh;
-  		position: absolute;
-  		top: 0%;
-  		bottom: 0%;
-  		left: 0%;
-  		right: 0%;
-  		padding: 0;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .content-wrapper {
+    		width: 100%;
+    		height: 100%;
+    		z-index: -1;
+    		width: 100%;
+    		height: 100vh;
+    		position: absolute;
+    		top: 0%;
+    		bottom: 0%;
+    		left: 0%;
+    		right: 0%;
+    		padding: 0;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap-media-reveal {
-  		position: relative;
-  		overflow: hidden;
-  		height: 100%;
-  		min-height: 100% !important;
-  	}
+    	#shopify-section-{{ section.id }} .gsap-media-reveal {
+    		position: relative;
+    		overflow: hidden;
+    		height: 100%;
+    		min-height: 100% !important;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .shape {
-  		display: flex;
-  		justify-content: center;
-  		align-items: center;
-  		height: 100%;
-  		pointer-events: none;
-  display: none !important;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .shape {
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    		height: 100%;
+    		pointer-events: none;
+    display: none !important;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .img svg {
-  		width: 100%;
-  		height: 100%;
-  		fill: var(--gradient-background);
-  	}
+    	#shopify-section-{{ section.id }} .gsap .img svg {
+    		width: 100%;
+    		height: 100%;
+    		fill: var(--gradient-background);
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .img svg .hsc-img-path {
-  	}
+    	#shopify-section-{{ section.id }} .gsap .img svg .hsc-img-path {
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .overlay {
-  		overflow: hidden;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .overlay {
+    		overflow: hidden;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .banner__content {
-  		height: 100vh !important;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .banner__content {
+    		height: 100vh !important;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .content-wrapper .width {
-  		width: 100vmin;
-  		min-width: 100vmin;
-  		max-width: 100%;
-  		border-radius: 2000px;
-  		margin: 0 auto;
-  		transition: all 0.25s ease-in-out;
-  		overflow: hidden;
-  		padding: 0;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .content-wrapper .width {
+    		width: 100vmin;
+    		min-width: 100vmin;
+    		max-width: 100%;
+    		border-radius: 2000px;
+    		margin: 0 auto;
+    		transition: all 0.25s ease-in-out;
+    		overflow: hidden;
+    		padding: 0;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset {
-  		border-radius: 20px !important;
-  		overflow: hidden !important;
-  		padding: 0 24px !important;
-  		transition: all 1s ease-in-out;
-  		border-radius: 20px !important;
-  		margin: 24px 0;
-  		height: calc(100% - 48px);
-  	}
+    	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset {
+    		border-radius: 20px !important;
+    		overflow: hidden !important;
+    		padding: 0 24px !important;
+    		transition: all 1s ease-in-out;
+    		border-radius: 20px !important;
+    		margin: 24px 0;
+    		height: calc(100% - 48px);
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset .width {
-  		border-radius: 20px !important;
-  		overflow: hidden !important;
-  		height: 100%;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset .width {
+    		border-radius: 20px !important;
+    		overflow: hidden !important;
+    		height: 100%;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset .responsive-video, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .responsive-video-media, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .gsap-media-reveal, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .banner::after {
-  		border-radius: 20px !important;
-  		overflow: hidden !important;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .content-wrapper.inset .responsive-video, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .responsive-video-media, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .gsap-media-reveal, #shopify-section-{{ section.id }} .gsap .content-wrapper.inset .banner::after {
+    		border-radius: 20px !important;
+    		overflow: hidden !important;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .video-html {
-  		min-width: 100%;
-  		min-height: 100%;
-  		max-width: none;
-  		max-height: none;
-  		height: auto;
-  		width: auto;
-  	}
+    	#shopify-section-{{ section.id }} .gsap .video-html {
+    		min-width: 100%;
+    		min-height: 100%;
+    		max-width: none;
+    		max-height: none;
+    		height: auto;
+    		width: auto;
+    	}
 
-  	#shopify-section-{{ section.id }} .gsap .banner__media {
-  		height: 100vh !important;
-  		width: 100vw !important;
+    	#shopify-section-{{ section.id }} .gsap .banner__media {
+    		height: 100vh !important;
+    		width: 100vw !important;
+    	}
+
+
+   @media screen and (min-width: 1440px) {
+   	#shopify-section-{{ section.id }} .banner__text {
+   		font-size: 18px;
+   	}
+   }
+
+  @media screen and (min-width: 2000px) {
+  	#shopify-section-{{ section.id }} .banner__text {
+  			font-size: 1vw !important;
+  		}
+  	#shopify-section-{{ section.id }} .banner__heading {
+  	font-size: 3.5vw !important;
+  		margin-bottom: 1vw !important
   	}
+  	#shopify-section-{{ section.id }} .banner__box > * + .banner__buttons {
+  		margin-bottom: 1vw !important;
+  	}
+  }
 {% endstyle %}
 {% schema %}
 {

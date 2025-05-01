@@ -59,10 +59,10 @@
 -%}
 
 <div
-  class='color-{{ section.settings.color_scheme }} isolate'
+  class='color-{{ section.settings.color_scheme }} isolate '
 >
   <div
-    class='flats-collection collection !tw-pb-[64px]{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} tw-relative section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}'
+    class='flats-collection collection  2xl:!tw-pt-[5%] !tw-pb-[64px]{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} tw-relative section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}'
     id='collection-{{ section.id }}'
     data-id='{{ section.id }}'
   >
@@ -84,25 +84,28 @@
         </div>
       </div>
     </div>
-    <div class='tw-absolute tw-top-[100px] tw-left-0 tw-w-full tw-px-[48px] lg:tw-px-[0px] lg:tw-top-0 lg:tw-max-w-[430px] tw-z-1 collection__title title-wrapper title-wrapper--no-top-margin{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}'>
-      {%- if section.settings.title != blank -%}
-        <h2 class='title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} tw-tracking-normal tw-leading-tight tw-text-[28px] lg:tw-text-[36px]'>
-          {{ section.settings.title }}
-        </h2>
-      {%- endif -%}
-      {%- if section.settings.description != blank
-        or section.settings.show_description
-        and section.settings.collection.description != empty
-      -%}
-        <div class='collection__description tw-tracking-normal tw-text-[14px] {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'>
-          {%- if section.settings.show_description -%}
-            {{ section.settings.collection.description }}
-          {%- else -%}
-            {{ section.settings.description -}}
-          {%- endif %}
-        </div>
-      {%- endif -%}
-    </div>
+
+		<div class='flats-container tw-flex tw-relative tw-mx-auto'>
+			<div class='tw-absolute tw-top-[100px] tw-left-0 tw-w-full tw-px-[48px] lg:tw-px-[0px] lg:tw-top-0 lg:tw-max-w-[430px] tw-z-1 collection__title title-wrapper title-wrapper--no-top-margin{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %} 2xl:tw-pl-0  2xl:tw-pt-0'>
+				{%- if section.settings.title != blank -%}
+					<h2 class='title inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} tw-tracking-normal tw-leading-tight tw-text-[28px] lg:tw-text-[36px]'>
+						{{ section.settings.title }}
+					</h2>
+				{%- endif -%}
+				{%- if section.settings.description != blank
+					or section.settings.show_description
+					and section.settings.collection.description != empty
+				-%}
+					<div class='collection__description tw-tracking-normal tw-text-[14px] {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'>
+						{%- if section.settings.show_description -%}
+							{{ section.settings.collection.description }}
+						{%- else -%}
+							{{ section.settings.description -}}
+						{%- endif %}
+					</div>
+				{%- endif -%}
+			</div>
+		</div>
 
 		<swiper-container
 			id='Slider-{{ section.id }}'
@@ -220,11 +223,17 @@
     align-items: flex-start !important;
     grid-row-start: unset !important;
   }
-  @media screen and (min-width: 990px) {
+		@media screen and (min-width: 990px) {
+			.flats-collection .collection__title {
+				padding: 10rem 6rem 6rem !important;
+			}
+		}
+		@media screen and (min-width: 2000px) {
     .flats-collection .collection__title {
-      padding: 10rem 6rem 6rem !important;
+      padding: 02rem 6rem 0 !important;
     }
   }
+
   .flats-collection .badge {
     padding: 3px 8px;
     margin-top: -2px;
@@ -256,7 +265,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  let flatContainer = document.querySelector('.flats-collection swiper-container')
+  let flatContainer = document.querySelector('.flats-collection .flats-container')
+  let swiperContainer = document.querySelector('.flats-collection swiper-container')
   let flatSlides = document.querySelectorAll('.flats-collection swiper-slide')
   let containerMax = 0
   
@@ -270,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (containerMax > 0) {
     flatContainer.style.maxWidth = `${containerMax}px`
+    swiperContainer.style.maxWidth = `${containerMax}px`
   }
 })
 </script>

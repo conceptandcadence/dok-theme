@@ -3811,3 +3811,12 @@ body .jdgm-row-profile {
 .metafield-rich_text_field p {
   margin-bottom: 8px;
 }
+
+
+/* XL Desktop */
+
+@media screen and (min-width: 2000px) {
+	.page-width {
+		max-width: 100%;
+	}
+}
