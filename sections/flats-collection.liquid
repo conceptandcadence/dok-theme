@@ -255,6 +255,7 @@
 </style>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
 let flatSlides = document.querySelectorAll('.flats-collection swiper-slide')
 
 flatSlides.forEach(slide => {
@@ -263,6 +264,7 @@ flatSlides.forEach(slide => {
   let combinedWidth = slideWidth + slideMargin
   
   console.log(slideWidth, slideMargin, combinedWidth)
+})
 })
 </script>
 
