@@ -257,7 +257,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  let flatContainer = document.querySelector('.flats-collection swiper-container')
+  let flatContainer = document.querySelector('.flats-collection .flats-container')
+  let swiperContainer = document.querySelector('.flats-collection swiper-container')
   let flatSlides = document.querySelectorAll('.flats-collection swiper-slide')
   let containerMax = 0
   
@@ -271,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (containerMax > 0) {
     flatContainer.style.maxWidth = `${containerMax}px`
+    swiperContainer.style.maxWidth = `${containerMax}px`
   }
 })
 </script>
