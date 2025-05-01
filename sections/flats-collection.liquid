@@ -255,15 +255,15 @@
 </style>
 
 <script>
-  let flatSlides = document.querySelectorAll('.flats-collection swiper-slide')
+let flatSlides = document.querySelectorAll('.flats-collection swiper-slide')
+
+flatSlides.forEach(slide => {
+  let slideWidth = slide.clientWidth
+  let slideMargin = parseInt(slide.style.marginRight)
+  let combinedWidth = slideWidth + slideMargin
   
-  flatSlides.forEach(slide => {
-      let slideWidth = slide.clientWidth
-  		let slideMargin = parseInt(slide.style.marginRight)
-  		let combinedWidth = slideWidth + slideMargin
-  
-      console.log(combinedWidth)
-  })
+  console.log(slideWidth, slideMargin, combinedWidth)
+})
 </script>
 
 {% schema %}
