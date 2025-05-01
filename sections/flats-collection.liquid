@@ -254,6 +254,18 @@
   }
 </style>
 
+<script>
+  let flatSlides = document.querySelectorAll('.flats-collection swiper-slide')
+  
+  flatSlides.forEach(slide => {
+      let slideWidth = slide.clientWidth
+  		let slideMargin = parseInt(slide.style.marginRight)
+  		let combinedWidth = slideWidth + slideMargin
+  
+      console.log(combinedWidth)
+  })
+</script>
+
 {% schema %}
 {
   "name": "Flats Collection",
