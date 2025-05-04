@@ -61,7 +61,7 @@
         "column1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/brand-pillar-1c.png",
+            "image": "shopify://shop_images/value-1.jpg",
             "title": "Jump In, Climb Out Effortlessly",
             "text": "",
             "link_label": "",
@@ -71,7 +71,7 @@
         "column2": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/brand-pillar-2c.png",
+            "image": "shopify://shop_images/value-2.jpg",
             "title": "Rigid & built to last with military grade materials",
             "text": "",
             "link_label": "",
@@ -81,7 +81,7 @@
         "column3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/brand-pillar-1c.png",
+            "image": "shopify://shop_images/value-3.jpg",
             "title": "Hassle-Free fun for everyone",
             "text": "",
             "link_label": "",
