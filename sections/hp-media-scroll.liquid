@@ -366,6 +366,48 @@
         markers: false,
         start: 'top top',
         end: `+=${window.innerWidth * 1.5}`,
+        onToggle: (self) => console.log('toggled, isActive:', self.isActive),
+        onUpdate: (self) => {
+          console.log(
+            `progress: ${self.progress.toFixed(3)}`,
+            `direction: ${self.direction}`,
+            `velocity: ${self.getVelocity()}`,
+            `isActive: ${self.isActive}`,
+          );
+          if (self.progress > 0 && self.progress <= 0.15 && self.isActive) {
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(1)')
+              .classList.add('active');
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(2)')
+              .classList.remove('active');
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(3)')
+              .classList.remove('active');
+          }
+          if (self.progress > 0.15 && self.progress < 0.4 && self.isActive) {
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(1)')
+              .classList.remove('active');
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(2)')
+              .classList.add('active');
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(3)')
+              .classList.remove('active');
+          }
+          if (self.progress >= 0.4 && self.isActive) {
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(1)')
+              .classList.remove('active');
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(2)')
+              .classList.remove('active');
+            document
+              .querySelector('#shopify-section-{{ section.id }} .hpms-feature:nth-child(3)')
+              .classList.add('active');
+          }
+        },
       },
     })
     .to('#hpms-features .hpms-features-wrapper', {
@@ -402,7 +444,8 @@
       --text-offset: calc(100% - 80px);
     }
   }
-  .hpms-feature:hover .hpms-feature-modal-body-content {
+  .hpms-feature:hover .hpms-feature-modal-body-content,
+  .hpms-feature.active .hpms-feature-modal-body-content {
     transform: translateY(0);
   }
   .hpms-feature-modal-media {
@@ -412,7 +455,8 @@
     transition: all 0.5s ease-in-out;
     background-color: #000;
   }
-  .hpms-feature:hover .hpms-feature-modal-media img {
+  .hpms-feature:hover .hpms-feature-modal-media img,
+  .hpms-feature.active .hpms-feature-modal-media img {
     opacity: 0.75;
   }
   .hpms-section-0 {
