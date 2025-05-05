@@ -968,6 +968,11 @@ a.product__text {
 .product__media-list .media > * {
   overflow: hidden;
 }
+@media screen and (min-width: 1800px) {
+	.product__media-list .media > img {
+		object-fit: contain;
+	}
+}
 
 .thumbnail-list {
   flex-wrap: wrap;

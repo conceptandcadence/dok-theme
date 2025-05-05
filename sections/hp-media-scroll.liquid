@@ -38,20 +38,20 @@
     {% endif %}
   >
     <section
-      class='hpms-section-0 tw-w-full page-width tw-z-10 tw-justify-end tw-flex tw-flex-col tw-items-center tw-relative tw-pt-[20%]'
+      class='hpms-section-0 tw-w-full tw-z-10 tw-justify-end tw-flex tw-flex-col tw-items-center tw-relative tw-pt-[20%] 2xl:!tw-max-w-[100vw] {% if section.settings.show_gradient %}gradient-top{% endif %}'
     >
       <div class='content-container content-container--full-width-mobile tw-px-[24px] lg:tw-px-[64px] scroll-trigger animate--slide-in tw-z-10'>
         {% if section.settings.title or section.settings.description %}
           <div class='hpms-title-container tw-flex tw-flex-col lg:tw-flex-row tw-gap-4 tw-justify-between tw-pb-[36px]'>
-            <div class='hpms-title-container-title tw-w-full lg:tw-w-1/2 tw-flex tw-flex-col tw-gap-2 tw-justify-start'>
-              <h2 class='hpms-title h0 banner__heading tw-font-medium tw-tracking-normal'>
+            <div class='hpms-title-container-title tw-w-full lg:tw-w-2/3 tw-flex tw-flex-col tw-gap-2 tw-justify-start'>
+              <h2 class='hpms-title h0 banner__heading tw-font-medium tw-tracking-normal lg:tw-text-[3vw] xl:!tw-text-[3.75vw] xl:tw-max-w-[50vw] 2xl:!tw-text-[4vw] 2xl:tw-max-w-[60vw]'>
                 {{ section.settings.title }}
               </h2>
             </div>
 
             {% if section.settings.description %}
-              <div class='hpms-description tw-w-full lg:tw-w-1/2 tw-flex tw-flex-col tw-gap-2 tw-justify-end'>
-                <span class='hpms-description tw-text-[14px] lg:tw-text-[18px] tw-leading-[1.2]'>
+              <div class='hpms-description tw-w-full lg:tw-w-1/3 tw-flex tw-flex-col tw-gap-2 tw-justify-end tw-items-end tw'>
+                <span class='tw-text-[14px] xl:tw-text-[16px] tw-leading-[1.2] lg:tw-w-[57%] xl:tw-w-[70%]'>
                   {{- section.settings.description -}}
                 </span>
               </div>
@@ -60,7 +60,7 @@
         {% endif %}
       </div>
     </section>
-    <div id='hpms-features' class='hpms-features page-width'>
+    <div id='hpms-features' class='hpms-features page-width lg:!tw-max-w-[100%] xl:!tw-px-0'>
       <div class='hpms-features-wrapper tw-flex tw-gap-8 tw-px-[28px] lg:tw-px-[64px] tw-py-[24px]'>
         {%- for block in section.blocks -%}
           <div class='hpms-feature tw-w-[70vw]' data-title='{{ block.settings.title | escape }}'>
@@ -110,9 +110,7 @@
       id='hpms-footer'
       class='scroll-trigger animate--fade-in tw-text-center tw-absolute tw-top-[15%] tw-left-0 tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center'
       style='--duration-extra-long: 2s;'
-    >
-
-    </div>
+    ></div>
 
     <div class='hpms-hotspot tw-absolute tw-bottom-0 tw-left-0 tw-w-full tw-h-[100vw] tw-flex tw-flex-col tw-items-center tw-justify-center'>
       <div class='hpms-hotspot-trigger-wrapper tw-w-[400px] tw-h-[202px] tw-absolute tw-bottom-[25%] tw-left-1/2 tw-z-10 tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2'>
@@ -138,206 +136,218 @@
         </div>
       </div>
     </div>
-      <div class='hp-scroll-tagline tw-text-[36px] tw-leading-[1.2] tw-absolute tw-mx-auto tw-max-w-[400px] lg:tw-max-w-[600px] lg:tw-text-[64px] tw-font-medium tw-tracking-normal'>
-        perfect for every adventure
-      </div>    
+    <div class='hp-scroll-tagline tw-text-[36px] tw-leading-[1.2] tw-absolute tw-mx-auto tw-max-w-[400px] lg:tw-max-w-[600px] lg:tw-text-[64px] tw-font-medium tw-tracking-normal 2xl:!tw-text-[3.5vw] 2xl:tw-max-w-[40vw]'>
+      <span class='scroll-trigger animate--slide-in'>perfect for every adventure</span>
+    </div>
   </section>
 </div>
 
 {% style %}
-  .hpms-hotspot-trigger-wrapper:not(:hover):not(.hover) .hpms-hotspot-modal {
-  	pointer-events: none;
-  	opacity: 0;
-  }
-  .hpms-hotspot-trigger-wrapper:hover .hpms-hotspot-modal, .hpms-hotspot-trigger-wrapper.hover .hpms-hotspot-modal {
-  	pointer-events: auto;
-  	opacity: 1;
-  }
+    .hpms-hotspot-trigger-wrapper:not(:hover):not(.hover) .hpms-hotspot-modal {
+    	pointer-events: none;
+    	opacity: 0;
+    }
+    .hpms-hotspot-trigger-wrapper:hover .hpms-hotspot-modal, .hpms-hotspot-trigger-wrapper.hover .hpms-hotspot-modal {
+    	pointer-events: auto;
+    	opacity: 1;
+    }
 
-      .hpms-hotspot-modal {
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        background-color: #f7f5ef;
-        width: 380px;
-        height: 132px;
-        transform: translate(-50%, 0%);
-  		 transition: opacity 0.5s ease-in-out;
-      }
-   	 .hpms-hotspot-modal:after{
-       content: '';
-       position: absolute;
-       left: 50%;
-       top: 100%;
-       width: 0;
-       height: 0;
-       border-left: 20px solid transparent;
-       border-right: 20px solid transparent;
-       border-top: 20px solid #f7f5ef;
-       clear: both;
-   	transform: translateX(-50%);
-   }
+        .hpms-hotspot-modal {
+          display: flex;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          background-color: #f7f5ef;
+          width: 380px;
+          height: 132px;
+          transform: translate(-50%, 0%);
+    		 transition: opacity 0.5s ease-in-out;
+        }
+     	 .hpms-hotspot-modal:after{
+         content: '';
+         position: absolute;
+         left: 50%;
+         top: 100%;
+         width: 0;
+         height: 0;
+         border-left: 20px solid transparent;
+         border-right: 20px solid transparent;
+         border-top: 20px solid #f7f5ef;
+         clear: both;
+     	transform: translateX(-50%);
+     }
 
-      .hpms-hotspot-modal .card__media {
-        width: 112px;
-        height: 112px;
-        margin: 10px;
-      }
+        .hpms-hotspot-modal .card__media {
+          width: 112px;
+          height: 112px;
+          margin: 10px;
+        }
 
-      .hpms-hotspot-modal .card__heading {
-        flex-wrap: wrap !important;
-      }
+        .hpms-hotspot-modal .card__heading {
+          flex-wrap: wrap !important;
+        }
 
-      .hpms-hotspot-modal .card__inner {
-        width: 180px !important;
-      }
+        .hpms-hotspot-modal .card__inner {
+          width: 180px !important;
+        }
 
-      .hpms-hotspot-modal .card__heading a {
-        font-size: 14px !important;
-      }
+        .hpms-hotspot-modal .card__heading a {
+          font-size: 14px !important;
+        }
 
-      .product-card-wrapper .card__information {
-        padding: 12px 10px !important;
-      }
-
-      @media screen and (min-width: 990px) {
         .product-card-wrapper .card__information {
           padding: 12px 10px !important;
         }
-      }
 
-      .hpms-hotspot-modal .rating,
-      .hpms-hotspot-modal .rating-star,
-      .hpms-hotspot-modal .rating-star::before {
-        --color-rating-star: #f9c33c !important;
-        font-size: 14px !important;
-      }
-
-      .hpms-hotspot-modal .caption {
-        font-size: 8px !important;
-        letter-spacing: 0.03rem !important;
-        margin-left: 2px !important;
-      }
-
-      .hpms-hotspot-modal .price .price-item {
-        font-size: 12px !important;
-      }
-
-      .hpms-hotspot-modal .card-information > * {
-        font-size: 12px !important;
-      }
-
-      .hpms-hotspot-modal .badge {
-        padding: 4px 8px !important;
-        margin-right: 4px;
-        background-color: #2c7683;
-        color: #F7F5EF;
-      }
-     .hpms-hotspot-modal .card .price--on-sale .price__sale {
-       flex-direction: row !important;
-     }
-
-      .hpms-hotspot-modal .cta {
-        padding: 10px !important;
-        min-height: 20px;
-        margin: 0;
-        font-size: 12px;
-        letter-spacing: 0;
-        width: 100% !important;
-      }
-
-      .hpms-hotspot-modal .card__inner {
-        filter: none !important;
-      }
-
-      .hpms-hotspot-modal .card__information {
-        flex-direction: column !important;
-      }
-
-      .hpms-hotspot-modal .card:not(.ratio) {
-        flex-direction: row !important;
-      }
-
-      @media (min-width: 990px) {
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        #hpms-footer.scroll-trigger:not(.scroll-trigger--offscreen).animate--fade-in {
-          animation: fadeIn 1.4s var(--ease-out-slow);
+        @media screen and (min-width: 990px) {
+          .product-card-wrapper .card__information {
+            padding: 12px 10px !important;
+          }
         }
-      }
 
-      .hpms-features .hpms-features-wrapper {
-        width: calc((70vw * {{section.blocks.size}}) + ( 2rem * {{section.blocks.size | minus: 1}}));
-      }
+        .hpms-hotspot-modal .rating,
+        .hpms-hotspot-modal .rating-star,
+        .hpms-hotspot-modal .rating-star::before {
+          --color-rating-star: #f9c33c !important;
+          font-size: 14px !important;
+        }
 
-      h1.subtitle {
-        transform: translateX(-100%);
-        opacity: 0;
-      }
+        .hpms-hotspot-modal .caption {
+          font-size: 8px !important;
+          letter-spacing: 0.03rem !important;
+          margin-left: 2px !important;
+        }
 
-      h2.subtitle {
-        transform: translateX(-100%);
-        opacity: 0;
-        position: absolute;
-      }
+        .hpms-hotspot-modal .price .price-item {
+          font-size: 12px !important;
+        }
 
-      .subtitles {
-        display: flex;
-        position: relative;
-        justify-content: center;
-      }
+        .hpms-hotspot-modal .card-information > * {
+          font-size: 12px !important;
+        }
 
-      #section2 {
-  		border-bottom-right-radius: 18px;
-  		border-bottom-left-radius: 18px;
-  	overflow: hidden;
+        .hpms-hotspot-modal .badge {
+          padding: 4px 8px !important;
+          margin-right: 4px;
+          background-color: #2c7683;
+          color: #F7F5EF;
+        }
+       .hpms-hotspot-modal .card .price--on-sale .price__sale {
+         flex-direction: row !important;
+       }
+
+        .hpms-hotspot-modal .cta {
+          padding: 10px !important;
+          min-height: 20px;
+          margin: 0;
+          font-size: 12px;
+          letter-spacing: 0;
+          width: 100% !important;
+        }
+
+        .hpms-hotspot-modal .card__inner {
+          filter: none !important;
+        }
+
+        .hpms-hotspot-modal .card__information {
+          flex-direction: column !important;
+        }
+
+        .hpms-hotspot-modal .card:not(.ratio) {
+          flex-direction: row !important;
+        }
+
+        @media (min-width: 990px) {
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+          #hpms-footer.scroll-trigger:not(.scroll-trigger--offscreen).animate--fade-in {
+            animation: fadeIn 1.4s var(--ease-out-slow);
+          }
+        }
+
+        .hpms-features .hpms-features-wrapper {
+          width: calc((70vw * {{section.blocks.size}}) + ( 2rem * {{section.blocks.size | minus: 1}}));
+        }
+
+        h1.subtitle {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+
+        h2.subtitle {
+          transform: translateX(-100%);
+          opacity: 0;
+          position: absolute;
+        }
+
+        .subtitles {
+          display: flex;
+          position: relative;
+          justify-content: center;
+        }
+
+        #section2 {
+    		border-bottom-right-radius: 18px;
+    		border-bottom-left-radius: 18px;
+    	overflow: hidden;
+    	}
+
+    	@media screen and (min-width: 750px) {
+    		#section2 {
+    			border-bottom-right-radius: 48px;
+    			border-bottom-left-radius: 48px;
+    		}
+    	}
+
+        .static-button {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          width: 50px;
+        }
+
+        .hpms-section-0.gradient-top:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(180deg, rgba(247, 245, 239, 1) 0%, rgba(247, 245, 239, 0) 100%);
+        }
+   @media screen and (min-width: 2000px) {
+   .hpms-description {
+   	width: 50% !important;
+   display: flex;
+   justify-content: flex-end;
+  align-items: flex-end;
+   }
+   }
+      .hp-scroll-tagline {
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        text-align: center;
+      }
+  	@media screen and (min-width: 1400px) {
+  		.hp-scroll-tagline {
+  			bottom: 9vw;
   	}
-
-  	@media screen and (min-width: 750px) {
-  		#section2 {
-  			border-bottom-right-radius: 48px;
-  			border-bottom-left-radius: 48px;
-  		}
   	}
-
-      .static-button {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        width: 50px;
-      }
-
-      .hpms-section-0:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(180deg, rgba(247, 245, 239, 1) 0%, rgba(247, 245, 239, 0) 100%);
-      }
-        
-    .hp-scroll-tagline {
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #fff;
-      text-align: center;
-    }  
-@media screen and (max-width: 749px) {
-  .hp-scroll-tagline {
-    bottom: 40px;
-    font-size: 28px;
-  }
-}
+   @media screen and (max-width: 749px) {
+   	.hp-scroll-tagline {
+   		bottom: 40px;
+   		font-size: 28px;
+   	}
+   }
 {% endstyle %}
 
 <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
@@ -549,6 +559,12 @@
       "id": "show_text_box",
       "default": true,
       "label": "t:sections.image-banner.settings.show_text_box.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gradient",
+      "default": true,
+      "label": "Show Gradient Top"
     },
     {
       "type": "select",

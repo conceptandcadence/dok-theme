@@ -3817,6 +3817,6 @@ body .jdgm-row-profile {
 
 @media screen and (min-width: 2000px) {
 	.page-width {
-		max-width: 100%;
+		max-width: 100% !important;
 	}
 }

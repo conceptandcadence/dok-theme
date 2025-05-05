@@ -15,7 +15,7 @@
     }
   {%- endstyle -%}
 
-  <div class='section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} page-width'>
+  <div class='section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} page-width xl:!tw-max-w-[100%]'>
     {% if section.settings.title != blank %}
       <div class='tw-flex tw-justify-center tw-items-center tw-py-12 lg:tw-py-16 lg:tw-mb-16'>
         <h2 class='tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-max-w-[280px] lg:tw-max-w-[400px] tw-tracking-normal'>
@@ -88,8 +88,11 @@
                 {% endif %}
                 {% if compare_product.id != product.id %}
                   <div class=' tw-flex tw-flex-col tw-justify-between tw-items-end md:tw-items-center'>
-                    <a href="{{ compare_product.url }}" class="color-scheme-1 button button--primary tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12">
-                      <span class="tw-text-[14px] tw-whitespace-nowrap">Shop Now</span>
+                    <a
+                      href='{{ compare_product.url }}'
+                      class='color-scheme-1 button button--primary tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12'
+                    >
+                      <span class='tw-text-[14px] tw-whitespace-nowrap'>Shop Now</span>
                     </a>
                   </div>
                 {% endif %}

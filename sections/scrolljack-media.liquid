@@ -113,7 +113,7 @@
 											</div>
 										{%- when 'buttons' -%}
 											<div
-												class='banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}'
+												class='banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %} 2xl:!tw-text-[0.7vw]'
 												{{ block.shopify_attributes }}
 											>
 												{%- if block.settings.button_label_1 != blank -%}
@@ -123,7 +123,7 @@
 														{% else %}
 															href='{{ block.settings.button_link_1 }}'
 														{% endif %}
-														class='button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %} tw-tracking-normal'
+														class='button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %} tw-tracking-normal 2xl:!tw-text-[0.7vw]'
 													>
 														{{- block.settings.button_label_1 | escape -}}
 													</a>
@@ -135,7 +135,7 @@
 														{% else %}
 															href='{{ block.settings.button_link_2 }}'
 														{% endif %}
-														class='button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}'
+														class='button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %} 2xl:!tw-text-[0.7vw]'
 													>
 														{{- block.settings.button_label_2 | escape -}}
 													</a>
