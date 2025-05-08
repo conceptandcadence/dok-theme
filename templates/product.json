@@ -106,7 +106,7 @@
       "type": "product-features",
       "settings": {
         "description_style": "body",
-        "collection": "",
+        "heading": "Discover DOK—inflatable ramps built for making memories together.",
         "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
@@ -192,14 +192,14 @@
           "type": "video",
           "settings": {
             "title": "Kids",
-            "video": "shopify://files/videos/partydok_kids (1080p).mp4"
+            "video": "shopify://files/videos/usage-boat2.mp4"
           }
         },
         "video_Qkzidk": {
           "type": "video",
           "settings": {
             "title": "Adults",
-            "video": "shopify://files/videos/partydok_adults (1080p).mp4"
+            "video": "shopify://files/videos/usage-pool2.mp4"
           }
         }
       },
