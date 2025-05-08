@@ -2631,6 +2631,12 @@ input[type='checkbox'] {
   /*background: rgba(var(--color-foreground), 0.5);*/
 }
 
+@media screen and (max-width: 989px) {
+	.header__icon--menu[aria-expanded='true']::before {
+		content: none;
+	}
+}
+
 .menu-drawer-open .header__icon--menu {
   color: #000 !important;
 }

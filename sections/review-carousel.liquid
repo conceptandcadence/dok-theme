@@ -125,7 +125,7 @@
         autoplay-pauseOnMouseEnter='true'
         autoplay-delay='4000'
         navigation='{"nextEl":".review-carousel-nav-next","prevEl":".review-carousel-nav-prev"}'
-        breakpoints='{"500":{"slidesPerView":1.5},"750":{"slidesPerView":2},"990":{"slidesPerView":3},"1440":{"slidesPerView":3.25}}'
+        breakpoints='{"500":{"slidesPerView":1.5},"750":{"slidesPerView":2},"990":{"slidesPerView":3},"1440":{"slidesPerView":4},"1800":{"slidesPerView":4.5}}'
       >
         {%- for block in section.blocks -%}
           <swiper-slide
@@ -137,7 +137,7 @@
                 {% if block.settings.image != blank %}
                   {% render 'responsive-image',
                     media: block.settings.image,
-                    classes: 'img responsive-image motion-reduce tw-rounded-[5px] tw-w-full tw-h-auto lg:tw-w-[120px] lg:tw-min-h-[160px] tw-object-cover',
+                    classes: 'img responsive-image motion-reduce tw-rounded-[5px] tw-w-full tw-h-auto lg:tw-w-[120px] lg:tw-min-h-[160px] xl:tw-w-[160px] xl:tw-min-h-[200px] tw-object-cover',
                     defer: true
                   %}
                 {% endif %}
@@ -151,7 +151,7 @@
                         {% for i in (1..5) %}
                           {% assign next = i | plus: 1 %}
                           <svg
-                            class='tw-h-[18px] tw-w-auto tw-mb-1'
+                            class='tw-h-[18px] tw-w-auto tw-mb-1 xl:tw-h-[22px]'
                             viewBox='0 0 15 14'
                             fill='none'
                             xmlns='http://www.w3.org/2000/svg'
@@ -168,15 +168,15 @@
                         {% endfor %}
                       </div>
                     </h3>
-                    <div class='featured__review-content tw-text-[18px] lg:tw-text-[18px] tw-tracking-normal tw-font-medium tw-leading-[1.25] tw-mt-[3px] tw-text-center tw-mb-6 lg:tw-text-left lg:tw-my-0 tw-line-clamp-4'>
+                    <div class='featured__review-content tw-text-[18px] lg:tw-text-[18px] xl:tw-text-[22px] tw-tracking-normal tw-font-medium tw-leading-[1.25] tw-mt-[3px] tw-text-center tw-mb-6 lg:tw-text-left lg:tw-my-0 tw-line-clamp-4 xl:tw-mt-2'>
                       &ldquo;{{ block.settings.title }}&rdquo;
                     </div>
                     <div class='tw-mt-auto'>
                       {%- if block.settings.reviewer != blank or block.settings.dog != blank %}
-                        <div class='tw-flex tw-gap-2 tw-justify-start'>
+                        <div class='tw-flex tw-gap-2 tw-justify-center md:tw-justify-start'>
                           {%- if block.settings.reviewer != blank %}
                             <div class='tw-flex tw-items-start'>
-                              <span class='tw-font-medium tw-text-[14px] tw-tracking-normal tw-leading-[14px]'>
+                              <span class='tw-font-medium tw-text-[14px] tw-tracking-normal tw-leading-[14px] xl:tw-text-[18px]'>
                                 {{- block.settings.reviewer -}}
                               </span>
                               <img
@@ -184,13 +184,13 @@
                                 width='14'
                                 height='14'
                                 alt='Human hand'
-                                class='tw-ml-[2px]'
+                                class='tw-ml-[2px] xl:tw-w-[18px] xl:tw-h-[18px]'
                               >
                             </div>
                           {%- endif -%}
                           {%- if block.settings.dog != blank %}
                             <div class='tw-flex tw-items-start'>
-                              <span class='tw-font-medium tw-text-[14px] tw-tracking-normal tw-leading-[14px]'>
+                              <span class='tw-font-medium tw-text-[14px] tw-tracking-normal tw-leading-[14px] xl:tw-text-[18px]'>
                                 &amp; {{ block.settings.dog }}
                               </span>
                               <img
@@ -198,7 +198,7 @@
                                 width='14'
                                 height='14'
                                 alt='Dog paw'
-                                class='tw-ml-[2px]'
+                                class='tw-ml-[2px] xl:tw-w-[18px] xl:tw-h-[18px]'
                               >
                             </div>
                           {%- endif -%}

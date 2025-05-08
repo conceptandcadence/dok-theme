@@ -44,14 +44,14 @@
         {% if section.settings.title or section.settings.description %}
           <div class='hpms-title-container tw-flex tw-flex-col lg:tw-flex-row tw-gap-4 tw-justify-between tw-pb-[36px]'>
             <div class='hpms-title-container-title tw-w-full lg:tw-w-2/3 tw-flex tw-flex-col tw-gap-2 tw-justify-start'>
-              <h2 class='hpms-title h0 banner__heading tw-font-medium tw-tracking-normal lg:tw-text-[3vw] xl:!tw-text-[3.75vw] xl:tw-max-w-[50vw] 2xl:!tw-text-[4vw] 2xl:tw-max-w-[60vw]'>
+              <h2 class='hpms-title h0 banner__heading tw-font-medium lg:tw-text-[3vw] xl:!tw-text-[3.75vw] xl:tw-max-w-[50vw] 2xl:!tw-text-[4vw] 2xl:tw-max-w-[60vw] !tw-tracking-[-0.02rem]'>
                 {{ section.settings.title }}
               </h2>
             </div>
 
             {% if section.settings.description %}
               <div class='hpms-description tw-w-full lg:tw-w-1/3 tw-flex tw-flex-col tw-gap-2 tw-justify-end tw-items-end tw'>
-                <span class='tw-text-[14px] xl:tw-text-[16px] tw-leading-[1.2] lg:tw-w-[57%] xl:tw-w-[70%]'>
+                <span class='tw-text-[14px] xl:tw-text-[16px] tw-leading-[1.2] lg:tw-w-[57%] xl:tw-w-[70%] !tw-tracking-[0px]'>
                   {{- section.settings.description -}}
                 </span>
               </div>
@@ -114,7 +114,7 @@
 
     <div class='hpms-hotspot tw-absolute tw-bottom-0 tw-left-0 tw-w-full tw-h-[100vw] tw-flex tw-flex-col tw-items-center tw-justify-center'>
       <div class='hpms-hotspot-trigger-wrapper tw-w-[400px] tw-h-[202px] tw-absolute tw-bottom-[25%] tw-left-1/2 tw-z-10 tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2'>
-        <div class='hpms-hotspot-trigger tw-size-12 lg:tw-size-20 tw-bg-[#F7F5EF] tw-absolute tw-bottom-[15%] tw-left-1/2 tw-z-10 tw-rounded-full tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2 tw-translate-y-2/3'>
+        <div class='hpms-hotspot-trigger tw-size-12 lg:tw-size-20 tw-bg-[#F7F5EF] tw-absolute tw-bottom-[25%] md:tw-bottom-[15%] tw-left-1/2 tw-z-10 tw-rounded-full tw-flex tw-items-center tw-justify-center -tw-translate-x-1/2 tw-translate-y-2/3'>
           <div class='tw-size-8 lg:tw-size-12 tw-bg-[#F9C33C] tw-rounded-full tw-shadow-md'>
             <span class='tw-sr-only'> Click for details </span>
           </div>
@@ -136,7 +136,7 @@
         </div>
       </div>
     </div>
-    <div class='hp-scroll-tagline tw-text-[36px] tw-leading-[1.2] tw-absolute tw-mx-auto tw-max-w-[400px] lg:tw-max-w-[600px] lg:tw-text-[64px] tw-font-medium tw-tracking-normal 2xl:!tw-text-[3.5vw] 2xl:tw-max-w-[40vw]'>
+    <div class='hp-scroll-tagline tw-text-[36px] tw-leading-[1.2] tw-absolute tw-w-full tw-mx-auto tw-max-w-[60%] md:tw-max-w-[400px] lg:tw-max-w-[600px] lg:tw-text-[64px] tw-font-medium tw-tracking-normal 2xl:!tw-text-[3.5vw] 2xl:tw-max-w-[40vw]'>
       <span class='scroll-trigger animate--slide-in'>perfect for every adventure</span>
     </div>
   </section>

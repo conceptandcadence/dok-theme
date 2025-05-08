@@ -51,6 +51,14 @@
   endif
 -%}
 
+{% if section.settings.heading != blank %}
+  <div class='tw-flex tw-justify-left tw-items-center tw-py-6 tw-px-[24px] lg:tw-py-10 lg:tw-px-[84px]'>
+    <h2 class='tw-w-full tw-text-left tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black lg:tw-max-w-[700px] tw-tracking-normal'>
+      {{ section.settings.heading }}
+    </h2>
+  </div>
+{% endif %}
+
 <div
   class='color-{{ section.settings.color_scheme }} isolate gradient'
 >
@@ -75,7 +83,7 @@
         slides-offset-after='24'
 
         navigation='{"nextEl":".product-features-nav-next","prevEl":".product-features-nav-prev"}'
-        breakpoints='{"450":{"slidesPerView":2},"750":{"slidesPerView":2.5},"990":{"slidesPerView":3.5, "slidesOffsetBefore":"84"},"1440":{"slidesPerView":3.5, "slidesOffsetBefore":"84"}}'
+        breakpoints='{"450":{"slidesPerView":2},"750":{"slidesPerView":2.5},"990":{"slidesPerView":3.5, "slidesOffsetBefore":"84"},"1440":{"slidesPerView":4, "slidesOffsetBefore":"84"}, "1800":{"slidesPerView":4.5, "slidesOffsetBefore":"84"}}'
       >
         {% for feature in product.metafields.details.features.value %}
           <swiper-slide
@@ -240,9 +248,9 @@
       "default": "body"
     },
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "t:sections.product-features.settings.collection.label"
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
     },
     {
       "type": "range",

@@ -330,6 +330,12 @@
   object-fit: cover;
   object-position: center center;
   width: 100%;
+} 
+
+@media screen and (max-width: 989px) {
+	.card__media .media img {
+		padding-bottom: 80px;
+	} 
 }
 
 .card__inner:not(.ratio) > .card__content {
