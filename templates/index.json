@@ -146,7 +146,7 @@
     "custom_liquid_bXJwQW": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/hp1a4.jpg?v=1746814034\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>",
+        "custom_liquid": "<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/hp1a4.jpg?v=1746814117\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>",
         "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 52
