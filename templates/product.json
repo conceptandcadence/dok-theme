@@ -90,8 +90,8 @@
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "large",
-        "constrain_to_viewport": false,
-        "media_fit": "cover",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
         "gallery_layout": "thumbnail",
         "media_position": "left",
         "image_zoom": "lightbox",
@@ -192,14 +192,14 @@
           "type": "video",
           "settings": {
             "title": "Kids",
-            "video": "shopify://files/videos/partydok_kids (1080p).mp4"
+            "video": "shopify://files/videos/usage-boat2.mp4"
           }
         },
         "video_Qkzidk": {
           "type": "video",
           "settings": {
             "title": "Adults",
-            "video": "shopify://files/videos/partydok_adults (1080p).mp4"
+            "video": "shopify://files/videos/usage-pool2.mp4"
           }
         }
       },

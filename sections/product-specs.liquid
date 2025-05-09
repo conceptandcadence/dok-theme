@@ -52,16 +52,31 @@
                   </div>
                 </div>
               {% endif %}
-              <div class='product-specs__media tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-cursor-none'>
+              <div class='product-specs__media tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-cursor-none tw-max-w-[1500px] tw-mx-auto'>
                 {% if compare_product.metafields.compare.specifications.value.video != blank %}
-                  <canvas class='tw-max-w-full tw-w-full'></canvas>
-                  {% render 'responsive-video',
-                    video: compare_product.metafields.compare.specifications.value.video.value,
-                    classes: 'responsive-video tw-max-w-full',
-                    video_class: 'tw-object-cover tw-h-full tw-object-bottom tw-absolute tw-opacity-0',
-                    defer: false,
-                    autoplay: false
-                  %}
+                  {% assign video = compare_product.metafields.compare.specifications.value.video.value %}
+                  <script>
+                    console.log({{ compare_product.metafields.compare.specifications.value | json }});
+                  </script>
+                  <div
+                    class='video-html-wrapper responsive-video tw-max-w-full'
+                    data-aspect='{{ video.aspect_ratio }}'
+                    style="background-image: url('{{  video.preview_image | img_url: '1024x' }}'); background-size: cover;"
+                  >
+                    <video
+                      id='video-html-{{ video.id }}'
+                      class='video-html tw-w-full tw-object-cover tw-h-full tw-object-bottom'
+                      preload='auto'
+                      playsinline='true'
+                      webkit-playsinline='true'
+                      title='{{ compare_product.title | escape }}'
+                      data-src='https://cdn.shopify.com/videos/c/o/v/e2e6efa2865146ad93e8f1cfde390be8.mp4'
+                      data-url='{{ video.url }}'
+                      {% if compare_product.metafields.compare.specifications.value.video_url != blank %}
+                        src='{{ compare_product.metafields.compare.specifications.value.video_url }}'
+                      {% endif %}
+                    ></video>
+                  </div>
                 {% endif %}
               </div>
 
@@ -214,259 +229,205 @@
     </div>
   </div>
 
+  <style>
+    .video-background {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+
+    #container {
+      height: 500vh;
+      display: block;
+    }
+  </style>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js' defer></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js' defer></script>
+
   <script>
-    let cursor = document.querySelector('.specs-cursor');
-    let context = document.querySelector(
-      '#shopify-section-{{ section.id }} .product-specs.active .product-specs__media',
-    );
-    let canvas = document.querySelector('#shopify-section-{{ section.id }} .product-specs.active canvas');
-    let video = document.querySelector('#shopify-section-{{ section.id }} .product-specs.active video');
+    document.addEventListener('DOMContentLoaded', () => {
+      let videoContainer = document.querySelector('.product-specs.active .product-specs__media .video-html-wrapper');
+      let video = videoContainer?.querySelector('video');
+      let cursor = document.querySelector('.specs-cursor');
+      let isMouseDown = false;
+      let isTouching = false;
+      let startX = 0;
+      let startProgress = 0;
 
-    function initializeVideoAndCanvas() {
-      if (!video || !canvas) return;
+      // Initialize GSAP
+      gsap.registerPlugin(ScrollTrigger);
 
-      const ctx = canvas.getContext('2d');
+      // Create a timeline for smooth scrubbing
+      let tl = gsap.timeline({
+        paused: true,
+        onUpdate: () => {
+          if (video) {
+            video.currentTime = tl.progress() * video.duration;
+          }
+        },
+      });
 
-      // Set video attributes for better quality
-      video.setAttribute('playsinline', '');
-      video.setAttribute('webkit-playsinline', '');
-      video.setAttribute('muted', '');
-      video.setAttribute('preload', 'auto');
+      // Add a dummy tween to the timeline
+      tl.to({}, { duration: 1 });
 
-      // Function to handle initial frame drawing
-      const drawInitialFrame = () => {
-        // Get the container width
-        const containerWidth = context.clientWidth;
+      // Function to wrap progress around
+      function wrapProgress(progress) {
+        return ((progress % 1) + 1) % 1;
+      }
 
-        // Calculate dimensions maintaining aspect ratio
-        const aspectRatio = video.videoWidth / video.videoHeight;
-        const canvasWidth = containerWidth;
-        const canvasHeight = containerWidth / aspectRatio;
+      // Function to handle progress update
+      function updateProgress(clientX) {
+        const rect = videoContainer.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const dragDistance = x - startX;
+        const dragProgress = dragDistance / rect.width;
+        const rawProgress = startProgress + dragProgress;
+        const wrappedProgress = wrapProgress(rawProgress);
 
-        // Set canvas dimensions to match video's native resolution
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        // Update the timeline progress
+        tl.progress(wrappedProgress);
+      }
 
-        // Set canvas style dimensions to match container while maintaining aspect ratio
-        canvas.style.width = `${canvasWidth}px`;
-        canvas.style.height = `${canvasHeight}px`;
+      // Function to initialize video scrubbing
+      function initializeVideoScrubbing() {
+        if (!video || !videoContainer) return;
 
-        // Start the video at the middle
-        video.currentTime = 0.5 * video.duration;
+        // Reset state
+        isMouseDown = false;
+        isTouching = false;
+        startX = 0;
+        startProgress = 0;
+        tl.progress(0);
 
-        // Wait for the timeupdate event before drawing
-        const handleTimeUpdate = () => {
-          // Draw initial frame at full resolution
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // Remove existing event listeners
+        videoContainer.removeEventListener('mousemove', handleMouseMove);
+        videoContainer.removeEventListener('mousedown', handleMouseDown);
+        videoContainer.removeEventListener('touchstart', handleTouchStart);
+        videoContainer.removeEventListener('touchmove', handleTouchMove);
+        videoContainer.removeEventListener('touchend', handleTouchEnd);
+        videoContainer.removeEventListener('touchcancel', handleTouchCancel);
+        videoContainer.removeEventListener('mouseenter', handleMouseEnter);
+        videoContainer.removeEventListener('mouseleave', handleMouseLeave);
 
-          // Remove the event listener after drawing
-          video.removeEventListener('timeupdate', handleTimeUpdate);
-        };
+        // Add event listeners
+        videoContainer.addEventListener('mousemove', handleMouseMove);
+        videoContainer.addEventListener('mousedown', handleMouseDown);
+        videoContainer.addEventListener('touchstart', handleTouchStart);
+        videoContainer.addEventListener('touchmove', handleTouchMove);
+        videoContainer.addEventListener('touchend', handleTouchEnd);
+        videoContainer.addEventListener('touchcancel', handleTouchCancel);
+        videoContainer.addEventListener('mouseenter', handleMouseEnter);
+        videoContainer.addEventListener('mouseleave', handleMouseLeave);
+      }
 
-        video.addEventListener('timeupdate', handleTimeUpdate);
-      };
+      // Event handler functions
+      function handleMouseMove(e) {
+        if (!isMouseDown) return;
+        updateProgress(e.clientX);
+      }
 
-      // Handle video loading
-      const handleVideoLoad = () => {
-        if (video.readyState >= 2) {
-          drawInitialFrame();
+      function handleMouseDown(e) {
+        const rect = videoContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Check if click is within bounds
+        if (x < 0 || x > rect.width || y < 0 || y > rect.height) {
+          return;
         }
-      };
 
-      // Add event listeners for video loading
-      video.addEventListener('loadeddata', handleVideoLoad);
-      video.addEventListener('loadedmetadata', handleVideoLoad);
-
-      // If video is already loaded, draw immediately
-      if (video.readyState >= 2) {
-        drawInitialFrame();
-      }
-    }
-
-    let mouseIsDown = false;
-    let progressPixels = 0;
-    let progressDecimal = 0;
-    let dragStart = 0;
-    let progressDrag = 0;
-    let progressDragDecimal = 0;
-    let rafId = null;
-    let isUpdating = false;
-    let isDragging = false;
-    // Throttle function to limit the rate of updates
-    function throttle(func, limit) {
-      let inThrottle;
-      return function (...args) {
-        if (!inThrottle) {
-          func.apply(this, args);
-          inThrottle = true;
-          setTimeout(() => (inThrottle = false), limit);
-        }
-      };
-    }
-
-    // Throttled mousemove handler
-    const handleMouseMove = throttle((e) => {
-      if (!video || !context) return;
-
-      progressPixels = Math.round(e.offsetX);
-      progressDecimal = progressPixels / context.clientWidth;
-
-      if (mouseIsDown) {
-        if (!isDragging) {
-          isDragging = true;
-          dragStart = progressPixels;
-        }
-        progressDrag = progressPixels - dragStart;
-        progressDragDecimal = 0.5 + progressDrag / context.clientWidth;
-      } else {
-        isDragging = false;
-      }
-
-      console.log(progressDrag, progressDragDecimal);
-
-      if (!isUpdating && mouseIsDown) {
-        isUpdating = true;
-        video.currentTime = progressDragDecimal * video.duration;
-
-        // Only request a new frame if we don't have one pending
-        if (!rafId) {
-          rafId = requestAnimationFrame(() => drawFrame(canvas.getContext('2d')));
-        }
-      }
-    }, 50); // Throttle to max 20 updates per second
-
-    if (context) {
-      context.addEventListener('mousemove', handleMouseMove);
-    }
-
-    function drawFrame(ctx) {
-      if (!video || !canvas) return;
-
-      // Clear the canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw the video frame at full resolution
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      rafId = null;
-      isUpdating = false;
-    }
-
-    // Cleanup function to prevent memory leaks
-    function cleanup() {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
-      if (context) {
-        context.removeEventListener('mousemove', handleMouseMove);
-      }
-      if (video) {
-        video.pause();
-        video.currentTime = 0.5;
-      }
-    }
-
-    // Clean up when the section is removed/changed
-    document.addEventListener('shopify:section:unload', cleanup);
-
-    document.body.addEventListener('mousedown', () => {
-      mouseIsDown = true;
-      if (context && context.matches(':hover')) {
+        isMouseDown = true;
         cursor.classList.remove('tw-opacity-100', 'tw-scale-100');
         cursor.classList.add('tw-opacity-0', 'tw-scale-0');
-        context.classList.remove('tw-cursor-none');
-        context.classList.add('tw-cursor-ew-resize');
+        videoContainer.classList.remove('tw-cursor-none');
+        videoContainer.classList.add('tw-cursor-ew-resize');
+
+        startX = x;
+        startProgress = tl.progress();
       }
-    });
 
-    window.addEventListener('scroll', () => {
-      if (context && context.matches(':hover')) {
-        cursor.classList.add('tw-opacity-100', 'tw-scale-100');
-        cursor.classList.remove('tw-opacity-0', 'tw-scale-0');
-        context.classList.add('tw-cursor-ew-resize');
-        context.classList.remove('tw-cursor-none');
-      } else {
-        cursor.classList.remove('tw-opacity-100', 'tw-scale-100');
-        cursor.classList.add('tw-opacity-0', 'tw-scale-0');
-        context.classList.remove('tw-cursor-ew-resize');
-        context.classList.add('tw-cursor-none');
+      function handleTouchStart(e) {
+        e.preventDefault();
+        isTouching = true;
+        const touch = e.touches[0];
+        const rect = videoContainer.getBoundingClientRect();
+        startX = touch.clientX - rect.left;
+        startProgress = tl.progress();
       }
-    });
 
-    document.body.addEventListener('mouseup', () => {
-      mouseIsDown = false;
-      if (context && context.matches(':hover')) {
-        cursor.classList.remove('tw-opacity-0', 'tw-scale-0', 'tw-cursor-ew-resize');
-        cursor.classList.add('tw-opacity-100', 'tw-scale-100', 'tw-cursor-none');
-        context.classList.remove('tw-cursor-ew-resize');
-        context.classList.add('tw-cursor-none');
-      } else {
-        cursor.classList.remove('tw-opacity-100', 'tw-scale-100', 'tw-cursor-none');
-        cursor.classList.add('tw-opacity-0', 'tw-scale-0', 'tw-cursor-ew-resize');
-        context.classList.remove('tw-cursor-none');
-        context.classList.add('tw-cursor-ew-resize');
+      function handleTouchMove(e) {
+        if (!isTouching) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        updateProgress(touch.clientX);
       }
-    });
 
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.top = `${e.clientY}px`;
-      cursor.style.left = `${e.clientX}px`;
+      function handleTouchEnd(e) {
+        e.preventDefault();
+        isTouching = false;
+      }
 
-      if (context && context.matches(':hover')) {
-        if (!mouseIsDown) {
+      function handleTouchCancel(e) {
+        e.preventDefault();
+        isTouching = false;
+      }
+
+      function handleMouseEnter() {
+        if (!isMouseDown) {
           cursor.classList.add('tw-opacity-100', 'tw-scale-100');
           cursor.classList.remove('tw-opacity-0', 'tw-scale-0');
         }
-      } else {
-        cursor.classList.add('tw-opacity-0', 'tw-scale-0');
-        cursor.classList.remove('tw-opacity-100', 'tw-scale-100');
       }
-    });
 
-    let specButtons = document.querySelectorAll('.spec-button');
+      function handleMouseLeave() {
+        cursor.classList.remove('tw-opacity-100', 'tw-scale-100');
+        cursor.classList.add('tw-opacity-0', 'tw-scale-0');
+        isMouseDown = false;
+        videoContainer.classList.remove('tw-cursor-ew-resize');
+        videoContainer.classList.add('tw-cursor-none');
+      }
 
-    specButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const handle = button.dataset.handle;
-
-        // Cleanup current video before switching
-        cleanup();
-
-        document.querySelector('.product-specs.active').classList.remove('active');
-        document.querySelector(`.product-specs[data-handle="${handle}"]`).classList.add('active');
-
-        // Update references to new elements
-        context = document.querySelector(
-          '#shopify-section-{{ section.id }} .product-specs.active .product-specs__media',
-        );
-        canvas = document.querySelector('#shopify-section-{{ section.id }} .product-specs.active canvas');
-        video = document.querySelector('#shopify-section-{{ section.id }} .product-specs.active video');
-
-        // Reinitialize video and canvas
-        if (context) {
-          context.addEventListener('mousemove', handleMouseMove);
-        }
-
-        // Initialize video and canvas
-        initializeVideoAndCanvas();
+      // Handle mouse up globally
+      document.addEventListener('mouseup', () => {
+        isMouseDown = false;
+        cursor.classList.add('tw-opacity-100', 'tw-scale-100');
+        cursor.classList.remove('tw-opacity-0', 'tw-scale-0');
+        videoContainer.classList.remove('tw-cursor-ew-resize');
+        videoContainer.classList.add('tw-cursor-none');
       });
-    });
 
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      // Wait a short moment to ensure everything is loaded
-      setTimeout(() => {
-        // Update references to current elements
-        context = document.querySelector(
-          '#shopify-section-{{ section.id }} .product-specs.active .product-specs__media',
-        );
-        canvas = document.querySelector('#shopify-section-{{ section.id }} .product-specs.active canvas');
-        video = document.querySelector('#shopify-section-{{ section.id }} .product-specs.active video');
+      // Update cursor position
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.top = `${e.clientY}px`;
+        cursor.style.left = `${e.clientX}px`;
+      });
 
-        // Initialize video and canvas
-        initializeVideoAndCanvas();
-      }, 100);
+      // Initialize on page load
+      initializeVideoScrubbing();
+
+      // Handle spec button clicks
+      let specButtons = document.querySelectorAll('.spec-button');
+      specButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const handle = button.dataset.handle;
+
+          document.querySelector('.product-specs.active').classList.remove('active');
+          document.querySelector(`.product-specs[data-handle="${handle}"]`).classList.add('active');
+
+          // Update references to new elements
+          videoContainer = document.querySelector(
+            '#shopify-section-{{ section.id }} .product-specs.active .product-specs__media .video-html-wrapper',
+          );
+          video = videoContainer?.querySelector('video');
+
+          // Reinitialize video scrubbing
+          initializeVideoScrubbing();
+        });
+      });
     });
   </script>
 
@@ -475,6 +436,12 @@
       transform: scale(1) !important;
       opacity: 1 !important;
     }
+    @media (hover: none) {
+      .specs-cursor {
+        display: none;
+      }
+    }
+
     .spec-button {
       background-color: transparent;
       color: rgb(var(--color-background));

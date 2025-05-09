@@ -645,10 +645,6 @@ video {
   bottom: 3rem;
 }
 
-.tw-bottom-\[15\%\] {
-  bottom: 15%;
-}
-
 .tw-bottom-\[25\%\] {
   bottom: 25%;
 }
@@ -988,12 +984,12 @@ video {
   min-width: 100%;
 }
 
-.tw-max-w-\[280px\] {
-  max-width: 280px;
+.tw-max-w-\[1500px\] {
+  max-width: 1500px;
 }
 
-.tw-max-w-\[400px\] {
-  max-width: 400px;
+.tw-max-w-\[280px\] {
+  max-width: 280px;
 }
 
 .tw-max-w-\[450px\] {
@@ -1008,20 +1004,16 @@ video {
   max-width: 500px;
 }
 
+.tw-max-w-\[60\%\] {
+  max-width: 60%;
+}
+
 .tw-max-w-\[600px\] {
   max-width: 600px;
 }
 
 .tw-max-w-full {
   max-width: 100%;
-}
-
-.tw-max-w-\[60\%\] {
-  max-width: 60%;
-}
-
-.tw-max-w-\[1500px\] {
-  max-width: 1500px;
 }
 
 .tw-flex-grow {
@@ -1319,7 +1311,7 @@ video {
 
 .tw-bg-deep {
   --tw-bg-opacity: 1;
-  background-color: rgb(35 54 68 / var(--tw-bg-opacity));
+  background-color: rgb(38 61 79 / var(--tw-bg-opacity));
 }
 
 .tw-bg-sand {
@@ -1683,20 +1675,16 @@ video {
   line-height: 1.25;
 }
 
-.tw-tracking-normal {
-  letter-spacing: 0em;
-}
-
-.tw-tracking-\[0\] {
-  letter-spacing: 0;
-}
-
 .\!tw-tracking-\[-0\.02rem\] {
   letter-spacing: -0.02rem !important;
 }
 
 .\!tw-tracking-\[0px\] {
   letter-spacing: 0px !important;
+}
+
+.tw-tracking-normal {
+  letter-spacing: 0em;
 }
 
 .tw-text-black {
@@ -1878,16 +1866,16 @@ video {
 }
 
 @media (min-width: 750px) {
+  .md\:tw-bottom-\[15\%\] {
+    bottom: 15%;
+  }
+
   .md\:tw-left-12 {
     left: 3rem;
   }
 
   .md\:tw-right-12 {
     right: 3rem;
-  }
-
-  .md\:tw-bottom-\[15\%\] {
-    bottom: 15%;
   }
 
   .md\:tw-w-1\/2 {
@@ -2242,6 +2230,11 @@ video {
     padding-right: 64px;
   }
 
+  .lg\:tw-px-\[84px\] {
+    padding-left: 84px;
+    padding-right: 84px;
+  }
+
   .lg\:tw-px-\[96px\] {
     padding-left: 96px;
     padding-right: 96px;
@@ -2250,6 +2243,11 @@ video {
   .lg\:tw-py-0 {
     padding-top: 0px;
     padding-bottom: 0px;
+  }
+
+  .lg\:tw-py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .lg\:tw-py-12 {
@@ -2270,21 +2268,6 @@ video {
   .lg\:tw-py-\[64px\] {
     padding-top: 64px;
     padding-bottom: 64px;
-  }
-
-  .lg\:tw-px-16 {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-
-  .lg\:tw-px-\[84px\] {
-    padding-left: 84px;
-    padding-right: 84px;
-  }
-
-  .lg\:tw-py-10 {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
   }
 
   .lg\:tw-pb-0 {
@@ -2361,16 +2344,8 @@ video {
 }
 
 @media (min-width: 1440px) {
-  .xl\:tw-mt-6 {
-    margin-top: 1.5rem;
-  }
-
   .xl\:tw-mt-2 {
     margin-top: 0.5rem;
-  }
-
-  .xl\:tw-h-\[24px\] {
-    height: 24px;
   }
 
   .xl\:tw-h-\[18px\] {
@@ -2385,16 +2360,16 @@ video {
     min-height: 200px;
   }
 
-  .xl\:tw-w-\[70\%\] {
-    width: 70%;
+  .xl\:tw-w-\[160px\] {
+    width: 160px;
   }
 
   .xl\:tw-w-\[18px\] {
     width: 18px;
   }
 
-  .xl\:tw-w-\[160px\] {
-    width: 160px;
+  .xl\:tw-w-\[70\%\] {
+    width: 70%;
   }
 
   .xl\:\!tw-max-w-\[100\%\] {
@@ -2416,10 +2391,6 @@ video {
 
   .xl\:tw-text-\[16px\] {
     font-size: 16px;
-  }
-
-  .xl\:tw-text-\[24px\] {
-    font-size: 24px;
   }
 
   .xl\:tw-text-\[18px\] {
