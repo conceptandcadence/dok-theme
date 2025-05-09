@@ -61,7 +61,7 @@
         "column1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/value-1.jpg",
+            "image": "shopify://shop_images/hp1a1.jpg",
             "title": "Jump In, Climb Out Effortlessly",
             "text": "",
             "link_label": "",
@@ -71,7 +71,7 @@
         "column2": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/value-2.jpg",
+            "image": "shopify://shop_images/hp1a2.jpg",
             "title": "Rigid & built to last with military grade materials",
             "text": "",
             "link_label": "",
@@ -81,7 +81,7 @@
         "column3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/value-3.jpg",
+            "image": "shopify://shop_images/hp1a3.jpg",
             "title": "Hassle-Free fun for everyone",
             "text": "",
             "link_label": "",
@@ -146,7 +146,7 @@
     "custom_liquid_bXJwQW": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/Frame_7.gif?v=1742168851\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>",
+        "custom_liquid": "<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/hp1a4.jpg?v=1746814034\" class=\" tw-w-[100px] tw-mx-auto\" \nstyle=\"mix-blend-mode: multiply;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>",
         "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 52
@@ -338,6 +338,7 @@
         "footer_text": "perfect for every adventure",
         "desktop_content_position": "middle-center",
         "show_text_box": true,
+        "show_gradient": true,
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-5",
         "mask_shape": "circle",
