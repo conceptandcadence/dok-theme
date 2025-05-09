@@ -52,7 +52,7 @@
 -%}
 
 {% if section.settings.heading != blank %}
-  <div class='tw-flex tw-justify-left tw-items-center tw-py-6 tw-px-[24px] lg:tw-py-10 lg:tw-px-[84px]'>
+  <div class='tw-flex tw-justify-left tw-items-center tw-py-6 tw-px-[24px] lg:tw-py-10 lg:tw-px-[84px] xl-max-2000 tw-mx-auto 2xl:tw-px-[24px]'>
     <h2 class='tw-w-full tw-text-left tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black lg:tw-max-w-[700px] tw-tracking-normal'>
       {{ section.settings.heading }}
     </h2>
@@ -60,14 +60,14 @@
 {% endif %}
 
 <div
-  class='color-{{ section.settings.color_scheme }} isolate gradient'
+  class='color-{{ section.settings.color_scheme }} isolate gradient xl-max-2000 tw-mx-auto'
 >
   <div
     class='collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}'
     id='collection-{{ section.id }}'
     data-id='{{ section.id }}'
   >
-    <div class='product-feature-slider slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'>
+    <div class='product-feature-slider slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}'>
       <swiper-container
         id='Slider-{{ section.id }}'
         data-id='{{ section.id }}'

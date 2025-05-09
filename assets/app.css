@@ -1311,7 +1311,7 @@ video {
 
 .tw-bg-deep {
   --tw-bg-opacity: 1;
-  background-color: rgb(38 61 79 / var(--tw-bg-opacity));
+  background-color: rgb(33 53 68 / var(--tw-bg-opacity));
 }
 
 .tw-bg-sand {
@@ -2380,6 +2380,10 @@ video {
     max-width: 50vw;
   }
 
+  .xl\:\!tw-max-w-\[2200px\] {
+    max-width: 2200px !important;
+  }
+
   .xl\:\!tw-px-0 {
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -2413,6 +2417,16 @@ video {
 
   .\32xl\:tw-max-w-\[60vw\] {
     max-width: 60vw;
+  }
+
+  .\32xl\:tw-px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .\32xl\:tw-px-\[24px\] {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .\32xl\:\!tw-pt-\[5\%\] {

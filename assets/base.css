@@ -3820,9 +3820,44 @@ body .jdgm-row-profile {
 
 
 /* XL Desktop */
-
+.xl-max-1600 {
+	max-width: 1600px !important;
+}
+.xl-max-1800 {
+	max-width: 1800px !important;
+}
+.xl-max-2000 {
+	max-width: 2000px !important;
+}
+.xl-max-2200 {
+	max-width: 2200px !important;
+}
+#judgeme_product_reviews {
+	max-width: 1600px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
 @media screen and (min-width: 2000px) {
-	.page-width {
+	.page-width, .page-width-nopadding  {
 		max-width: 100% !important;
 	}
+	.xl-max-1600 {
+		max-width: 1600px !important;
+	}
+	.page-width.xl-max-1600 {
+		max-width: 1800px !important;
+	}
+	.xl-max-1800, .page-width.xl-max-1800 {
+		max-width: 1800px !important;
+	}
+	.xl-max-2000, .page-width.xl-max-2000 {
+		max-width: 2000px !important;
+	}
+	.xl-max-2200, .page-width.xl-max-2200 {
+		max-width: 2200px !important;
+	}
+	#judgeme_product_reviews {
+		max-width: 1800px !important;
+	}
 }
+

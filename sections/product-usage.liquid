@@ -30,13 +30,13 @@
 -%}
 
 {% for reference_product in collections[section.settings.collection].products %}
-  {%  if reference_product.id == product.id %}
+  {% if reference_product.id == product.id %}
     {% assign display_section = true %}
   {% endif %}
 {% endfor %}
 
 {% if display_section %}
-  <div class='product-usage-list section-{{ section.id }} section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} page-width'>
+  <div class='product-usage-list section-{{ section.id }} section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} page-width xl-max-2000'>
     {% if section.settings.title != blank %}
       <div class='tw-flex tw-justify-start tw-items-center tw-py-12 lg:tw-py-16 lg:tw-mb-16 lg:tw-mt-[64px] lg:tw-mx-[64px] lg:tw-px-[24px] lg:tw-w-[calc(100%-128px)]'>
         <h2 class='tw-text-left tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-max-w-[600px] tw-tracking-normal'>
@@ -44,7 +44,7 @@
         </h2>
       </div>
     {% endif %}
-  
+
     {% if section.blocks.size > 0 %}
       <slider-component class='slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} product-usage lg:tw-ml-[64px] lg:tw-mr-[64px] lg:tw-w-[calc(100%-128px)]'>
         <ul
@@ -141,7 +141,7 @@
   </style>
   <script>
     const usageVideos = document.querySelectorAll('.section-{{ section.id }} video');
-  
+
     usageVideos.forEach((video) => {
       video.addEventListener('mouseover', (e) => {
         video.parentElement.classList.remove('tw-opacity-60');
@@ -154,7 +154,7 @@
         video.pause();
       });
     });
-  
+
     // Throttle function to limit the rate of updates
     function throttle(func, limit) {
       let inThrottle;
@@ -166,11 +166,11 @@
         }
       };
     }
-  
+
     usageVideos.forEach((video) => {
       let isHovered = false;
       const parent = video.parentElement;
-  
+
       // Throttled play handler
       const handlePlay = throttle(() => {
         if (!isHovered) {
@@ -257,7 +257,7 @@
           "type": "video",
           "id": "video",
           "label": "Video"
-        },
+        }
       ]
     }
   ],
