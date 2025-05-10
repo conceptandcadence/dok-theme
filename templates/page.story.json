@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-page",
@@ -26,7 +26,7 @@
           "settings": {
             "image": "shopify://shop_images/bio-cam_29f659f3-2bdc-4ad2-b720-14db3ac92d65.jpg",
             "title": "Cam",
-            "text": "<p>Camron, the ex-mechanical engineer turned e-commerce expert, thrives in the great outdoors with his loved ones. His senior pup, Jet, offers expert opinions on all things DOK—a true canine consultant in the world of new products.</p>",
+            "text": "<p>Camron, the ex-mechanical engineer, thrives in the great outdoors with his loved ones. His senior pup, Jet, offers expert opinions on all things DOK—a true canine consultant in the world of new products.</p>",
             "link_label": "",
             "link": ""
           }
