@@ -1687,6 +1687,18 @@ video {
   letter-spacing: 0em;
 }
 
+.\!tw-tracking-\[0\] {
+  letter-spacing: 0 !important;
+}
+
+.tw-tracking-\[0px\] {
+  letter-spacing: 0px;
+}
+
+.tw-tracking-tight {
+  letter-spacing: -0.025em;
+}
+
 .tw-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -1770,6 +1782,10 @@ video {
 
 .tw-duration-300 {
   transition-duration: 300ms;
+}
+
+.\*\:tw-tracking-tight > * {
+  letter-spacing: -0.025em;
 }
 
 .hover\:tw-scale-\[0\.9\]:hover {
@@ -2356,14 +2372,6 @@ video {
     height: 22px;
   }
 
-  .xl\:tw-min-h-\[200px\] {
-    min-height: 200px;
-  }
-
-  .xl\:tw-w-\[160px\] {
-    width: 160px;
-  }
-
   .xl\:tw-w-\[18px\] {
     width: 18px;
   }
@@ -2372,16 +2380,8 @@ video {
     width: 70%;
   }
 
-  .xl\:\!tw-max-w-\[100\%\] {
-    max-width: 100% !important;
-  }
-
   .xl\:tw-max-w-\[50vw\] {
     max-width: 50vw;
-  }
-
-  .xl\:\!tw-max-w-\[2200px\] {
-    max-width: 2200px !important;
   }
 
   .xl\:\!tw-px-0 {
@@ -2395,14 +2395,6 @@ video {
 
   .xl\:tw-text-\[16px\] {
     font-size: 16px;
-  }
-
-  .xl\:tw-text-\[18px\] {
-    font-size: 18px;
-  }
-
-  .xl\:tw-text-\[22px\] {
-    font-size: 22px;
   }
 }
 
@@ -2425,11 +2417,6 @@ video {
 
   .\32xl\:tw-max-w-\[60vw\] {
     max-width: 60vw;
-  }
-
-  .\32xl\:tw-px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .\32xl\:tw-px-\[24px\] {
@@ -2461,11 +2448,11 @@ video {
     font-size: 4vw !important;
   }
 
-  .\32xl\:tw-text-\[22px\] {
-    font-size: 22px;
-  }
-
   .\32xl\:tw-text-\[18px\] {
     font-size: 18px;
+  }
+
+  .\32xl\:tw-text-\[22px\] {
+    font-size: 22px;
   }
 }
