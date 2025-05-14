@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "hero_7Bzixa": {
       "type": "hero",
@@ -36,9 +36,7 @@
         "buttons_xVKj7K"
       ],
       "custom_css": [
-        ".banner__media,.banner::after,.banner__media::after {border-bottom-right-radius: 18px; border-bottom-left-radius: 18px;}",
-        ".banner {background-color: #efebdf; padding-bottom: 24px;}",
-        "@media screen and (min-width: 750px) {.banner__media, .banner::after, .banner__media::after {border-bottom-right-radius: 48px; border-bottom-left-radius: 48px; }}"
+        ".banner {background-color: #efebdf; padding-bottom: 24px;}"
       ],
       "settings": {
         "video": "shopify://files/videos/dok-pdp-video2up.mp4",
@@ -160,7 +158,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev1.jpg",
             "title": "No more lifting the Dog into the boat",
-            "reviewer": "Chris",
+            "reviewer": "Jenny",
             "dog": "Sadie"
           }
         },
@@ -169,7 +167,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev2.jpg",
             "title": "Fantastic! Works as advertised!",
-            "reviewer": "Alex",
+            "reviewer": "Eric",
             "dog": "Chandler"
           }
         },
@@ -178,7 +176,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev3.jpg",
             "title": "Very sturdy, easy for our dog to use and everything we wished for and more",
-            "reviewer": "Chris",
+            "reviewer": "Amy",
             "dog": "Louie"
           }
         },
@@ -187,7 +185,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev4.jpg",
             "title": "This has made our lives too much easier!",
-            "reviewer": "Leah",
+            "reviewer": "James",
             "dog": "Georgia"
           }
         },
@@ -196,7 +194,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev5.jpg",
             "title": "This has made our lives so much easier!",
-            "reviewer": "Stacey",
+            "reviewer": "Aaron",
             "dog": "Cannon"
           }
         },
@@ -205,7 +203,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev6.jpg",
             "title": "Perfect! Gives my dogs an extra exit from the pool.",
-            "reviewer": "Scooter",
+            "reviewer": "Alan",
             "dog": "Jax"
           }
         },
@@ -214,7 +212,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev7.jpg",
             "title": "Our Golden Retriever Loves this raft!",
-            "reviewer": "D.M. Fritzke",
+            "reviewer": "Ellie",
             "dog": "Giala"
           }
         },
@@ -223,7 +221,7 @@
           "settings": {
             "image": "shopify://shop_images/dokrev8.jpg",
             "title": "Great Quality. Really liked the quality very well made and came with everything needed.",
-            "reviewer": "Gunner",
+            "reviewer": "Andy",
             "dog": "Reese"
           }
         },
@@ -233,7 +231,7 @@
             "image": "shopify://shop_images/dokrev9_d3814ae0-4041-4794-8a9f-bc75475c5290.jpg",
             "title": "Best purchase we've made for this water loving dog",
             "reviewer": "Mark",
-            "dog": "Annie"
+            "dog": "Chester"
           }
         }
       },

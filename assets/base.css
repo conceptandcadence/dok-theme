@@ -2619,7 +2619,7 @@ input[type='checkbox'] {
 }
 
 .header__icon--menu[aria-expanded='true']::before {
-  content: '';
+  content: none;
   top: 100%;
   left: 0;
   height: calc(
@@ -3004,9 +3004,9 @@ details-disclosure > details {
   line-height: 1;
   padding: 5px 12px;
   text-align: center;
-  background-color: rgb(var(--color-badge-background));
+  background-color: #E94828; /* rgb(var(--color-badge-background)); */
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
-  color: rgb(var(--color-badge-foreground));
+  color: #F7F5EF; /* rgb(var(--color-badge-foreground)); */
   word-break: break-word;
   margin-top: -4px;
 }
