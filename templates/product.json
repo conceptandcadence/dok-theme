@@ -58,23 +58,23 @@
         "amazon_mcf_and_buy_with_prime_promise_delivery_3A9BYE": {
           "type": "shopify://apps/amazon-mcf-and-buy-with-prime/blocks/promise_delivery/cd9463cc-4da0-4f9f-92a6-6e3f345eb3ce",
           "settings": {
-            "message_variant": "default",
+            "message_variant": "concise",
             "show_exception_message": false,
             "background_color": "#f9f9f9",
-            "transparent_background": false,
+            "transparent_background": true,
             "color": "#000000",
-            "font": "assistant_n4",
-            "font_size": 16,
-            "horizontal_alignment": "center",
+            "font": "poppins_n4",
+            "font_size": 14,
+            "horizontal_alignment": "left",
             "corner_radius": 0,
-            "top-padding": 40,
-            "bottom-padding": 40,
+            "top-padding": 0,
+            "bottom-padding": 0,
             "left-padding": 0,
             "right-padding": 0,
             "top-margin": 0,
             "bottom-margin": 0,
-            "left-margin": 0,
-            "right-margin": 0
+            "left-margin": -20,
+            "right-margin": -30
           }
         },
         "description": {
@@ -93,29 +93,6 @@
             "content": "{{ product.metafields.details.contents | metafield_tag }}",
             "page": ""
           }
-        },
-        "amazon_mcf_and_buy_with_prime_promise_delivery_ff3wkf": {
-          "type": "shopify://apps/amazon-mcf-and-buy-with-prime/blocks/promise_delivery/cd9463cc-4da0-4f9f-92a6-6e3f345eb3ce",
-          "disabled": true,
-          "settings": {
-            "message_variant": "concise",
-            "show_exception_message": false,
-            "background_color": "#F9F9F9",
-            "transparent_background": true,
-            "color": "#000000",
-            "font": "poppins_n4",
-            "font_size": 14,
-            "horizontal_alignment": "center",
-            "corner_radius": 0,
-            "top-padding": 0,
-            "bottom-padding": 0,
-            "left-padding": 0,
-            "right-padding": 0,
-            "top-margin": 0,
-            "bottom-margin": 0,
-            "left-margin": 0,
-            "right-margin": 0
-          }
         }
       },
       "block_order": [
@@ -130,8 +107,7 @@
         "amazon_mcf_and_buy_with_prime_promise_delivery_3A9BYE",
         "description",
         "callouts_NYNjRr",
-        "collapsible_tab_kiN4Ue",
-        "amazon_mcf_and_buy_with_prime_promise_delivery_ff3wkf"
+        "collapsible_tab_kiN4Ue"
       ],
       "settings": {
         "enable_sticky_info": true,
