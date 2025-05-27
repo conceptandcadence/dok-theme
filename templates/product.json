@@ -71,8 +71,8 @@
             "bottom-padding": 0,
             "left-padding": 0,
             "right-padding": 0,
-            "top-margin": 0,
-            "bottom-margin": 0,
+            "top-margin": -10,
+            "bottom-margin": -10,
             "left-margin": -20,
             "right-margin": -20
           }
