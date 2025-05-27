@@ -163,12 +163,12 @@
                 {% endif %}
               
               {%- when 'price' -%}
-                <div id='price-{{ section.id }}' role='status' {{ block.shopify_attributes }}>
+                <div id='price-{{ section.id }}' role='status' class='tw-mb-4' {{ block.shopify_attributes }}>
                   {%- render 'price',
                     product: product,
                     use_variant: true,
                     show_badges: true,
-                    price_class: 'price--large tw-mb-4 tw-flex tw-items-center'
+                    price_class: 'price--large tw-flex tw-items-center'
                   -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
