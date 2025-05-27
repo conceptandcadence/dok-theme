@@ -112,7 +112,7 @@
                 </div>
               {%- when 'reviews' -%}
                 {% if product.metafields.details.reviews.value != blank %}
-                  {% assign featured_review = product.metafields.details.reviews.value %}
+                  {% assign featured_review = product.metafields.details.reviews.value[0] %}
                   <div class='featured__review tw-bg-[#efebdf] tw-rounded-[8px] tw-p-3 tw-flex tw-items-center tw-my-3'>
                     {% if featured_review.image != blank %}
                       {% render 'responsive-image',
@@ -161,6 +161,7 @@
                     </div>
                   </div>
                 {% endif %}
+              
               {%- when 'price' -%}
                 <div id='price-{{ section.id }}' role='status' {{ block.shopify_attributes }}>
                   {%- render 'price',
