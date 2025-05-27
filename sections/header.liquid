@@ -136,7 +136,7 @@
     endif
   -%}
 
-  <header class="header header--{{ section.settings.logo_position }} {% if section.settings.transparent_on_hp != 'none' %}tw-absolute tw-w-full{% endif %} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header init header--{{ section.settings.logo_position }} {% if section.settings.transparent_on_hp != 'none' %}tw-absolute tw-w-full{% endif %} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -287,7 +287,7 @@
       {%- endfor -%}
 
       <a href="{{ routes.cart_url }}" class="tw-flex tw-items-center tw-justify-center tw-gap-2 header__icon--cart tw-text-[16px] lg:tw-text-[18px] tw-leading-normal tw-tracking-normal focus-inset lg:tw-ml-[1.2rem]" id="cart-icon-bubble">
-				<span class="tw-tracking-normal tw-hidden lg:tw-block">{{ 'templates.cart.cart' | t }}</span>
+        <span class="tw-tracking-normal tw-hidden lg:tw-block">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
             {%- if cart.item_count < 100 -%}
@@ -374,7 +374,6 @@
           this.isScrolling = setTimeout(() => {
             this.preventReveal = false;
           }, 66);
-
           requestAnimationFrame(this.hide.bind(this));
         }
       } else if (scrollTop <= this.headerBounds.top) {
@@ -415,6 +414,83 @@
   }
 
   customElements.define('sticky-header', StickyHeader);
+
+	// Scroll velocity and direction tracking
+(function () {
+  let lastScrollTop = 0;
+  let lastScrollTime = Date.now();
+  let scrollVelocity = 0;
+  let scrollDirection = 'none';
+	let scrollThreshold = 20;
+
+  // Function to calculate scroll velocity (pixels per second)
+  function calculateScrollVelocity(currentScrollTop) {
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastScrollTime;
+    const scrollDiff = currentScrollTop - lastScrollTop;
+
+    // Calculate velocity in pixels per second
+    scrollVelocity = (scrollDiff / timeDiff) * 1000;
+
+    // Update direction
+    scrollDirection = scrollDiff > 0 ? 'down' : scrollDiff < 0 ? 'up' : 'none';
+
+    // Update last values
+    lastScrollTop = currentScrollTop;
+    lastScrollTime = currentTime;
+
+    // Log the values
+    return {
+      velocity: Math.round(scrollVelocity * 100) / 100, // Round to 2 decimal places
+      direction: scrollDirection,
+      scrollPosition: currentScrollTop,
+    }
+  }
+
+	  // Function to calculate scroll velocity (pixels per second)
+		function showHideHeader(currentScrollTop) {
+    const velocity = currentScrollTop?.velocity;
+    const direction = currentScrollTop?.direction;
+    const scrollPosition = currentScrollTop?.scrollPosition;
+
+
+		if (direction === 'up') {
+			document.querySelector('sticky-header header.header').classList.add('unminimized');
+		} else {
+			document.querySelector('sticky-header header.header').classList.remove('unminimized');
+		}
+		if (currentScrollTop.scrollPosition < scrollThreshold) {
+			document.querySelector('sticky-header header.header').classList.add('init');
+			document.querySelector('sticky-header header.header').classList.remove('unminimized');
+		} else {
+			document.querySelector('sticky-header header.header').classList.remove('init');
+		}
+
+  }
+
+  // Throttle function to limit how often we calculate velocity
+  function throttle(func, limit) {
+    let inThrottle;
+    return function () {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  }
+
+  // Add scroll event listener with throttling
+  window.addEventListener(
+    'scroll',
+    throttle(() => {
+      showHideHeader(calculateScrollVelocity(window.pageYOffset));
+    }, 16),
+  ); // ~60fps
+})();
+
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -456,6 +532,42 @@
     }
   </script>
 {%- endif -%}
+
+<style>
+	sticky-header header.header {
+		transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	}
+	sticky-header header.header.unminimized {
+		transform: translateY(0);
+		background-color: rgba(239,235,223, 0.75) !important;
+	}
+	sticky-header header.header .header__heading-logo-wrapper img {
+		transition: filter 0.3s ease-in-out;
+	}
+	sticky-header header.header #cart-icon-bubble, 
+	sticky-header header.header .list-menu__item,
+	sticky-header header.header .icon-hamburger,
+	sticky-header header.header .icon-search {
+		transition: all 0.3s ease-in-out;
+		}
+	sticky-header header.header.unminimized #cart-icon-bubble, 
+	sticky-header header.header.unminimized .list-menu__item,
+	sticky-header header.header.unminimized .icon-hamburger,
+	sticky-header header.header.unminimized .icon-search,
+    sticky-header header.header.unminimized .cart-count-bubble{
+		color: rgb(0,0,0) !important;
+	}
+	sticky-header.color-scheme-5 header.header.unminimized .header__heading-logo-wrapper img {
+		filter: invert(1);
+	}
+	sticky-header header.header.init {
+		transform: translateY(0) !important;
+		background-color: rgba(239,235,223, 0) !important;
+	}
+	sticky-header header.header:not(.unminimized) {
+		transform: translateY(-100%);
+	}
+</style>
 
 {% schema %}
 {
