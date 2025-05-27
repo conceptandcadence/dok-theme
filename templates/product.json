@@ -59,7 +59,7 @@
           "type": "shopify://apps/amazon-mcf-and-buy-with-prime/blocks/promise_delivery/cd9463cc-4da0-4f9f-92a6-6e3f345eb3ce",
           "settings": {
             "message_variant": "concise",
-            "show_exception_message": false,
+            "show_exception_message": true,
             "background_color": "#f9f9f9",
             "transparent_background": true,
             "color": "#000000",
