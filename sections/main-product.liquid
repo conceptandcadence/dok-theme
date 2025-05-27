@@ -112,7 +112,8 @@
                 </div>
               {%- when 'reviews' -%}
                 {% if product.metafields.details.reviews.value != blank %}
-                  {% assign featured_review = product.metafields.details.reviews.value[0] %}
+                  <script>console.log({{product.metafields.details.reviews.value|json}})</script>
+                  {% assign featured_review = product.metafields.details.reviews.value %}
                   <div class='featured__review tw-bg-[#efebdf] tw-rounded-[8px] tw-p-3 tw-flex tw-items-center tw-my-3'>
                     {% if featured_review.image != blank %}
                       {% render 'responsive-image',
