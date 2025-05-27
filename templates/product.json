@@ -96,6 +96,7 @@
         },
         "amazon_mcf_and_buy_with_prime_promise_delivery_ff3wkf": {
           "type": "shopify://apps/amazon-mcf-and-buy-with-prime/blocks/promise_delivery/cd9463cc-4da0-4f9f-92a6-6e3f345eb3ce",
+          "disabled": true,
           "settings": {
             "message_variant": "concise",
             "show_exception_message": false,
