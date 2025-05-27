@@ -88,7 +88,7 @@
         {% for feature in product.metafields.details.features.value %}
           <swiper-slide
             id='Slide-{{ section.id }}-{{ forloop.index }}'
-            class='tw-relative {% if show_mobile_slider or show_desktop_slider %}slider__slide{% endif %}'
+            class='tw-relative {% if show_mobile_slider or show_desktop_slider %}slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}'
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style='--animation-order: {{ forloop.index }};'
@@ -143,7 +143,7 @@
             {% render 'responsive-video',
               video: feature.media.value,
               classes: 'tw-w-full tw-h-full tw-object-cover tw-rounded-[12px] tw-aspect-[1/1]',
-              video_class: 'tw-object-none tw-min-h-full tw-absolute tw-min-w-full tw-h-full tw-w-full tw-rounded-[12px]',
+              video_class: 'tw-object-none tw-object-cover tw-min-h-full tw-absolute tw-min-w-full tw-h-full tw-w-full tw-rounded-[12px]',
               defer: false,
               autoplay: true,
               muted: true
