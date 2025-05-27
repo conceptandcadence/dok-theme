@@ -29,11 +29,11 @@
         },
         "reviews_hqb8WH": {
           "type": "reviews",
-          "disabled": true,
           "settings": {}
         },
         "judge_me_reviews_review_snippet_widget_eLyzBj": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {}
         },
         "options_VBrAzH": {
