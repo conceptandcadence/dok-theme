@@ -2125,3 +2125,9 @@ body .jdgm-gallery-popup .jm-mfp-main {
     height: calc(100% - 136px);
   }
 }
+
+.jdgm-widget:not(.jdgm-review-widget--small,.jdgm-review-widget--medium) :not(.jdgm-revs-tab__content-header)>.jdgm-widget-actions-wrapper {
+  width: 100% !important;
+  max-width: 200px !important;
+  margin-top: 16px !important;
+}
