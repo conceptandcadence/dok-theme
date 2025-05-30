@@ -38,7 +38,7 @@
       }
     }
   {%- endstyle -%}
-
+  <script src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js' defer></script>
   <script src='{{ 'product-info.js' | asset_url }}' defer='defer'></script>
   <script src='{{ 'product-form.js' | asset_url }}' defer='defer'></script>
   {%- if product.quantity_price_breaks_configured? -%}
@@ -112,54 +112,82 @@
                 </div>
               {%- when 'reviews' -%}
                 {% if product.metafields.details.reviews.value != blank %}
-                  <script>console.log({{ product.metafields.details.reviews.value | json }})</script>
-                  {% assign featured_review = product.metafields.details.reviews.value %}
-                  <div class='featured__review tw-bg-[#efebdf] tw-rounded-[8px] tw-p-3 tw-flex tw-items-center tw-my-3'>
-                    {% if featured_review.image != blank %}
-                      {% render 'responsive-image',
-                        media: featured_review.image,
-                        classes: 'img responsive-image motion-reduce tw-rounded-[5px] tw-w-[50px] tw-h-[50px] tw-mr-4',
-                        defer: true
-                      %}
-                    {% endif %}
-
-                    <div class='featured__review-text'>
-                      <h3 class='featured__review-headline tw-flex tw-items-center'>
-                        <span class='tw-font-medium tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px]'>
-                          {{- featured_review.reviewer -}}
-                        </span>
-                        <span class='tw-font-medium tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px]'>
-                          {%- if featured_review.dog != blank %} &amp; {{ featured_review.dog }}{% endif -%}
-                        </span>
-                        {% if featured_review.rating.value != blank %}
-                          <div class='tw-flex tw-items-center tw-ml-2'>
-                            {% assign rating = featured_review.rating.value | strip | plus: 0 %}
-
-                            {% for i in (1..5) %}
-                              {% assign next = i | plus: 1 %}
-                              <svg
-                                class='tw-size-5 tw-mb-1'
-                                viewBox='0 0 15 14'
-                                fill='none'
-                                xmlns='http://www.w3.org/2000/svg'
-                              >
-                                {% if rating == i and forloop.last %}
-                                <path class='rating-star-full' d="M7.07326 1.65363C7.22293 1.19297 7.87464 1.19297 8.02431 1.65363L9.17136 5.18388C9.2383 5.38989 9.43028 5.52937 9.64689 5.52937H13.3588C13.8432 5.52937 14.0446 6.14918 13.6527 6.43388L10.6497 8.6157C10.4745 8.74302 10.4011 8.9687 10.4681 9.17471L11.6151 12.705C11.7648 13.1656 11.2375 13.5487 10.8457 13.264L7.84268 11.0822C7.66743 10.9548 7.43013 10.9548 7.25489 11.0822L4.25188 13.264C3.86002 13.5487 3.33278 13.1656 3.48246 12.705L4.62951 9.17471C4.69644 8.9687 4.62311 8.74302 4.44787 8.61569L1.44486 6.43388C1.053 6.14918 1.25439 5.52937 1.73875 5.52937H5.45068C5.66729 5.52937 5.85927 5.38989 5.92621 5.18388L7.0732 1.65363Z" fill="#F9C33C"/>
-                                {% elsif rating > i and rating >= next %}
-                                	<path class='rating-star-full' d="M7.07326 1.65363C7.22293 1.19297 7.87464 1.19297 8.02431 1.65363L9.17136 5.18388C9.2383 5.38989 9.43028 5.52937 9.64689 5.52937H13.3588C13.8432 5.52937 14.0446 6.14918 13.6527 6.43388L10.6497 8.6157C10.4745 8.74302 10.4011 8.9687 10.4681 9.17471L11.6151 12.705C11.7648 13.1656 11.2375 13.5487 10.8457 13.264L7.84268 11.0822C7.66743 10.9548 7.43013 10.9548 7.25489 11.0822L4.25188 13.264C3.86002 13.5487 3.33278 13.1656 3.48246 12.705L4.62951 9.17471C4.69644 8.9687 4.62311 8.74302 4.44787 8.61569L1.44486 6.43388C1.053 6.14918 1.25439 5.52937 1.73875 5.52937H5.45068C5.66729 5.52937 5.85927 5.38989 5.92621 5.18388L7.07326 1.65363Z" fill="#F9C33C"/>
-                                {% elsif rating > i %}
-                                	<path class='rating-star-half' fill-rule="evenodd" clip-rule="evenodd" d="M7.54883 1.30814C7.34847 1.30812 7.1481 1.42328 7.07326 1.65363L5.92621 5.18388C5.85927 5.38989 5.66729 5.52937 5.45068 5.52937H1.73875C1.25439 5.52937 1.053 6.14918 1.44486 6.43388L4.44787 8.61569C4.62311 8.74302 4.69644 8.9687 4.62951 9.17471L3.48246 12.705C3.33278 13.1656 3.86002 13.5487 4.25188 13.264L7.25489 11.0822C7.34253 11.0185 7.44568 10.9867 7.54883 10.9867V1.30814Z" fill="#F9C33C"/>
-                                {% endif %}
-                                <path class='rating-star-outline' fill-rule="evenodd" clip-rule="evenodd" d="M6.59771 1.49912C6.89706 0.577805 8.20047 0.577812 8.49982 1.49912L9.64687 5.02937L13.3588 5.02937C14.3275 5.02937 14.7303 6.26899 13.9466 6.83839L10.9436 9.0202L12.0906 12.5505C12.39 13.4718 11.3355 14.2379 10.5518 13.6685L7.54877 11.4867L4.54575 13.6685C3.76204 14.2379 2.70756 13.4718 3.00691 12.5505L4.15396 9.0202L1.15095 6.83839C0.367232 6.26898 0.770014 5.02937 1.73873 5.02937H5.45066L6.59771 1.49912ZM7.54877 1.80814L6.40172 5.33839C6.26784 5.75041 5.88389 6.02937 5.45066 6.02937H1.73873L4.74175 8.21119C5.09223 8.46583 5.23889 8.9172 5.10502 9.32922L3.95797 12.8595L6.96098 10.6777C7.31147 10.423 7.78606 10.423 8.13655 10.6777L11.1396 12.8595L9.99251 9.32922C9.85864 8.9172 10.0053 8.46583 10.3558 8.21119L13.3588 6.02937H9.64687C9.21364 6.02937 8.82969 5.75041 8.69581 5.33839L7.54877 1.80814Z" fill="#C89923"/>
-                              </svg>
-                            {% endfor %}
+                  {% assign featured_reviews = product.metafields.details.reviews.value %}
+                  <script>console.log({{ featured_reviews | json }})</script>
+                  <div class='featured__review tw-relative tw-bg-[#efebdf] tw-rounded-[8px] tw-p-3 tw-flex tw-items-center tw-mt-6'>
+                    <swiper-container
+                      id='Slider-{{ section.id }}'
+                      data-id='{{ section.id }}'
+                      class='product-featured-reviews tw-w-full'
+                      role='list'
+                      aria-label='{{ 'general.slider.name' | t }}'
+                      slides-per-view='1'
+                      grab-cursor='true'
+                      keyboard-enabled='true'
+                      keyboard-onlyInViewport='true'
+                      space-between='12'
+                      navigation='{"nextEl":".product-featured-review-nav-next","prevEl":".product-featured-review-nav-prev"}'
+                    >
+                      {% for featured_review in featured_reviews %}
+                        <swiper-slide id='Slide-{{ section.id }}-{{ forloop.index }}' class='tw-relative tw-flex'>
+                          {% if featured_review.image != blank %}
+                            {% render 'responsive-image',
+                              media: featured_review.image,
+                              classes: 'img responsive-image motion-reduce tw-rounded-[5px] tw-w-[50px] tw-h-[50px] tw-mr-4',
+                              defer: true
+                            %}
+                          {% endif %}
+                
+                          <div class='featured__review-text'>
+                            <h3 class='featured__review-headline tw-flex tw-items-center'>
+                              <span class='tw-font-medium tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px]'>
+                                {{- featured_review.reviewer -}}
+                              </span>
+                              <span class='tw-font-medium tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px]'>
+                                {%- if featured_review.dog != blank %} &amp; {{ featured_review.dog }}{% endif -%}
+                              </span>
+                              {% if featured_review.rating.value != blank %}
+                                <div class='tw-flex tw-items-center tw-ml-2'>
+                                  {% assign rating = featured_review.rating.value | strip | plus: 0 %}
+                
+                                  {% for i in (1..5) %}
+                                    {% assign next = i | plus: 1 %}
+                                    <svg
+                                      class='tw-size-5 tw-mb-1'
+                                      viewBox='0 0 15 14'
+                                      fill='none'
+                                      xmlns='http://www.w3.org/2000/svg'
+                                    >
+                                      {% if rating == i and forloop.last %}
+                                      <path class='rating-star-full' d="M7.07326 1.65363C7.22293 1.19297 7.87464 1.19297 8.02431 1.65363L9.17136 5.18388C9.2383 5.38989 9.43028 5.52937 9.64689 5.52937H13.3588C13.8432 5.52937 14.0446 6.14918 13.6527 6.43388L10.6497 8.6157C10.4745 8.74302 10.4011 8.9687 10.4681 9.17471L11.6151 12.705C11.7648 13.1656 11.2375 13.5487 10.8457 13.264L7.84268 11.0822C7.66743 10.9548 7.43013 10.9548 7.25489 11.0822L4.25188 13.264C3.86002 13.5487 3.33278 13.1656 3.48246 12.705L4.62951 9.17471C4.69644 8.9687 4.62311 8.74302 4.44787 8.61569L1.44486 6.43388C1.053 6.14918 1.25439 5.52937 1.73875 5.52937H5.45068C5.66729 5.52937 5.85927 5.38989 5.92621 5.18388L7.0732 1.65363Z" fill="#F9C33C"/>
+                                      {% elsif rating > i and rating >= next %}
+                                          <path class='rating-star-full' d="M7.07326 1.65363C7.22293 1.19297 7.87464 1.19297 8.02431 1.65363L9.17136 5.18388C9.2383 5.38989 9.43028 5.52937 9.64689 5.52937H13.3588C13.8432 5.52937 14.0446 6.14918 13.6527 6.43388L10.6497 8.6157C10.4745 8.74302 10.4011 8.9687 10.4681 9.17471L11.6151 12.705C11.7648 13.1656 11.2375 13.5487 10.8457 13.264L7.84268 11.0822C7.66743 10.9548 7.43013 10.9548 7.25489 11.0822L4.25188 13.264C3.86002 13.5487 3.33278 13.1656 3.48246 12.705L4.62951 9.17471C4.69644 8.9687 4.62311 8.74302 4.44787 8.61569L1.44486 6.43388C1.053 6.14918 1.25439 5.52937 1.73875 5.52937H5.45068C5.66729 5.52937 5.85927 5.38989 5.92621 5.18388L7.07326 1.65363Z" fill="#F9C33C"/>
+                                      {% elsif rating > i %}
+                                          <path class='rating-star-half' fill-rule="evenodd" clip-rule="evenodd" d="M7.54883 1.30814C7.34847 1.30812 7.1481 1.42328 7.07326 1.65363L5.92621 5.18388C5.85927 5.38989 5.66729 5.52937 5.45068 5.52937H1.73875C1.25439 5.52937 1.053 6.14918 1.44486 6.43388L4.44787 8.61569C4.62311 8.74302 4.69644 8.9687 4.62951 9.17471L3.48246 12.705C3.33278 13.1656 3.86002 13.5487 4.25188 13.264L7.25489 11.0822C7.34253 11.0185 7.44568 10.9867 7.54883 10.9867V1.30814Z" fill="#F9C33C"/>
+                                      {% endif %}
+                                      <path class='rating-star-outline' fill-rule="evenodd" clip-rule="evenodd" d="M6.59771 1.49912C6.89706 0.577805 8.20047 0.577812 8.49982 1.49912L9.64687 5.02937L13.3588 5.02937C14.3275 5.02937 14.7303 6.26899 13.9466 6.83839L10.9436 9.0202L12.0906 12.5505C12.39 13.4718 11.3355 14.2379 10.5518 13.6685L7.54877 11.4867L4.54575 13.6685C3.76204 14.2379 2.70756 13.4718 3.00691 12.5505L4.15396 9.0202L1.15095 6.83839C0.367232 6.26898 0.770014 5.02937 1.73873 5.02937H5.45066L6.59771 1.49912ZM7.54877 1.80814L6.40172 5.33839C6.26784 5.75041 5.88389 6.02937 5.45066 6.02937H1.73873L4.74175 8.21119C5.09223 8.46583 5.23889 8.9172 5.10502 9.32922L3.95797 12.8595L6.96098 10.6777C7.31147 10.423 7.78606 10.423 8.13655 10.6777L11.1396 12.8595L9.99251 9.32922C9.85864 8.9172 10.0053 8.46583 10.3558 8.21119L13.3588 6.02937H9.64687C9.21364 6.02937 8.82969 5.75041 8.69581 5.33839L7.54877 1.80814Z" fill="#C89923"/>
+                                    </svg>
+                                  {% endfor %}
+                                </div>
+                              {% endif %}
+                            </h3>
+                            <div class='featured__review-content tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px] tw-line-clamp-2 tw-mt-[3px]'>
+                              {{ featured_review.review | metafield_tag }}
+                            </div>
                           </div>
-                        {% endif %}
-                      </h3>
-                      <div class='featured__review-content tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px] tw-line-clamp-2 tw-mt-[3px]'>
-                        {{ featured_review.review | metafield_tag }}
-                      </div>
-                    </div>
+                        </swiper-slide>
+                      {%- endfor -%}
+                    </swiper-container>
+                    <button
+                      class='product-featured-review-nav-prev tw-group tw-transition-all tw-left-4 tw-top-1/2 tw--translate-y-1/2 tw-absolute tw-z-10 tw-p-2 tw-rounded-full tw-border-[#D6CDAF] tw-border-2 tw-text-black tw-bg-white tw-duration-200 hover:tw-scale-[0.9]'
+                    >
+                      {% render 'icon-caret', class: 'tw-rotate-90 tw-fill-black tw-stroke-black tw-size-3 -tw-translate-x-[1px]' %}
+                    </button>
+                    <button
+                      class='product-featured-review-nav-next tw-group tw-transition-all tw-right-4 tw-top-1/2 tw--translate-y-1/2 tw-absolute tw-z-10 tw-p-2 tw-rounded-full tw-border-[#D6CDAF] tw-border-2 tw-text-black tw-bg-white tw-duration-200 hover:tw-scale-[0.9]'
+                    >
+                      {% render 'icon-caret', class: '-tw-rotate-90 tw-fill-black tw-stroke-black tw-size-3 tw-translate-x-[1px]' %}
+                    </button>
                   </div>
                 {% endif %}
               
@@ -847,6 +875,11 @@
 </script>
 
 {% style %}
+  .featured__review {
+    max-height: 70px;
+    padding: 10px;
+    overflow: hidden;
+  }
   .reviews-gallery-container > .reviews-gallery {
     display: none;
   }
