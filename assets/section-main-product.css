@@ -2173,3 +2173,7 @@ body .jdgm-gallery-popup .jm-mfp-main {
 .jdgm-write-rev-link {
   font-weight: 500 !important;
 }
+
+[data-number-of-reviews="0"] .jdgm-rev-widg__header:after {
+        content: none !important;
+}
