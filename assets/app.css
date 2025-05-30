@@ -811,6 +811,10 @@ video {
   margin-top: 1rem;
 }
 
+.tw-mt-6 {
+  margin-top: 1.5rem;
+}
+
 .tw-mt-\[3px\] {
   margin-top: 3px;
 }
@@ -864,6 +868,11 @@ video {
 .tw-size-12 {
   width: 3rem;
   height: 3rem;
+}
+
+.tw-size-3 {
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
 .tw-size-5 {
