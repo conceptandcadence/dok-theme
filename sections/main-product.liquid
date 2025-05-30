@@ -142,7 +142,7 @@
                           <div class='featured__review-text'>
                             <h3 class='featured__review-headline tw-flex tw-items-center'>
                               <span class='tw-font-medium tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px]'>
-                                {{- featured_review.reviewer -}}
+                                {{- featured_review.reviewer -}}{%- if featured_review.dog != blank %}&nbsp{% endif -%}
                               </span>
                               <span class='tw-font-medium tw-text-[10px] md:tw-text-[11px] tw-tracking-normal tw-leading-[14px]'>
                                 {%- if featured_review.dog != blank %} &amp; {{ featured_review.dog }}{% endif -%}
