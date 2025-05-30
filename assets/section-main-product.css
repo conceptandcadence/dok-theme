@@ -2177,3 +2177,7 @@ body .jdgm-gallery-popup .jm-mfp-main {
 [data-number-of-reviews="0"] .jdgm-rev-widg__header:after {
         content: none !important;
 }
+
+body [data-number-of-reviews="0"] .jdgm-rev-widg.jdgm-rev-widg {
+  justify-content: center !important;
+}
