@@ -2155,3 +2155,8 @@ body .jdgm-gallery-popup .jm-mfp-main {
   border-radius: 10px;
   height: 48px;
 }
+
+.jdgm-cancel-rev {
+  border: solid 2px rgb(206, 164, 59);
+  color: #000;
+}
