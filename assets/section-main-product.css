@@ -2139,4 +2139,5 @@ body .jdgm-gallery-popup .jm-mfp-main {
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: 999;
 }
