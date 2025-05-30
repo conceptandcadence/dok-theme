@@ -37,6 +37,9 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+    :root {
+      --rating: {{ product.metafields.reviews.rating.value }};
+    }
   {%- endstyle -%}
   <script src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js' defer></script>
   <script src='{{ 'product-info.js' | asset_url }}' defer='defer'></script>
