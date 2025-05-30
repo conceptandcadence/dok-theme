@@ -2178,6 +2178,6 @@ body .jdgm-gallery-popup .jm-mfp-main {
         content: none !important;
 }
 
-body [data-number-of-reviews="0"] .jdgm-rev-widg.jdgm-rev-widg {
+body [data-number-of-reviews="0"].jdgm-rev-widg.jdgm-rev-widg {
   justify-content: center !important;
 }
