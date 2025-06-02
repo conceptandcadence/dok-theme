@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-page",
@@ -24,10 +24,10 @@
         "row_pBJD8A": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/Group_3311.jpg",
-            "caption": "Our Philosophy",
+            "image": "shopify://shop_images/DSC_0111.jpg",
+            "caption": "Intentional Design",
             "heading": "",
-            "text": "<p>At DOK, our brand philosophy is simple yet profound: we exist to craft solutions that directly address everyday challenges. Rooted in our passion for enhancing connections, our products are meticulously designed to foster seamless interactions between individuals and their cherished furry companions. We believe that the essence of joy resides in the simple moments, and our commitment lies in amplifying these experiences. Through innovative design and functionality, we aspire to infuse each day with an extra dash of delight and playfulness. Our dedication to creating tools that facilitate a deeper bond between pets and their owners is at the heart of everything we do. At DOK, we're not just about products; we're about transforming routine moments into opportunities for shared happiness and unforgettable memories.</p>",
+            "text": "<p>Over 20 years in product design have taught us one truth: <em><strong>Quality starts with intentional design</strong></em>.  That's why DOK spends hundreds of hours in our R&D office and on the lake designing, testing, & prototyping every product we make.  We obsess over ramp angles so water exits are seamless, maximize traction so bare feet and paws stay planted, and prototype every handle, D-ring, and corner so everything performs just right.  We run test after test, then invite real familes - and their dogs - to try and break it.  The outcome is gear that let's you swap awkward lifts for effortless memories on the water.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -35,10 +35,10 @@
         "row_WyaaCM": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/Group_3316.jpg",
-            "caption": "Better quality & pet-focused Design",
-            "heading": "",
-            "text": "<p>Better quality & better design makes better products. We select top-tier materials, prioritizing durability and longevity in every aspect of our creations. Our relentless pursuit of excellence extends beyond durability; it encompasses a deep understanding of pet behavior and preferences. Each design element is crafted with precision, ensuring ergonomic comfort, safety, and functionality for our furry companions. By seamlessly blending superior quality and pet-focused design, we don't just create products; we cultivate experiences that enrich the lives of pets and their devoted owners, fostering stronger, more joyful connections.</p>",
+            "image": "shopify://shop_images/9fff47003726ff04fbc1521a4c2d7ac6.jpg",
+            "caption": "48 Hour Leak Test",
+            "heading": "Zero Failure Standard",
+            "text": "<p>We bring each inflatable dock and dog ramp up to full pressure and keep an ear out for the tiniest whisper of a leak—day and night—for 48 straight hours. No spot checks, no skipping the line; every single unit does the time. Only when it breezes through that marathon does it earn the DOK smiley. The pay-off: gear that pumps up fast and stays firm from dawn cannonballs to after-dinner float sessions.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -46,10 +46,10 @@
         "row_b9fWEe": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/Group_3317.jpg",
-            "caption": "20 years of collective product experience",
-            "heading": "",
-            "text": "<p>DOK's journey is spearheaded by its founders, Dom and Cam, two individuals whose combined expertise boasts an impressive 20 years of collective product experience. Hailing from a robust engineering background, their passion for innovation and problem-solving fuels the brand's DNA. Their collaborative synergy lays the foundation for DOK's commitment to excellence, blending technical precision with creative ingenuity. With a shared vision to revolutionize pet products, Dom and Cam infuse their seasoned expertise into every facet of the brand, ensuring that each creation seamlessly marries functionality, durability, and pet-centric design. Their entrepreneurial spirit and profound understanding of product development resonate through DOK's offerings, setting a standard for superior quality and thoughtful design in the realm of pet accessories.</p>",
+            "image": "shopify://shop_images/e2eb6d64931e0c32cb5efb756e48085d_c68bbe29-1916-467e-bed8-c18b229b04cc.png",
+            "caption": "Double-Layer Sidewalls",
+            "heading": "Military Grade PVC",
+            "text": "<p>Most brands use one thin sheet of PVC and call it a day. We start with <strong>military-grade PVC, then fuse two layers into double-wall sidewalls.</strong> The result is a shell you can stand on, dance on, even park a pickup on without so much as a quiver. It shrugs off salt spray, dock rash, claws, paws, and every bit of summer chaos—because flimsy gear kills fun faster than you can say “fetch.” When the weekend winds down, it still folds tight and rides home in the trunk. Add an optional four-year manufacturer warranty, and you’ve got rugged confidence that outlasts bargain inflatables by multiple seasons.</p>",
             "button_label": "",
             "button_link": ""
           }
@@ -57,10 +57,10 @@
         "row_Heib3i": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/Group_3318.jpg",
-            "caption": "We believe in customer connection & service",
+            "image": "shopify://shop_images/d5f04fdaa0a28b930da7c54d744f4a2a.jpg",
+            "caption": "Patented DOK-DECK Surface",
             "heading": "",
-            "text": "<p>At DOK, our commitment to customer service transcends transactions; it's about fostering genuine connections. As pet parents ourselves, we empathize with the deep bond shared between owners and their beloved companions. We understand that our customers possess invaluable insights into their pets' needs, and we cherish this knowledge. Our dedication to exemplary service is rooted in this mutual understanding, ensuring that we not only listen but actively collaborate with our customers, valuing their expertise and insights in crafting solutions that truly resonate with their furry friends.</p>",
+            "text": "<p>The surface you stand on shouldn’t be an afterthought, so we made it a centerpiece with our <strong>exclusive</strong> <strong>DOK-DECK</strong> <strong>surface</strong>. We start with cushy, marine-grade EVA foam and run it through a CNC mill until the top looks and feels like classic dock planks—grooves for drainage, ridges for grip. That foam then covers the entire deck, leaving zero bare PVC to cause slipping. The traction pattern grips wet paws, sun-lotioned feet, and wriggly kids, turning wipeouts into high-fives. Pigments are infused with UV blockers to keep the deck cool and color-true, even after a string of scorchers. Closed-cell construction means it won’t soak up water or mildew, so it stays fresh season after season. In short, it’s the first inflatable deck built to welcome the whole crew, dawn to dusk.</p>",
             "button_label": "",
             "button_link": ""
           }
