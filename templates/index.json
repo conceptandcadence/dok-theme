@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_7Bzixa": {
       "type": "hero",
@@ -15,7 +15,7 @@
         "heading_hMEJ4B": {
           "type": "heading",
           "settings": {
-            "heading": "Experience the water like never before",
+            "heading": "Never lift your dog or kids out of the water again",
             "heading_size": "h0"
           }
         },
