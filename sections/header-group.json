@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "🥇 #1 Best-Selling Inflatable Ramp*  | ⚡️ Sells Out Every Year | ⏳ Limited-Time Sale—Shop Now!",
             "link": ""
           }
         }
@@ -25,10 +25,9 @@
       "block_order": [
         "announcement-bar-0"
       ],
-      "disabled": true,
       "settings": {
-        "color_scheme": "",
-        "show_line_separator": true,
+        "color_scheme": "scheme-2",
+        "show_line_separator": false,
         "show_social": false,
         "auto_rotate": false,
         "change_slides_speed": 5,
