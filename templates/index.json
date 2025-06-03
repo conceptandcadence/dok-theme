@@ -60,7 +60,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/hp1a1.jpg",
-            "title": "Jump In, Climb Out Effortlessly",
+            "title": "Jump In & Climb Out Effortlessly",
             "text": "",
             "link_label": "",
             "link": ""
@@ -70,7 +70,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/hp1a2.jpg",
-            "title": "Rigid & built to last with military grade materials",
+            "title": "Rigid & Built to Last with Military Grade Materials",
             "text": "",
             "link_label": "",
             "link": ""
@@ -80,7 +80,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/hp1a3.jpg",
-            "title": "Hassle-Free fun for everyone",
+            "title": "Hassle-Free Fun for Everyone",
             "text": "",
             "link_label": "",
             "link": ""
@@ -118,7 +118,7 @@
       "type": "flats-collection",
       "settings": {
         "title": "Meet the DOK inflatable family",
-        "description": "<p>From paddle-friendly pups to thrill-seeking tails, the DOK Inflatable Family is built for every water adventure—and every size dog.</p>",
+        "description": "<p>Tired of lifting your dog or kids out of the water? We have ramps designed for the whole family.  Let them climb in and out effortlessly – more fun for everyone.<br/><br/></p>",
         "show_description": false,
         "description_style": "body",
         "collection": "flats",
