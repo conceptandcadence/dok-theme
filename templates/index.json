@@ -39,7 +39,8 @@
         ".banner {background-color: #efebdf; padding-bottom: 24px;}"
       ],
       "settings": {
-        "video": "shopify://files/videos/dok-pdp-video2up.mp4",
+        "video": "shopify://files/videos/dogdok_websitevideo_1920x1152_nosound (720p).mp4",
+        "mobile_video": "shopify://files/videos/dogdok_websitevideo_1080x1920_nosound (540p).mp4",
         "fullscreen": true,
         "image_overlay_opacity": 20,
         "image_height": "medium",
