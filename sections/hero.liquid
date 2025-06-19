@@ -103,7 +103,7 @@
   class='banner trigger-rounded-corners banner--content-align-{{ section.settings.desktop_content_alignment }}{% if section.settings.fullscreen %} banner--adapt tw-min-h-screen{% endif %} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'
 >
   {%- if section.settings.video != blank -%}
-    <div class='banner__media media'>
+    <div class='banner__media media{% if section.settings.mobile_video != blank %} hero-desktop-only{% endif %}'>
       {% render 'responsive-video',
         video: section.settings.video,
         classes: 'responsive-video tw-max-w-full',
@@ -112,6 +112,17 @@
         autoplay: true
       %}
     </div>
+    {%- if section.settings.mobile_video != blank -%}
+      <div class='banner__media media hero-mobile-only'>
+        {% render 'responsive-video',
+          video: section.settings.mobile_video,
+          classes: 'responsive-video tw-max-w-full',
+          video_class: 'tw-object-cover tw-h-full tw-object-center',
+          defer: true,
+          autoplay: true
+        %}
+      </div>
+    {%- endif -%}
   {%- elsif section.settings.image != blank -%}
     <div class='banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'>
       {%- liquid
@@ -200,6 +211,18 @@
       }
     });
   </script>
+  <style>
+   @media (max-width: 749px) {
+      .hero-desktop-only {
+        display: none !important;
+      }
+   }
+   @media (min-width: 750px) {
+    .hero-mobile-only {
+      display: none !important;
+    }
+   } 
+  </style>
 </div>
 
 {% schema %}
