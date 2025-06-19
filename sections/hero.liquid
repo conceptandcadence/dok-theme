@@ -24,6 +24,53 @@
 {%- endif -%}
 
 {%- style -%}
+     	@media screen and (max-width: 749px) {
+     		#Banner-{{ section.id }}::before,
+     		#Banner-{{ section.id }} .banner__media::before,
+     		#Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+     			padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+     			content: '';
+     			display: block;
+     		}
+     	}
+
+     	@media screen and (min-width: 750px) {
+     		#Banner-{{ section.id }}::before,
+     		#Banner-{{ section.id }} .banner__media::before {
+     			padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+     			content: '';
+     			display: block;
+     		}
+     	}
+   #Banner-{{ section.id }}.rounded-corners,
+  #Banner-{{ section.id }}.rounded-corners::after,
+   #Banner-{{ section.id }}.rounded-corners,
+    #Banner-{{ section.id }}.rounded-corners .banner::after,
+    #Banner-{{ section.id }}.rounded-corners .banner,
+    #Banner-{{ section.id }}.rounded-corners .banner__media,
+    #Banner-{{ section.id }}.rounded-corners .banner__media::after {
+    		transition: all 0.5s ease-in-out !important;
+     		border-bottom-right-radius: 18px !important;
+     		border-bottom-left-radius: 18px !important;
+     	}
+     	@media screen and (min-width: 750px) {
+  		#Banner-{{ section.id }}.rounded-corners,
+  #Banner-{{ section.id }}.rounded-corners::after,
+   #Banner-{{ section.id }}.rounded-corners,
+    #Banner-{{ section.id }}.rounded-corners .banner::after,
+    #Banner-{{ section.id }}.rounded-corners .banner,
+    #Banner-{{ section.id }}.rounded-corners .banner__media,
+    #Banner-{{ section.id }}.rounded-corners .banner__media::after {
+     			border-bottom-right-radius: 48px !important;
+     			border-bottom-left-radius: 48px !important;
+     		}
+     	}
+  #shopify-section-{{ section.id }} {
+  	background-color: #efebdf !important;
+   }
+{%- endstyle -%}
+
+{%- style -%}
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
@@ -53,10 +100,10 @@
 
 <div
   id='Banner-{{ section.id }}'
-  class='banner banner--content-align-{{ section.settings.desktop_content_alignment }}{% if section.settings.fullscreen %} banner--adapt tw-min-h-screen{% endif %} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'
+  class='banner trigger-rounded-corners banner--content-align-{{ section.settings.desktop_content_alignment }}{% if section.settings.fullscreen %} banner--adapt tw-min-h-screen{% endif %} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'
 >
   {%- if section.settings.video != blank -%}
-    <div class='banner__media media '>
+    <div class='banner__media media'>
       {% render 'responsive-video',
         video: section.settings.video,
         classes: 'responsive-video tw-max-w-full',
@@ -143,6 +190,16 @@
       {%- endfor -%}
     </div>
   </div>
+  <script>
+    window.addEventListener('scroll', function () {
+      console.log(window.scrollY);
+      if (window.scrollY > 10) {
+        document.querySelector('#Banner-{{ section.id }}').classList.add('rounded-corners');
+      } else {
+        document.querySelector('#Banner-{{ section.id }}').classList.remove('rounded-corners');
+      }
+    });
+  </script>
 </div>
 
 {% schema %}
@@ -163,6 +220,11 @@
       "type": "video",
       "id": "video",
       "label": "t:sections.hero.settings.video.label"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile Video"
     },
     {
       "type": "checkbox",
