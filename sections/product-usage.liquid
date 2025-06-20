@@ -211,6 +211,7 @@
     });
   </script>
   <style>
+    .feature-toggle,
     .product-features swiper-slide,
     .product-features swiper-slide img {
       transition: all 0.5s ease-in-out;
@@ -223,8 +224,11 @@
       
     }
     .product-features swiper-slide:not(:hover) img {
-    transform: scale(1.025) !important;
-  }
+      transform: scale(1.025) !important;
+    }
+    .feature-toggle:hover {
+      transform: scale(1.25) !important;
+    }
   </style>
 {% endif %}
 
