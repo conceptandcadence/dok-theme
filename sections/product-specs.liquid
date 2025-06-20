@@ -614,7 +614,7 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const isInBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
-        const isOverButton = false;
+        let isOverButton = false;
         
         // Use event delegation to handle mouse events for dynamically loaded buttons.
         document.addEventListener('mouseover', (e) => {
