@@ -2014,7 +2014,12 @@ body
     color: #000 !important;
   }
 }
-
+  .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
+    border-radius: 20px !important;
+    font-size: 10px !important;
+    color: #000 !important;
+    letter-spacing: 0 !important;
+  }
 .jdgm-row-media {
   position: sticky;
   top: 303px;
