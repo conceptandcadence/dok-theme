@@ -463,7 +463,7 @@
           () => {
             scrollTrigger = ScrollTrigger.create({
               trigger: videoContainer,
-              start: 'top 80%', // Trigger when top of video is 80% down the viewport
+              start: 'bottom bottom', // Trigger when bottom of video reaches bottom of viewport (completely visible)
               onEnter: () => {
                 // Only trigger if user has scrolled and enough time has passed since page load
                 const timeSinceLoad = Date.now() - pageLoadTime;
