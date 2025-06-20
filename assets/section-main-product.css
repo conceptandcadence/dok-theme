@@ -2020,8 +2020,11 @@ body
     letter-spacing: 0 !important;
   }
   body .jdgm-gallery .jdgm-gallery__thumbnail-link {
-    width: 15% !important;
+    width: 12.5% !important;
 }
+  .jdgm-gallery-popup .jm-mfp-content-wrapper {
+    margin-bottom: 40px !important;
+  }
 }
   .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
     border-radius: 20px !important;
