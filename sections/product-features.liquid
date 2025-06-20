@@ -179,6 +179,24 @@
   .product-features-nav-prev[disabled] {
     opacity: 0;
   }
+  .product-features swiper-slide .plus-toggle
+  .product-features swiper-slide,
+  .product-features swiper-slide img {
+    transition: transform 0.5s ease-in-out;
+  }
+  .product-features swiper-slide {
+    overflow: hidden;
+    border-radius: 15px;
+  }
+  .product-features swiper-slide:hover {
+    
+  }
+  .product-features swiper-slide:not(:hover) img {
+    transform: scale(1.025) !important;
+  }
+  .product-features swiper-slide:hover .plus-toggle {
+    transform: scale(1.25) !important;
+  }
 {% endstyle %}
 
 {% javascript %}
