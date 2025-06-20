@@ -2025,9 +2025,7 @@ body
   .jdgm-gallery-popup .jm-mfp-content-wrapper {
     margin-bottom: 40px !important;
   }
-  body .jdgm-gallery__thumbnail-link:before {
-    content: none !important;
-  }
+
 }
   .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
     border-radius: 20px !important;
