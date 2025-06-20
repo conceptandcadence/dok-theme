@@ -94,10 +94,6 @@
           {% continue %}
         {% endif %}
 
-        {% if product.tags contains 'skip-first-2-images' and forloop.index == 1 or forloop.index == 2 %}
-          {% continue %}
-        {% endif %}
-
         {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
           <li
             id='Slide-{{ section.id }}-{{ media.id }}'
