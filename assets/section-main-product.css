@@ -2016,6 +2016,9 @@ body
   .jdgm-star {
       font-size: 12px !important;
   }
+  .jdgm-rev__rating {
+    letter-spacing: 0 !important;
+  }
 }
   .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
     border-radius: 20px !important;
