@@ -224,9 +224,9 @@
             assign media_index = media_index | plus: 1
           -%}
 
-        {% if product.tags contains 'skip-first-2-images' and forloop.index == 1 or forloop.index == 2 %}
-          {% continue %}
-        {% endif %}
+          {% if product.tags contains 'skip-first-2-images' and forloop.index == 1 or forloop.index == 2 %}
+            {% continue %}
+          {% endif %}
           
           <li
             id='Slide-Thumbnails-{{ section.id }}-0'
@@ -272,6 +272,11 @@
               endcapture
               assign media_index = media_index | plus: 1
             -%}
+
+                    {% if product.tags contains 'skip-first-2-images' and forloop.index == 1 or forloop.index == 2 %}
+          {% continue %}
+        {% endif %}
+            
             <li
               id='Slide-Thumbnails-{{ section.id }}-{{ forloop.index }}'
               class='thumbnail-list__item slider__slide tw-mb-4 tw-w-[36px] tw-h-[36px]{% if section.settings.hide_variants and variant_images contains media.src %} thumbnail-list_item--variant{% endif %}'
