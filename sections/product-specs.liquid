@@ -281,13 +281,14 @@
       let startProgress = 0;
       let lastTouchX = 0;
       let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
       let tl;
       let hasScrolledIntoView = false; // Track if video has been scrolled into view
       let scrollTrigger; // Store ScrollTrigger reference
       let hasUserScrolled = false; // Track if user has actually scrolled
       let pageLoadTime = Date.now(); // Track when page loaded
       let initialScrollY = window.scrollY; // Track initial scroll position
-      let minScrollDistance = 100; // Minimum scroll distance required
+      let minScrollDistance = isSafari ? 200 : 100; // Require more scroll distance on Safari
 
       if (!video || !videoContainer) return;
 
@@ -480,15 +481,23 @@
               timeSinceLoad,
               initialScrollY,
               currentScrollY: window.scrollY,
+              isSafari,
+              isIOS,
             });
 
+            // Safari-specific conditions - be more conservative
+            const minTimeRequired = isSafari ? 5000 : 3000;
+            const shouldCreate =
+              timeSinceLoad > minTimeRequired &&
+              (!isSafari || (hasUserScrolled && currentScrollDistance > minScrollDistance));
+
             // Only create ScrollTrigger if conditions are met
-            if (timeSinceLoad > 3000) {
-              // Wait at least 3 seconds
+            if (shouldCreate) {
               scrollTrigger = ScrollTrigger.create({
                 trigger: videoContainer,
                 start: 'bottom bottom',
                 refreshPriority: -1, // Low priority refresh
+                invalidateOnRefresh: false, // Prevent Safari from recalculating aggressively
                 onEnter: () => {
                   const scrollDistance = Math.abs(window.scrollY - initialScrollY);
                   const timeCheck = Date.now() - pageLoadTime;
@@ -500,16 +509,15 @@
                     minScrollDistance,
                     timeCheck,
                     hasTl: !!tl,
+                    isSafari,
                   });
 
+                  // Safari requires even stricter conditions
+                  const safariTimeCheck = isSafari ? timeCheck > 6000 : timeCheck > 3000;
+                  const safariScrollCheck = isSafari ? scrollDistance > 200 : scrollDistance > minScrollDistance;
+
                   // Only trigger if user has scrolled significantly and enough time has passed
-                  if (
-                    !hasScrolledIntoView &&
-                    tl &&
-                    hasUserScrolled &&
-                    timeCheck > 3000 &&
-                    scrollDistance > minScrollDistance
-                  ) {
+                  if (!hasScrolledIntoView && tl && hasUserScrolled && safariTimeCheck && safariScrollCheck) {
                     hasScrolledIntoView = true;
 
                     console.log('Starting video animation');
@@ -535,11 +543,18 @@
 
               console.log('ScrollTrigger created successfully');
             } else {
-              console.log('ScrollTrigger creation skipped - not enough time passed');
+              console.log('ScrollTrigger creation skipped:', {
+                timeSinceLoad,
+                minTimeRequired,
+                hasUserScrolled,
+                currentScrollDistance,
+                minScrollDistance,
+                isSafari,
+              });
             }
           },
-          isIOS ? 5000 : 3000
-        ); // Even longer delay
+          isSafari ? 7000 : isIOS ? 5000 : 3000
+        ); // Much longer delay for Safari
 
         // Debug log
         console.log('Video scrubbing initialized', {
