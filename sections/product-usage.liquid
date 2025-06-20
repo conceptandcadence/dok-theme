@@ -131,12 +131,12 @@
         <button
           class='product-usage-nav-prev tw-group tw-transition-all tw-left-4 md:tw-left-12 tw-top-1/2 tw--translate-y-1/2 tw-absolute tw-z-10 tw-p-6 tw-rounded-full tw-border-[#D6CDAF] tw-border-2 tw-text-black tw-bg-white tw-duration-200 hover:tw-scale-[0.9]'
         >
-          {% render 'icon-caret', class: 'plus-toggle tw-rotate-90 tw-fill-black tw-stroke-black tw-size-5 -tw-translate-x-[1px]' %}
+          {% render 'icon-caret', class: 'tw-rotate-90 tw-fill-black tw-stroke-black tw-size-5 -tw-translate-x-[1px]' %}
         </button>
         <button
           class='product-usage-nav-next tw-group tw-transition-all tw-right-4 md:tw-right-12 tw-top-1/2 tw--translate-y-1/2 tw-absolute tw-z-10 tw-p-6 tw-rounded-full tw-border-[#D6CDAF] tw-border-2 tw-text-black tw-bg-white tw-duration-200 hover:tw-scale-[0.9]'
         >
-          {% render 'icon-caret', class: 'plus-toggle -tw-rotate-90 tw-fill-black tw-stroke-black tw-size-5 tw-translate-x-[1px]' %}
+          {% render 'icon-caret', class: ' -tw-rotate-90 tw-fill-black tw-stroke-black tw-size-5 tw-translate-x-[1px]' %}
         </button>
       </slider-component>
     {% endif %}
@@ -210,26 +210,6 @@
       }, 100);
     });
   </script>
-  <style>
-    .product-features swiper-slide .plus-toggle
-    .product-features swiper-slide,
-    .product-features swiper-slide img {
-      transition: transform 0.5s ease-in-out;
-    }
-    .product-features swiper-slide {
-      overflow: hidden;
-      border-radius: 15px;
-    }
-    .product-features swiper-slide:hover {
-      
-    }
-    .product-features swiper-slide:not(:hover) img {
-      transform: scale(1.025) !important;
-    }
-    .product-features swiper-slide:hover .plus-toggle {
-      transform: scale(1.25) !important;
-    }
-  </style>
 {% endif %}
 
 {% schema %}
