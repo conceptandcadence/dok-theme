@@ -2013,6 +2013,9 @@ body
   .jdgm-gallery-popup .jm-mfp-close {
     color: #000 !important;
   }
+  .jdgm-star {
+      font-size: 12px !important;
+  }
 }
   .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
     border-radius: 20px !important;
