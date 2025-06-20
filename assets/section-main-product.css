@@ -2016,10 +2016,13 @@ body
 }
   .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
     border-radius: 20px !important;
-    font-size: 10px !important;
+    font-size: 8px !important;
     color: #000 !important;
     letter-spacing: 0 !important;
   }
+span.jdgm-rev__buyer-badge-wrapper {
+    margin: 4px 0 0 0 !important;
+}
 .jdgm-row-media {
   position: sticky;
   top: 303px;
