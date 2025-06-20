@@ -282,6 +282,8 @@
       let lastTouchX = 0;
       let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       let tl;
+      let hasScrolledIntoView = false; // Track if video has been scrolled into view
+      let scrollTrigger; // Store ScrollTrigger reference
 
       if (!video || !videoContainer) return;
 
@@ -405,6 +407,7 @@
         startX = 0;
         startProgress = 0;
         lastTouchX = 0;
+        hasScrolledIntoView = false; // Reset scroll flag for new video
 
         // Ensure video is properly loaded
         if (video.readyState === 0) {
@@ -439,6 +442,45 @@
         // Add event listeners
         addEventListeners(videoContainer, video);
 
+        // Kill existing ScrollTrigger if it exists
+        if (scrollTrigger) {
+          scrollTrigger.kill();
+          scrollTrigger = null;
+        }
+
+        // Create ScrollTrigger to detect when video comes into view
+        scrollTrigger = ScrollTrigger.create({
+          trigger: videoContainer,
+          start: 'top 80%', // Trigger when top of video is 80% down the viewport
+          onEnter: () => {
+            if (!hasScrolledIntoView && tl) {
+              hasScrolledIntoView = true;
+
+              // Animate timeline from current progress to current progress + 25% over 5 seconds
+              const currentProgress = tl.progress();
+              const targetProgress = wrapProgress(currentProgress + 0.25);
+
+              gsap.to(tl, {
+                progress: targetProgress,
+                duration: 5,
+                ease: 'power2.out',
+                onUpdate: () => {
+                  // Ensure video stays paused during animation
+                  if (video && !video.paused) {
+                    video.pause();
+                  }
+                },
+              });
+
+              console.log('Auto-advancing video timeline', {
+                from: currentProgress,
+                to: targetProgress,
+                duration: 5,
+              });
+            }
+          },
+        });
+
         // Debug log
         console.log('Video scrubbing initialized', {
           video: video,
@@ -449,6 +491,7 @@
           touchEnabled: 'ontouchstart' in window,
           readyState: video.readyState,
           src: video.src || video.dataset.src,
+          hasScrolledIntoView: hasScrolledIntoView,
         });
       }
 
@@ -656,6 +699,15 @@
             tl.kill();
             tl = null;
           }
+
+          // Kill existing ScrollTrigger before switching
+          if (scrollTrigger) {
+            scrollTrigger.kill();
+            scrollTrigger = null;
+          }
+
+          // Reset scroll flag
+          hasScrolledIntoView = false;
 
           const handle = button.dataset.handle;
 
