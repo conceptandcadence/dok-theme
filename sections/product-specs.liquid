@@ -617,20 +617,18 @@
         let isOverButton = false;
         
         // Use event delegation to handle mouse events for dynamically loaded buttons.
-        document.addEventListener('mouseover', (e) => {
-          if (e.target.closest('.product-specs .button')) {
-            isOverButton = true;
-            console.log('isOverButton: true');
-          }
-        });
-
         document.addEventListener('mouseout', (e) => {
           if (e.target.closest('.product-specs .button')) {
             isOverButton = false;
             console.log('isOverButton: false');
           }
         });
-
+        document.addEventListener('mouseover', (e) => {
+          if (e.target.closest('.product-specs .button')) {
+            isOverButton = true;
+            console.log('isOverButton: true');
+          }
+        });
         
         cursor.style.top = `${e.clientY}px`;
         cursor.style.left = `${e.clientX}px`;
