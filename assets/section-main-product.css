@@ -1998,6 +1998,9 @@ body
   /*body .jdgm-gallery {
     display: none !important;
   }*/
+  .jdgm-review-widget--medium .jdgm-gallery .jdgm-gallery__thumbnail-link {
+    width: calc(100% / 12) !important;
+  }
   body .jdgm-gallery-popup .jm-mfp-main {
     padding-bottom: 0 !important;
   }
