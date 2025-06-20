@@ -620,10 +620,12 @@
         // Hide if over one of the shop now buttons
         usageButtons.forEach((button) => {
           button.addEventListener('mouseover', (e) => {
-            isOverButton = true
+            isOverButton = true;
+            console.log('isOverButton:false');
           });
           button.addEventListener('mouseout', (e) => {
-            isOverButton = false
+            isOverButton = false;
+            console.log('isOverButton:false');
           });
         });
 
