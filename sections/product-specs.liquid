@@ -615,18 +615,20 @@
         const y = e.clientY - rect.top;
         const isInBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
         const isOverButton = false;
-        const usageButtons = document.querySelectorAll('.product-specs .button');
-
-        // Hide if over one of the shop now buttons
-        usageButtons.forEach((button) => {
-          button.addEventListener('mouseover', (e) => {
+        
+        // Use event delegation to handle mouse events for dynamically loaded buttons.
+        document.addEventListener('mouseover', (e) => {
+          if (e.target.closest('.product-specs .button')) {
             isOverButton = true;
-            console.log('isOverButton:false');
-          });
-          button.addEventListener('mouseout', (e) => {
+            console.log('isOverButton: true');
+          }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+          if (e.target.closest('.product-specs .button')) {
             isOverButton = false;
-            console.log('isOverButton:false');
-          });
+            console.log('isOverButton: false');
+          }
         });
 
         
