@@ -608,27 +608,27 @@
         videoContainer.classList.add('tw-cursor-none');
       });
 
+      let isOverButton = false;
+      // Use event delegation to handle mouse events for dynamically loaded buttons.
+      document.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.product-specs .button')) {
+          isOverButton = false;
+          console.log('isOverButton: false');
+        }
+      });
+      document.addEventListener('mouseover', (e) => {
+        if (e.target.closest('.product-specs .button')) {
+          isOverButton = true;
+          console.log('isOverButton: true');
+        }
+      });
+      
       // Update cursor position
       document.addEventListener('mousemove', (e) => {
         const rect = videoContainer.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const isInBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
-        let isOverButton = false;
-        
-        // Use event delegation to handle mouse events for dynamically loaded buttons.
-        document.addEventListener('mouseout', (e) => {
-          if (e.target.closest('.product-specs .button')) {
-            isOverButton = false;
-            console.log('isOverButton: false');
-          }
-        });
-        document.addEventListener('mouseover', (e) => {
-          if (e.target.closest('.product-specs .button')) {
-            isOverButton = true;
-            console.log('isOverButton: true');
-          }
-        });
         
         cursor.style.top = `${e.clientY}px`;
         cursor.style.left = `${e.clientX}px`;
