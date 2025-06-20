@@ -1995,9 +1995,9 @@ body
 }
 
 @media screen and (max-width: 749px) {
-  body .jdgm-gallery {
+  /*body .jdgm-gallery {
     display: none !important;
-  }
+  }*/
   body .jdgm-gallery-popup .jm-mfp-main {
     padding-bottom: 0 !important;
   }
