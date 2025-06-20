@@ -286,6 +286,8 @@
       let scrollTrigger; // Store ScrollTrigger reference
       let hasUserScrolled = false; // Track if user has actually scrolled
       let pageLoadTime = Date.now(); // Track when page loaded
+      let initialScrollY = window.scrollY; // Track initial scroll position
+      let minScrollDistance = 100; // Minimum scroll distance required
 
       if (!video || !videoContainer) return;
 
@@ -446,8 +448,14 @@
 
         // Track user scrolling
         const handleScroll = () => {
-          hasUserScrolled = true;
-          window.removeEventListener('scroll', handleScroll);
+          const currentScrollY = window.scrollY;
+          const scrollDistance = Math.abs(currentScrollY - initialScrollY);
+
+          // Only consider it "user scrolled" if they've scrolled a meaningful distance
+          if (scrollDistance > minScrollDistance) {
+            hasUserScrolled = true;
+            window.removeEventListener('scroll', handleScroll);
+          }
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -722,6 +730,7 @@
           // Reset scroll tracking
           hasUserScrolled = false;
           pageLoadTime = Date.now();
+          initialScrollY = window.scrollY;
 
           const handle = button.dataset.handle;
 
