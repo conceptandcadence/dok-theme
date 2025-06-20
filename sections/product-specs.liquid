@@ -469,36 +469,77 @@
         // Add a delay to prevent immediate firing on page load
         setTimeout(
           () => {
-            scrollTrigger = ScrollTrigger.create({
-              trigger: videoContainer,
-              start: 'bottom bottom', // Trigger when bottom of video reaches bottom of viewport (completely visible)
-              onEnter: () => {
-                // Only trigger if user has scrolled and enough time has passed since page load
-                const timeSinceLoad = Date.now() - pageLoadTime;
-                if (!hasScrolledIntoView && tl && hasUserScrolled && timeSinceLoad > 1000) {
-                  hasScrolledIntoView = true;
+            // Double-check that user has actually scrolled before creating ScrollTrigger
+            const currentScrollDistance = Math.abs(window.scrollY - initialScrollY);
+            const timeSinceLoad = Date.now() - pageLoadTime;
 
-                  // Animate timeline from current progress to current progress + 25% over 2 seconds
-                  const currentProgress = tl.progress();
-                  const targetProgress = wrapProgress(currentProgress + 0.25);
-
-                  gsap.to(tl, {
-                    progress: targetProgress,
-                    duration: 2,
-                    ease: 'power2.out',
-                    onUpdate: () => {
-                      // Ensure video stays paused during animation
-                      if (video && !video.paused) {
-                        video.pause();
-                      }
-                    },
-                  });
-                }
-              },
+            console.log('ScrollTrigger creation check:', {
+              hasUserScrolled,
+              currentScrollDistance,
+              minScrollDistance,
+              timeSinceLoad,
+              initialScrollY,
+              currentScrollY: window.scrollY,
             });
+
+            // Only create ScrollTrigger if conditions are met
+            if (timeSinceLoad > 3000) {
+              // Wait at least 3 seconds
+              scrollTrigger = ScrollTrigger.create({
+                trigger: videoContainer,
+                start: 'bottom bottom',
+                refreshPriority: -1, // Low priority refresh
+                onEnter: () => {
+                  const scrollDistance = Math.abs(window.scrollY - initialScrollY);
+                  const timeCheck = Date.now() - pageLoadTime;
+
+                  console.log('ScrollTrigger onEnter check:', {
+                    hasScrolledIntoView,
+                    hasUserScrolled,
+                    scrollDistance,
+                    minScrollDistance,
+                    timeCheck,
+                    hasTl: !!tl,
+                  });
+
+                  // Only trigger if user has scrolled significantly and enough time has passed
+                  if (
+                    !hasScrolledIntoView &&
+                    tl &&
+                    hasUserScrolled &&
+                    timeCheck > 3000 &&
+                    scrollDistance > minScrollDistance
+                  ) {
+                    hasScrolledIntoView = true;
+
+                    console.log('Starting video animation');
+
+                    // Animate timeline from current progress to current progress + 25% over 2 seconds
+                    const currentProgress = tl.progress();
+                    const targetProgress = wrapProgress(currentProgress + 0.25);
+
+                    gsap.to(tl, {
+                      progress: targetProgress,
+                      duration: 2,
+                      ease: 'power2.out',
+                      onUpdate: () => {
+                        // Ensure video stays paused during animation
+                        if (video && !video.paused) {
+                          video.pause();
+                        }
+                      },
+                    });
+                  }
+                },
+              });
+
+              console.log('ScrollTrigger created successfully');
+            } else {
+              console.log('ScrollTrigger creation skipped - not enough time passed');
+            }
           },
-          isIOS ? 2000 : 1000
-        ); // Longer delay on iOS
+          isIOS ? 5000 : 3000
+        ); // Even longer delay
 
         // Debug log
         console.log('Video scrubbing initialized', {
