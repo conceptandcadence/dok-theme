@@ -3860,3 +3860,7 @@ body .jdgm-row-profile {
 		max-width: 1800px !important;
 	}
 }
+span.jdgm-prev-badge__text {
+    font-size: 13px;
+    letter-spacing: 0;
+}
