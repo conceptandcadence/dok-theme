@@ -2025,7 +2025,7 @@ body
   .jdgm-gallery-popup .jm-mfp-content-wrapper {
     margin-bottom: 40px !important;
   }
-  body .jdgm-gallery.jdgm-gallery .jdgm-gallery__thumbnail-link:nth-child(9) .jdgm-gallery__thumbnail-wrapper.jdgm-gallery__thumbnail-wrapper:before {
+  body .jdgm-gallery__thumbnail-link:before {
     content: none !important;
   }
 }
