@@ -284,6 +284,8 @@
       let tl;
       let hasScrolledIntoView = false; // Track if video has been scrolled into view
       let scrollTrigger; // Store ScrollTrigger reference
+      let hasUserScrolled = false; // Track if user has actually scrolled
+      let pageLoadTime = Date.now(); // Track when page loaded
 
       if (!video || !videoContainer) return;
 
@@ -442,6 +444,13 @@
         // Add event listeners
         addEventListeners(videoContainer, video);
 
+        // Track user scrolling
+        const handleScroll = () => {
+          hasUserScrolled = true;
+          window.removeEventListener('scroll', handleScroll);
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
         // Kill existing ScrollTrigger if it exists
         if (scrollTrigger) {
           scrollTrigger.kill();
@@ -449,31 +458,39 @@
         }
 
         // Create ScrollTrigger to detect when video comes into view
-        scrollTrigger = ScrollTrigger.create({
-          trigger: videoContainer,
-          start: 'top 80%', // Trigger when top of video is 80% down the viewport
-          onEnter: () => {
-            if (!hasScrolledIntoView && tl) {
-              hasScrolledIntoView = true;
+        // Add a delay to prevent immediate firing on page load
+        setTimeout(
+          () => {
+            scrollTrigger = ScrollTrigger.create({
+              trigger: videoContainer,
+              start: 'top 80%', // Trigger when top of video is 80% down the viewport
+              onEnter: () => {
+                // Only trigger if user has scrolled and enough time has passed since page load
+                const timeSinceLoad = Date.now() - pageLoadTime;
+                if (!hasScrolledIntoView && tl && hasUserScrolled && timeSinceLoad > 1000) {
+                  hasScrolledIntoView = true;
 
-              // Animate timeline from current progress to current progress + 25% over 2 seconds
-              const currentProgress = tl.progress();
-              const targetProgress = wrapProgress(currentProgress + 0.25);
+                  // Animate timeline from current progress to current progress + 25% over 2 seconds
+                  const currentProgress = tl.progress();
+                  const targetProgress = wrapProgress(currentProgress + 0.25);
 
-              gsap.to(tl, {
-                progress: targetProgress,
-                duration: 2,
-                ease: 'power2.out',
-                onUpdate: () => {
-                  // Ensure video stays paused during animation
-                  if (video && !video.paused) {
-                    video.pause();
-                  }
-                },
-              });
-            }
+                  gsap.to(tl, {
+                    progress: targetProgress,
+                    duration: 2,
+                    ease: 'power2.out',
+                    onUpdate: () => {
+                      // Ensure video stays paused during animation
+                      if (video && !video.paused) {
+                        video.pause();
+                      }
+                    },
+                  });
+                }
+              },
+            });
           },
-        });
+          isIOS ? 2000 : 1000
+        ); // Longer delay on iOS
 
         // Debug log
         console.log('Video scrubbing initialized', {
@@ -701,6 +718,10 @@
 
           // Reset scroll flag
           hasScrolledIntoView = false;
+
+          // Reset scroll tracking
+          hasUserScrolled = false;
+          pageLoadTime = Date.now();
 
           const handle = button.dataset.handle;
 
