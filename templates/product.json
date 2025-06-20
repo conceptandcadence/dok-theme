@@ -171,21 +171,21 @@
           "type": "video",
           "settings": {
             "title": "Docks",
-            "video": "shopify://files/videos/usage-dock3.mp4"
+            "video": "shopify://files/videos/dok-usage-dock (540p).mp4"
           }
         },
         "video_KyjQGJ": {
           "type": "video",
           "settings": {
             "title": "Boats",
-            "video": "shopify://files/videos/usage-boat2.mp4"
+            "video": "shopify://files/videos/dok-usage-boat (540p).mp4"
           }
         },
         "video_grqa4J": {
           "type": "video",
           "settings": {
             "title": "Pools",
-            "video": "shopify://files/videos/usage-pool2.mp4"
+            "video": "shopify://files/videos/dok-usage-pool (360p).mp4"
           }
         }
       },
@@ -213,21 +213,21 @@
           "type": "video",
           "settings": {
             "title": "Dogs",
-            "video": "shopify://files/videos/MOV_3340.mp4"
+            "video": "shopify://files/videos/party-usage-dogs (540p).mp4"
           }
         },
         "video_MLjptC": {
           "type": "video",
           "settings": {
             "title": "Kids",
-            "video": "shopify://files/videos/partydok_kids (1080p).mp4"
+            "video": "shopify://files/videos/party-usage-kids (540p).mp4"
           }
         },
         "video_Qkzidk": {
           "type": "video",
           "settings": {
             "title": "Adults",
-            "video": "shopify://files/videos/partydok_adults (1080p).mp4"
+            "video": "shopify://files/videos/party-usage-adults (540p).mp4"
           }
         }
       },
