@@ -15,34 +15,34 @@
     }
   {%- endstyle -%}
 
-  <div class='section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} page-width xl-max-1600'>
+  <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} page-width xl-max-1600">
     {% if section.settings.title != blank %}
-      <div class='tw-flex tw-justify-center tw-items-center tw-py-12 lg:tw-py-16 lg:tw-mb-16'>
-        <h2 class='tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-max-w-[280px] lg:tw-max-w-[400px] tw-tracking-normal'>
+      <div class="tw-flex tw-justify-center tw-items-center tw-py-12 lg:tw-py-16 lg:tw-mb-16">
+        <h2 class="tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-max-w-[280px] lg:tw-max-w-[400px] tw-tracking-normal">
           {{ section.settings.title }}
         </h2>
       </div>
     {% endif %}
 
-    <div class=' color-{{ section.settings.section_color_scheme_inner }} tw-rounded-[20px] tw-p-8 max-md:tw-p-[8px] max-md:tw-mx-[-16px]'>
+    <div class=" color-{{ section.settings.section_color_scheme_inner }} tw-rounded-[20px] tw-p-8 max-md:tw-p-[8px] max-md:tw-mx-[-16px]">
       {% if product.metafields.compare.specifications != blank %}
         {% for compare_product in product.metafields.compare.products.value %}
           <div
-            class='product-specs{% if product.handle == compare_product.handle %} active{% endif %}'
-            data-handle='{{ compare_product.handle }}'
+            class="product-specs{% if product.handle == compare_product.handle %} active{% endif %}"
+            data-handle="{{ compare_product.handle }}"
           >
-            <div class='product-specs__header tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-relative'>
+            <div class="product-specs__header tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-relative">
               {% if product.metafields.compare.products != blank %}
-                <div class='tw-pt-4 lg:tw-pt-16 tw-px-8 lg:tw-px-0 tw-flex tw-justify-center tw-items-center'>
-                  <div class='tw-flex tw-justify-start tw-items-center tw-border tw-border-white/30 tw-rounded-full max-md:tw-overflow-scroll'>
-                    <ul class='tw-inline-flex tw-gap-4 tw-justify-center tw-p-2 lg:tw-p-3'>
+                <div class="tw-pt-4 lg:tw-pt-16 tw-px-8 lg:tw-px-0 tw-flex tw-justify-center tw-items-center">
+                  <div class="tw-flex tw-justify-start tw-items-center tw-border tw-border-white/30 tw-rounded-full max-md:tw-overflow-scroll">
+                    <ul class="tw-inline-flex tw-gap-4 tw-justify-center tw-p-2 lg:tw-p-3">
                       {% for compare_list__product in product.metafields.compare.products.value %}
                         <li>
                           <button
-                            class='button spec-button tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12{% if compare_product.handle == compare_list__product.handle %} active{% endif %}'
-                            data-handle='{{ compare_list__product.handle }}'
+                            class="button spec-button tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12{% if compare_product.handle == compare_list__product.handle %} active{% endif %}"
+                            data-handle="{{ compare_list__product.handle }}"
                           >
-                            <span class='tw-text-[10px] lg:tw-text-[14px] tw-whitespace-nowrap'>
+                            <span class="tw-text-[10px] lg:tw-text-[14px] tw-whitespace-nowrap">
                               {{- compare_list__product.title -}}
                             </span>
                           </button>
@@ -52,151 +52,151 @@
                   </div>
                 </div>
               {% endif %}
-              <div class='product-specs__media tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-cursor-none tw-max-w-[1500px] tw-mx-auto'>
+              <div class="product-specs__media tw-bg-deep tw-rounded-[10px] tw-overflow-hidden tw-cursor-none tw-max-w-[1500px] tw-mx-auto">
                 {% if compare_product.metafields.compare.specifications.value.video != blank %}
                   {% assign video = compare_product.metafields.compare.specifications.value.video.value %}
                   <script>
                     console.log({{ compare_product.metafields.compare.specifications.value | json }});
                   </script>
                   <div
-                    class='video-html-wrapper responsive-video tw-max-w-full'
-                    data-aspect='{{ video.aspect_ratio }}'
+                    class="video-html-wrapper responsive-video tw-max-w-full"
+                    data-aspect="{{ video.aspect_ratio }}"
                     style="background-image: url('{{  video.preview_image | img_url: '1024x' }}'); background-size: cover;"
                   >
                     <video
-                      id='video-html-{{ video.id }}'
-                      class='video-html tw-w-full tw-object-cover tw-h-full tw-object-bottom'
-                      preload='auto'
-                      playsinline='true'
-                      webkit-playsinline='true'
-                      x-webkit-airplay='allow'
-                      title='{{ compare_product.title | escape }}'
-                      data-src='https://cdn.shopify.com/videos/c/o/v/e2e6efa2865146ad93e8f1cfde390be8.mp4'
-                      data-url='{{ video.url }}'
+                      id="video-html-{{ video.id }}"
+                      class="video-html tw-w-full tw-object-cover tw-h-full tw-object-bottom"
+                      preload="auto"
+                      playsinline="true"
+                      webkit-playsinline="true"
+                      x-webkit-airplay="allow"
+                      title="{{ compare_product.title | escape }}"
+                      data-src="https://cdn.shopify.com/videos/c/o/v/e2e6efa2865146ad93e8f1cfde390be8.mp4"
+                      data-url="{{ video.url }}"
                       {% if compare_product.metafields.compare.specifications.value.video_url != blank %}
-                        src='{{ compare_product.metafields.compare.specifications.value.video_url }}'
+                        src="{{ compare_product.metafields.compare.specifications.value.video_url }}"
                       {% endif %}
                     ></video>
                   </div>
                 {% endif %}
               </div>
 
-              <div class='product-specs__overlay tw-flex tw-w-full tw-justify-between tw-items-center tw-p-8 lg:tw-p-16 tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-mx-auto {% if compare_product.id != product.id %} tw-max-w-[600px]{% else %} tw-max-w-[480px]{% endif %}'>
+              <div class="product-specs__overlay tw-flex tw-w-full tw-justify-between tw-items-center tw-p-8 lg:tw-p-16 tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-mx-auto {% if compare_product.id != product.id %} tw-max-w-[600px]{% else %} tw-max-w-[480px]{% endif %}">
                 {% if compare_product.metafields.compare.specifications.value.max_dog_weight != blank %}
-                  <div class='tw-pointer-events-none tw-flex tw-flex-col tw-justify-between tw-items-start md:tw-items-center'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[10px] md:tw-text-[14px] md:pb-6 tw-block tw-mb-2'
+                  <div class="tw-pointer-events-none tw-flex tw-flex-col tw-justify-between tw-items-start md:tw-items-center">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[10px] md:tw-text-[14px] md:pb-6 tw-block tw-mb-2"
                       >Capacity</span
                     >
-                    <span class='tw-font-normal tw-text-white tw-text-[14px] md:tw-text-[24px]'>
+                    <span class="tw-font-normal tw-text-white tw-text-[14px] md:tw-text-[24px]">
                       Up to {{ compare_product.metafields.compare.specifications.value.max_dog_weight }}
                     </span>
                   </div>
                 {% endif %}
                 {% if compare_product.price != blank %}
-                  <div class='tw-pointer-events-none tw-flex tw-flex-col tw-justify-between tw-items-end md:tw-items-center'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[10px] md:tw-text-[14px] md:pb-6 tw-block tw-mb-2'
+                  <div class="tw-pointer-events-none tw-flex tw-flex-col tw-justify-between tw-items-end md:tw-items-center">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[10px] md:tw-text-[14px] md:pb-6 tw-block tw-mb-2"
                       >Price</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px] md:tw-text-[24px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px] md:tw-text-[24px]">
                       {{ compare_product.price | money_without_trailing_zeros }}
                     </span>
                   </div>
                 {% endif %}
                 {% if compare_product.id != product.id %}
-                  <div class=' tw-flex tw-flex-col tw-justify-between tw-items-end md:tw-items-center'>
+                  <div class=" tw-flex tw-flex-col tw-justify-between tw-items-end md:tw-items-center">
                     <a
-                      href='{{ compare_product.url }}'
-                      class='color-scheme-1 button button--primary tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12'
+                      href="{{ compare_product.url }}"
+                      class="color-scheme-1 button button--primary tw-transition-all tw-duration-300 tw-p-1 tw-px-3 lg:tw-px-12"
                     >
-                      <span class='tw-text-[14px] tw-whitespace-nowrap'>Shop Now</span>
+                      <span class="tw-text-[14px] tw-whitespace-nowrap">Shop Now</span>
                     </a>
                   </div>
                 {% endif %}
               </div>
             </div>
 
-            <div class='product-specs__list tw-my-12 tw-py-12 tw-overflow-hidden tw-relative tw-flex lg:tw-gap-12 tw-flex-col md:tw-flex-row lg:tw-mb-0 lg:tw-pb-0 max-md:tw-px-[16px]'>
-              <ul class='tw-w-full md:tw-w-1/2'>
+            <div class="product-specs__list tw-my-12 tw-py-12 tw-overflow-hidden tw-relative tw-flex lg:tw-gap-12 tw-flex-col md:tw-flex-row lg:tw-mb-0 lg:tw-pb-0 max-md:tw-px-[16px]">
+              <ul class="tw-w-full md:tw-w-1/2">
                 {% if compare_product.metafields.compare.specifications.value.platform_length != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Platform Length</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.platform_length -}}
                     </span>
                   </li>
                 {% endif %}
                 {% if compare_product.metafields.compare.specifications.value.platform_width != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Platform Width</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.platform_width -}}
                     </span>
                   </li>
                 {% endif %}
                 {% if compare_product.metafields.compare.specifications.value.platform_depth != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Platform Depth</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.platform_depth -}}
                     </span>
                   </li>
                 {% endif %}
                 {% if compare_product.metafields.compare.specifications.value.stowed_dimensions != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Stowed Dimensions</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.stowed_dimensions -}}
                     </span>
                   </li>
                 {% endif %}
               </ul>
 
-              <ul class='tw-w-full md:tw-w-1/2'>
+              <ul class="tw-w-full md:tw-w-1/2">
                 {% if compare_product.metafields.compare.specifications.value.ramp_width != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Ramp Width</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.ramp_width -}}
                     </span>
                   </li>
                 {% endif %}
                 {% if product.metafields.compare.specifications.value.ramp_depth != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Ramp Depth</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.ramp_depth -}}
                     </span>
                   </li>
                 {% endif %}
 
                 {% if compare_product.metafields.compare.specifications.value.max_dog_weight != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Max Weight</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.max_dog_weight -}}
                     </span>
                   </li>
                 {% endif %}
                 {% if compare_product.metafields.compare.specifications.value.product_weight != blank %}
-                  <li class='tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30'>
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'
+                  <li class="tw-flex tw-justify-between tw-items-center tw-py-6 tw-border-b-2 tw-border-white/30">
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]"
                       >Product Weight</span
                     >
-                    <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
+                    <span class="tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]">
                       {{- compare_product.metafields.compare.specifications.value.product_weight -}}
                     </span>
                   </li>
@@ -204,7 +204,7 @@
               </ul>
             </div>
             {% if compare_product.metafields.compare.specifications.value.diagrams != blank %}
-              <div class='product-specs__footer tw-flex tw-justify-between tw-items-center tw-mt-12 tw-pb-12 tw-flex-col lg:tw-flex-row lg:tw-mt-0'>
+              <div class="product-specs__footer tw-flex tw-justify-between tw-items-center tw-mt-12 tw-pb-12 tw-flex-col lg:tw-flex-row lg:tw-mt-0">
                 {% for diagram in compare_product.metafields.compare.specifications.value.diagrams.value %}
                   {% if forloop.first
                     and compare_product.metafields.compare.specifications.value.diagram_mobile != blank
@@ -222,7 +222,7 @@
                     {% assign desktop_classes = 'tw-block' %}
                   {% endif %}
 
-                  <div classes='{{classes}}'>
+                  <div classes="{{classes}}">
                     {% render 'responsive-image', media: diagram, classes: desktop_classes, defer: true %}
                     {% if forloop.first
                       and compare_product.metafields.compare.specifications.value.diagram_mobile != blank
@@ -242,12 +242,12 @@
       {% endif %}
     </div>
     <div
-      role='button'
-      tabindex='0'
-      class='specs-cursor tw-opacity-0 tw-cursor-none tw-select-none tw-pointer-events-none tw-fixed tw-flex tw-justify-center tw-items-center tw-h-[104px] tw-w-[104px] tw-rounded-[80px] tw-bg-yellow tw-overflow-hidden tw-scale-0 tw-translate-x-[-50%] tw-translate-y-[-50%] tw-transition-[transform,opacity] tw-duration-200 tw-cur'
-      style='transform-style: preserve-3d; transition-timing-function: linear(0 0%, 1 100%);'
+      role="button"
+      tabindex="0"
+      class="specs-cursor tw-opacity-0 tw-cursor-none tw-select-none tw-pointer-events-none tw-fixed tw-flex tw-justify-center tw-items-center tw-h-[104px] tw-w-[104px] tw-rounded-[80px] tw-bg-yellow tw-overflow-hidden tw-scale-0 tw-translate-x-[-50%] tw-translate-y-[-50%] tw-transition-[transform,opacity] tw-duration-200 tw-cur"
+      style="transform-style: preserve-3d; transition-timing-function: linear(0 0%, 1 100%);"
     >
-      <p class='tw-my-0 tw-text-md tw-font-body tw-ligatures-off tw-text-black'>Drag</p>
+      <p class="tw-my-0 tw-text-md tw-font-body tw-ligatures-off tw-text-black">Drag</p>
     </div>
   </div>
 
@@ -267,8 +267,8 @@
       display: block;
     }
   </style>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js' defer></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js' defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -282,6 +282,8 @@
       let lastTouchX = 0;
       let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       let tl;
+      let hasScrolledIntoView = false; // Track if video has been scrolled into view
+      let scrollTrigger; // Store ScrollTrigger reference
 
       if (!video || !videoContainer) return;
 
@@ -405,6 +407,7 @@
         startX = 0;
         startProgress = 0;
         lastTouchX = 0;
+        hasScrolledIntoView = false; // Reset scroll flag for new video
 
         // Ensure video is properly loaded
         if (video.readyState === 0) {
@@ -439,6 +442,9 @@
         // Add event listeners
         addEventListeners(videoContainer, video);
 
+        // Create ScrollTrigger for auto-advancement
+        createScrollTrigger();
+
         // Debug log
         console.log('Video scrubbing initialized', {
           video: video,
@@ -449,6 +455,7 @@
           touchEnabled: 'ontouchstart' in window,
           readyState: video.readyState,
           src: video.src || video.dataset.src,
+          hasScrolledIntoView: hasScrolledIntoView,
         });
       }
 
@@ -622,14 +629,14 @@
           console.log('isOverButton: true');
         }
       });
-      
+
       // Update cursor position
       document.addEventListener('mousemove', (e) => {
         const rect = videoContainer.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const isInBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
-        
+
         cursor.style.top = `${e.clientY}px`;
         cursor.style.left = `${e.clientX}px`;
 
@@ -637,7 +644,7 @@
         if (isInBounds && !isMouseDown && !isOverButton) {
           cursor.classList.add('tw-opacity-100', 'tw-scale-100');
           cursor.classList.remove('tw-opacity-0', 'tw-scale-0');
-          console.log('SHOW',isOverButton);
+          console.log('SHOW', isOverButton);
         } else {
           cursor.classList.remove('tw-opacity-100', 'tw-scale-100');
           cursor.classList.add('tw-opacity-0', 'tw-scale-0');
