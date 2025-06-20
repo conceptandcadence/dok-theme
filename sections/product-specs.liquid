@@ -166,7 +166,7 @@
                       >Ramp Width</span
                     >
                     <span class='tw-font-normal tw-text-body tw-ligatures-off tw-text-white tw-text-[14px]'>
-                      {{- compare_product.metafields.compare.specifications.value.stowed_dimensions -}}
+                      {{- compare_product.metafields.compare.specifications.value.ramp_width -}}
                     </span>
                   </li>
                 {% endif %}
@@ -206,13 +206,34 @@
             {% if compare_product.metafields.compare.specifications.value.diagrams != blank %}
               <div class='product-specs__footer tw-flex tw-justify-between tw-items-center tw-mt-12 tw-pb-12 tw-flex-col lg:tw-flex-row lg:tw-mt-0'>
                 {% for diagram in compare_product.metafields.compare.specifications.value.diagrams.value %}
-                  {% if forloop.first %}
-                    {% assign classes = 'img responsive-image tw-w-full lg:tw-w-[65%]' %}
+                  {% if forloop.first
+                    and compare_product.metafields.compare.specifications.value.diagram_mobile != blank
+                  %}
+                    {% assign mobile_classes = 'tw-block lg:tw-hidden' %}
+                    {% assign desktop_classes = 'tw-hidden lg:tw-block' %}
                   {% else %}
-                    {% assign classes = 'img responsive-image tw-w-full lg:tw-w-[35%]' %}
+                    {% assign desktop_classes = 'tw-block' %}
                   {% endif %}
 
-                  {% render 'responsive-image', media: diagram, classes: classes, defer: true %}
+                  {% if forloop.first %}
+                    {% assign classes = 'tw-w-full lg:tw-w-[65%]' %}
+                  {% else %}
+                    {% assign classes = 'tw-w-full lg:tw-w-[35%]' %}
+                    {% assign desktop_classes = 'tw-block' %}
+                  {% endif %}
+
+                  <div classes='{{classes}}'>
+                    {% render 'responsive-image', media: diagram, classes: desktop_classes, defer: true %}
+                    {% if forloop.first
+                      and compare_product.metafields.compare.specifications.value.diagram_mobile != blank
+                    %}
+                      {% render 'responsive-image',
+                        media: compare_product.metafields.compare.specifications.value.diagram_mobile.value,
+                        classes: mobile_classes,
+                        defer: true
+                      %}
+                    {% endif %}
+                  </div>
                 {% endfor %}
               </div>
             {% endif %}
@@ -593,12 +614,25 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const isInBounds = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
+        const isOverButton = false;
+        const usageButtons = document.querySelectorAll('.product-specs .button');
 
+        // Hide if over one of the shop now buttons
+        usageButtons.forEach((button) => {
+          button.addEventListener('mouseover', (e) => {
+            isOverButton = true
+          });
+          button.addEventListener('mouseout', (e) => {
+            isOverButton = false
+          });
+        });
+
+        
         cursor.style.top = `${e.clientY}px`;
         cursor.style.left = `${e.clientX}px`;
 
         // Only show cursor when mouse is within bounds
-        if (isInBounds && !isMouseDown) {
+        if (isInBounds && !isMouseDown && !isOverButton) {
           cursor.classList.add('tw-opacity-100', 'tw-scale-100');
           cursor.classList.remove('tw-opacity-0', 'tw-scale-0');
         } else {
@@ -683,7 +717,6 @@
       }
     });
   </script>
-
   <style>
     .specs-cursor.active {
       transform: scale(1) !important;
