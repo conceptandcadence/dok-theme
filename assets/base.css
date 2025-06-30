@@ -3873,7 +3873,7 @@ div#shopify-block-AeStrbTczeWExNVFab__judge_me_reviews_preview_badge_awN8Q8 {
 
 @media screen and (min-width: 1600px) { 
   .image-with-text__media-item > div {
-    padding-bottom: 100% !important;
+    padding-bottom: calc(100% - 48px) !important;
   }
   #shopify-section-template--19282954387712__multicolumn_h6WiFD, 
   #shopify-section-template--19282954387712__multirow_fFGqB9 {
