@@ -3872,14 +3872,7 @@ div#shopify-block-AeStrbTczeWExNVFab__judge_me_reviews_preview_badge_awN8Q8 {
 }
 
 @media screen and (min-width: 1600px) { 
-    [data-template="page"][data-subtemplate="story"] .multirow .image-with-text__text-item.grid__item {
-        width: calc(66.66% - var(--grid-desktop-horizontal-spacing-xl) / 2) !important;
-        max-width: calc(66.66% - var(--grid-desktop-horizontal-spacing-xl) / 2) !important;
-    }
-    [data-template="page"][data-subtemplate="story"] .multirow .image-with-text__media-item.grid__item {
-        width: calc(33.33% - var(--grid-desktop-horizontal-spacing-xl) / 2) !important;
-        max-width: calc(33.33% - var(--grid-desktop-horizontal-spacing-xl) / 2) !important;
-    }
+
   #shopify-section-template--19282954387712__multicolumn_h6WiFD, 
   #shopify-section-template--19282954387712__multirow_fFGqB9 {
     max-width: 1800px;
