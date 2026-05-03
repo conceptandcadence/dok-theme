@@ -245,6 +245,45 @@
         "padding_bottom": 36
       }
     },
+    "product_usage_LeH3kM": {
+      "type": "product-usage",
+      "blocks": {
+        "video_q4WQnr": {
+          "type": "video",
+          "settings": {
+            "title": "Dogs",
+            "video": "shopify://files/videos/party-usage-dogs (540p).mp4"
+          }
+        },
+        "video_LYBjpJ": {
+          "type": "video",
+          "settings": {
+            "title": "Kids",
+            "video": "shopify://files/videos/party-usage-kids (540p).mp4"
+          }
+        },
+        "video_MkXQn7": {
+          "type": "video",
+          "settings": {
+            "title": "Adults",
+            "video": "shopify://files/videos/party-usage-adults (540p).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_q4WQnr",
+        "video_LYBjpJ",
+        "video_MkXQn7"
+      ],
+      "settings": {
+        "title": "The paddle board built for whoever tags along..",
+        "collection": "paddle-dok",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
     "custom_liquid_4fmBJt": {
       "type": "custom-liquid",
       "settings": {
@@ -259,7 +298,12 @@
       "blocks": {
         "judge_me_reviews_review_widget_CGJd9t": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
         }
       },
       "block_order": [
@@ -425,6 +469,7 @@
     "product_specs_PawptB",
     "product_usage_zn88xQ",
     "product_usage_qJBPwM",
+    "product_usage_LeH3kM",
     "custom_liquid_4fmBJt",
     "17421346288e9e3ba1",
     "related-products",
