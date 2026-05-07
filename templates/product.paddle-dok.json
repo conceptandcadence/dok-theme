@@ -1,0 +1,479 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "judge_me_reviews_preview_badge_awN8Q8": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "reviews_hqb8WH": {
+          "type": "reviews",
+          "settings": {}
+        },
+        "judge_me_reviews_review_snippet_widget_eLyzBj": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "options_VBrAzH": {
+          "type": "options",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "show_quantity_selector": true
+          }
+        },
+        "amazon_mcf_and_buy_with_prime_promise_delivery_3A9BYE": {
+          "type": "shopify://apps/amazon-mcf-and-buy-with-prime/blocks/promise_delivery/cd9463cc-4da0-4f9f-92a6-6e3f345eb3ce",
+          "settings": {
+            "message_variant": "concise",
+            "show_exception_message": true,
+            "background_color": "#f9f9f9",
+            "transparent_background": true,
+            "color": "#000000",
+            "font": "poppins_n4",
+            "font_size": 14,
+            "horizontal_alignment": "left",
+            "corner_radius": 0,
+            "top-padding": 0,
+            "bottom-padding": 0,
+            "left-padding": 0,
+            "right-padding": 0,
+            "top-margin": -20,
+            "bottom-margin": -30,
+            "left-margin": -20,
+            "right-margin": -20
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "callouts_NYNjRr": {
+          "type": "callouts",
+          "settings": {}
+        },
+        "collapsible_tab_kiN4Ue": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "What's Included",
+            "icon": "none",
+            "content": "{{ product.metafields.details.contents | metafield_tag }}",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "caption",
+        "judge_me_reviews_preview_badge_awN8Q8",
+        "price",
+        "reviews_hqb8WH",
+        "judge_me_reviews_review_snippet_widget_eLyzBj",
+        "options_VBrAzH",
+        "variant_picker",
+        "buy_buttons",
+        "amazon_mcf_and_buy_with_prime_promise_delivery_3A9BYE",
+        "description",
+        "callouts_NYNjRr",
+        "collapsible_tab_kiN4Ue"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "product_features_UtUKKb": {
+      "type": "product-features",
+      "settings": {
+        "description_style": "body",
+        "heading": "Discover DOK - inflatable ramps built for making memories together.",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product_specs_PawptB": {
+      "type": "product-specs",
+      "settings": {
+        "title": "Find the size that's right for your adventure",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "product_usage_zn88xQ": {
+      "type": "product-usage",
+      "blocks": {
+        "video_ABhbWj": {
+          "type": "video",
+          "settings": {
+            "title": "Docks",
+            "video": "shopify://files/videos/dok-usage-dock (540p).mp4"
+          }
+        },
+        "video_KyjQGJ": {
+          "type": "video",
+          "settings": {
+            "title": "Boats",
+            "video": "shopify://files/videos/dok-usage-boat (540p).mp4"
+          }
+        },
+        "video_grqa4J": {
+          "type": "video",
+          "settings": {
+            "title": "Pools",
+            "video": "shopify://files/videos/dok-usage-pool (360p).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_ABhbWj",
+        "video_KyjQGJ",
+        "video_grqa4J"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {h2 {max-width: 280px; }}"
+      ],
+      "settings": {
+        "title": "Perfect for wherever you take your dog—or they take you...",
+        "collection": "dog-dok",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "product_usage_qJBPwM": {
+      "type": "product-usage",
+      "blocks": {
+        "video_q8Cgti": {
+          "type": "video",
+          "settings": {
+            "title": "Dogs",
+            "video": "shopify://files/videos/party-usage-dogs (540p).mp4"
+          }
+        },
+        "video_MLjptC": {
+          "type": "video",
+          "settings": {
+            "title": "Kids",
+            "video": "shopify://files/videos/party-usage-kids (540p).mp4"
+          }
+        },
+        "video_Qkzidk": {
+          "type": "video",
+          "settings": {
+            "title": "Adults",
+            "video": "shopify://files/videos/party-usage-adults (540p).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_q8Cgti",
+        "video_MLjptC",
+        "video_Qkzidk"
+      ],
+      "settings": {
+        "title": "Perfect for wherever you take your family—or they take you...",
+        "collection": "party-dok",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "product_usage_LeH3kM": {
+      "type": "product-usage",
+      "blocks": {
+        "video_q4WQnr": {
+          "type": "video",
+          "settings": {
+            "title": "Dogs",
+            "video": "shopify://files/videos/party-usage-dogs (540p).mp4"
+          }
+        },
+        "video_LYBjpJ": {
+          "type": "video",
+          "settings": {
+            "title": "Kids",
+            "video": "shopify://files/videos/party-usage-kids (540p).mp4"
+          }
+        },
+        "video_MkXQn7": {
+          "type": "video",
+          "settings": {
+            "title": "Adults",
+            "video": "shopify://files/videos/party-usage-adults (540p).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_q4WQnr",
+        "video_LYBjpJ",
+        "video_MkXQn7"
+      ],
+      "settings": {
+        "title": "The paddle board built for whoever tags along..",
+        "collection": "paddle-dok",
+        "section_color_scheme": "scheme-1",
+        "section_color_scheme_inner": "scheme-5",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_4fmBJt": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"tw-flex tw-flex-col tw-w-full tw-justify-center tw-items-center\">\n<img src=\"https://cdn.shopify.com/s/files/1/0746/9134/6688/files/reviews1.jpg?v=1746814365\" class=\" tw-mx-auto\" \nstyle=\"width: 120px;\"\nalt=\"happy dog\" />\n<h2 class=\"tw-text-center tw-text-[24px] md:tw-text-[36px] tw-font-medium tw-text-black tw-tw-tracking-normal\" style=\"max-width: 400px;\">Happy customers, \nhappy dogs</h2>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "17421346288e9e3ba1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_CGJd9t": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_CGJd9t"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_faq_3zptGy": {
+      "type": "image-with-faq",
+      "blocks": {
+        "question_gXB4kn": {
+          "type": "question",
+          "settings": {
+            "title": "What PSI do I inflate the Dog-DOK to?",
+            "answer": "<p>It is recommended to fill to a maximum of 5 PSI.</p>"
+          }
+        },
+        "question_mgyWyK": {
+          "type": "question",
+          "settings": {
+            "title": "Can I use the Dog-DOK in my pool?",
+            "answer": "<p>Yes absolutely. Dog-DOK's are perfect in the pool as a safe exit ramp, pool float toy, or just a place for your furry friend to hang out and lounge.</p>"
+          }
+        },
+        "question_gL6fgp": {
+          "type": "question",
+          "settings": {
+            "title": "How do I fold and store the Dog-DOK?",
+            "answer": "<p>It's easy to fold up your Dog-DOK. Just lay out the un-inflated DOK, fold both sides of the DOK inward together, tuck all netting inward, firmly roll up, then use the included strap to secure. The rolled up DOK can now easily be placed in the included bag.<br/><br/>Detailed folding instructions can be found in the DOK Instruction Manual included with your purchase.</p>"
+          }
+        },
+        "question_Dhgxt3": {
+          "type": "question",
+          "settings": {
+            "title": "What is included with the Dog-DOK?",
+            "answer": "<p>With the DOG-DOK, you'll receive a handy repair kit, convenient carry bag, two 6' ropes, and a hand pump. These accessories ensure you have everything you need with your Dog-DOK wherever you go.<br/><br/>The repair kit includes a storage tube, valve wrench, and patches - all the tools you need (except the glue) to quickly and easily fix any potential issues. California regulations prevent us from including the glue but we are happy to send you glue separately if you contact us.</p>"
+          }
+        },
+        "question_UAjYA9": {
+          "type": "question",
+          "settings": {
+            "title": "Is there a warranty on the Dog-DOK?",
+            "answer": "<p>Yes. All DOK's come with a one-year limited warranty<strong> </strong>to the original purchaser against defects in materials and workman-ship for products used under normal recreational conditions.<br/><br/>Please see our Warranty Registration page for more details.</p>"
+          }
+        },
+        "question_pJxQLG": {
+          "type": "question",
+          "settings": {
+            "title": "What are the dimensions when inflated?",
+            "answer": "<p>The Dog-DOK is 60\" long x 40\" wide x 6.5\" thick when inflated.</p>"
+          }
+        },
+        "question_xnLx3d": {
+          "type": "question",
+          "settings": {
+            "title": "Can this fold up for storage on a boat?",
+            "answer": "<p>At only 11\" x 12\" x 22\" when folded up and stored, the Dog-DOK fits easily in any boat storage.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_gXB4kn",
+        "question_mgyWyK",
+        "question_gL6fgp",
+        "question_Dhgxt3",
+        "question_UAjYA9",
+        "question_pJxQLG",
+        "question_xnLx3d"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "image": "shopify://shop_images/2155C37A-2EFD-4409-8EB1-76B41A436235.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "scrolljack_media_Kb4a8j": {
+      "type": "scrolljack-media",
+      "blocks": {
+        "heading_rcqagc": {
+          "type": "heading",
+          "settings": {
+            "heading": "Splash with Confidence",
+            "heading_size": "h1"
+          }
+        },
+        "text_mHt4BC": {
+          "type": "text",
+          "settings": {
+            "text": "We offer a 1 year manufacturer warranty on all DOK's and an extended warranty that provides coverage for up to 4 years.",
+            "text_style": "body"
+          }
+        },
+        "buttons_iBq8Ky": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "learn more",
+            "button_link_1": "shopify://products/extended-warranty",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_rcqagc",
+        "text_mHt4BC",
+        "buttons_iBq8Ky"
+      ],
+      "settings": {
+        "video": "shopify://files/videos/pdp-footer-warranty.mp4",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "timeline_duration": 3,
+        "offset": 1,
+        "text": ".gsap-text",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mask_shape": "circle",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_features_UtUKKb",
+    "product_specs_PawptB",
+    "product_usage_zn88xQ",
+    "product_usage_qJBPwM",
+    "product_usage_LeH3kM",
+    "custom_liquid_4fmBJt",
+    "17421346288e9e3ba1",
+    "related-products",
+    "image_with_faq_3zptGy",
+    "scrolljack_media_Kb4a8j"
+  ]
+}
