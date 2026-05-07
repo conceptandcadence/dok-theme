@@ -44,6 +44,12 @@
           "type": "options",
           "settings": {}
         },
+        "custom_liquid_tb9brW": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"\n  margin: 14px 0 16px;\n  padding: 12px 14px;\n  border: 1px solid #E3D8B8;\n  border-radius: 12px;\n  background: #FFF9E8;\n  font-size: 14px;\n  line-height: 1.4;\n\">\n  <strong>Summer Launch Offer</strong><br>\n  Save $200 on Paddle-DOK while launch inventory lasts. New this season. Available direct from DOK only.\n</div>"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -107,6 +113,7 @@
         "reviews_hqb8WH",
         "judge_me_reviews_review_snippet_widget_eLyzBj",
         "options_VBrAzH",
+        "custom_liquid_tb9brW",
         "variant_picker",
         "buy_buttons",
         "amazon_mcf_and_buy_with_prime_promise_delivery_3A9BYE",
