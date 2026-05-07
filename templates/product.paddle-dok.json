@@ -46,8 +46,9 @@
         },
         "custom_liquid_tb9brW": {
           "type": "custom_liquid",
+          "name": "Summer Launch Promo",
           "settings": {
-            "custom_liquid": "<div style=\"\n  margin: 14px 0 16px;\n  padding: 12px 14px;\n  border: 1px solid #E3D8B8;\n  border-radius: 12px;\n  background: #FFF9E8;\n  font-size: 14px;\n  line-height: 1.4;\n\">\n  <strong>Summer Launch Offer</strong><br>\n  Save $200 on Paddle-DOK while launch inventory lasts. New this season. Available direct from DOK only.\n</div>"
+            "custom_liquid": "<div style=\"\n  margin: 14px 0 16px;\n  padding: 12px 14px;\n  border: 1px solid #E3D8B8;\n  border-radius: 12px;\n  background: #FFF9E8;\n  font-size: 14px;\n  line-height: 1.4;\n\">\n  <strong>Summer Launch Sale</strong><br>\n  Save $200 on Paddle-DOK while launch inventory lasts. New this season. Available direct from DOK only.\n</div>"
           }
         },
         "variant_picker": {
