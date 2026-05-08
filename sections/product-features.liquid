@@ -136,14 +136,16 @@
         </button>
         <div class='product-features-modal-media tw-w-full lg:tw-w-1/2 tw-relative tw-aspect-[1/1] tw-rounded-[15px] tw-mb-6 lg:tw-mb-0'>
           {% if feature.media.value.media_type == 'video' %}
-            {% render 'responsive-video',
-              video: feature.media.value,
-              classes: 'tw-w-full tw-h-full tw-object-cover tw-rounded-[12px] tw-aspect-[1/1]',
-              video_class: 'tw-object-cover tw-min-h-full tw-absolute tw-min-w-full tw-h-full tw-w-full tw-rounded-[12px]',
-              defer: false,
-              autoplay: true,
-              muted: true
-            %}
+            <template class='product-features-modal-video-tpl'>
+              {% render 'responsive-video',
+                video: feature.media.value,
+                classes: 'tw-w-full tw-h-full tw-object-cover tw-rounded-[12px] tw-aspect-[1/1]',
+                video_class: 'tw-object-cover tw-min-h-full tw-absolute tw-min-w-full tw-h-full tw-w-full tw-rounded-[12px]',
+                defer: true,
+                autoplay: true,
+                muted: true
+              %}
+            </template>
           {% else %}
             {% render 'responsive-image',
               media: feature.media,
@@ -200,22 +202,38 @@
 
 {% javascript %}
   document.addEventListener('DOMContentLoaded', function () {
+    function tryPlay(video) {
+      var p = video.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(function () {
+          video.muted = true;
+          video.play().catch(function () {});
+        });
+      }
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.remove('active');
+      document.querySelector('.product-features-modals').classList.remove('active');
+      var video = modal.querySelector('video');
+      if (video) {
+        video.pause();
+        try { video.currentTime = 0; } catch (e) {}
+      }
+    }
+
     const modalCloseButtons = document.querySelectorAll('.product-features-modal-close');
     modalCloseButtons.forEach((button) => {
       button.addEventListener('click', function () {
-        const modal = this.closest('.product-features-modal');
-        if (modal) {
-          modal.classList.remove('active');
-          document.querySelector('.product-features-modals').classList.remove('active');
-        }
+        closeModal(this.closest('.product-features-modal'));
       });
     });
 
     const modalBackgrounds = document.querySelectorAll('.product-features-modals');
     modalBackgrounds.forEach((background) => {
       background.addEventListener('click', function () {
-        document.querySelector('.product-features-modal.active').classList.remove('active');
-        document.querySelector('.product-features-modals').classList.remove('active');
+        closeModal(document.querySelector('.product-features-modal.active'));
       });
     });
 
@@ -224,9 +242,23 @@
       button.addEventListener('click', function () {
         const title = button.dataset.title;
         const modal = document.querySelector(`.product-features-modal[data-title="${title}"]`);
-        if (modal) {
-          modal.classList.add('active');
-          document.querySelector('.product-features-modals').classList.add('active');
+        if (!modal) return;
+        modal.classList.add('active');
+        document.querySelector('.product-features-modals').classList.add('active');
+
+        const tpl = modal.querySelector('.product-features-modal-video-tpl');
+        if (tpl && !modal.querySelector('video')) {
+          tpl.parentNode.insertBefore(tpl.content.cloneNode(true), tpl);
+        }
+
+        var video = modal.querySelector('video');
+        if (video) {
+          video.muted = true;
+          if (video.readyState >= 2) {
+            tryPlay(video);
+          } else {
+            video.addEventListener('loadedmetadata', function () { tryPlay(video); }, { once: true });
+          }
         }
       });
     });
