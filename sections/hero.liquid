@@ -103,19 +103,107 @@
   class='banner trigger-rounded-corners banner--content-align-{{ section.settings.desktop_content_alignment }}{% if section.settings.fullscreen %} banner--adapt tw-min-h-screen{% endif %} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}'
 >
   {%- if section.settings.video != blank -%}
-    <div class='banner__media media{% if section.settings.mobile_video != blank %} hero-desktop-only{% endif %}'>
-      {% render 'responsive-video',
-        video: section.settings.video,
-        classes: 'responsive-video tw-max-w-full',
-        video_class: 'tw-object-cover tw-h-full tw-object-center',
-        defer: true,
-        autoplay: true
-      %}
-    </div>
     {%- if section.settings.mobile_video != blank -%}
-      <div class='banner__media media hero-mobile-only'>
+      <noscript>
+        <div class='banner__media media'>
+          <picture>
+            <source
+              media='(max-width: 749px)'
+              srcset='{{ section.settings.mobile_video.preview_image | image_url: width: 1100 }}'
+            >
+            <img
+              src='{{ section.settings.video.preview_image | image_url: width: 1780 }}'
+              alt='{{ section.settings.video.alt | escape }}'
+              class='tw-object-cover tw-h-full tw-w-full tw-object-center'
+              loading='eager'
+            >
+          </picture>
+        </div>
+      </noscript>
+      <template id='HeroVideoDesktop-{{ section.id }}'>
+        <div class='banner__media media'>
+          {% render 'responsive-video',
+            video: section.settings.video,
+            classes: 'responsive-video tw-max-w-full',
+            video_class: 'tw-object-cover tw-h-full tw-object-center',
+            defer: true,
+            autoplay: true
+          %}
+        </div>
+      </template>
+      <template id='HeroVideoMobile-{{ section.id }}'>
+        <div class='banner__media media'>
+          {% render 'responsive-video',
+            video: section.settings.mobile_video,
+            classes: 'responsive-video tw-max-w-full',
+            video_class: 'tw-object-cover tw-h-full tw-object-center',
+            defer: true,
+            autoplay: true
+          %}
+        </div>
+      </template>
+      <script>
+        (function () {
+          var mql = window.matchMedia('(max-width: 749px)');
+          var currentWrapper = null;
+          var currentVideo = null;
+
+          function tryPlay(video) {
+            var p = video.play();
+            if (p && typeof p.catch === 'function') {
+              p.catch(function () {
+                video.muted = true;
+                video.play().catch(function () {});
+              });
+            }
+          }
+
+          function promote() {
+            var tpl = document.getElementById(
+              mql.matches ? 'HeroVideoMobile-{{ section.id }}' : 'HeroVideoDesktop-{{ section.id }}'
+            );
+            if (!tpl) return;
+
+            if (currentVideo) {
+              currentVideo.pause();
+              currentVideo.removeAttribute('src');
+              currentVideo.load();
+            }
+            if (currentWrapper) currentWrapper.remove();
+
+            var fragment = tpl.content.cloneNode(true);
+            var wrapper = fragment.firstElementChild;
+            var video = fragment.querySelector('video');
+            tpl.parentNode.insertBefore(fragment, tpl);
+            currentWrapper = wrapper;
+            currentVideo = video;
+
+            if (!video) return;
+            video.muted = true;
+            if (video.readyState >= 2) {
+              tryPlay(video);
+            } else {
+              video.addEventListener('loadedmetadata', function () { tryPlay(video); }, { once: true });
+            }
+          }
+
+          promote();
+
+          if (mql.addEventListener) {
+            mql.addEventListener('change', promote);
+          } else if (mql.addListener) {
+            mql.addListener(promote);
+          }
+
+          document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && currentVideo && currentVideo.paused) tryPlay(currentVideo);
+          });
+        })();
+      </script>
+    {%- else -%}
+      <div class='banner__media media'>
         {% render 'responsive-video',
-          video: section.settings.mobile_video,
+          video: section.settings.video,
           classes: 'responsive-video tw-max-w-full',
           video_class: 'tw-object-cover tw-h-full tw-object-center',
           defer: true,
@@ -211,18 +299,6 @@
       }
     });
   </script>
-  <style>
-   @media (max-width: 749px) {
-      .hero-desktop-only {
-        display: none !important;
-      }
-   }
-   @media (min-width: 750px) {
-    .hero-mobile-only {
-      display: none !important;
-    }
-   } 
-  </style>
 </div>
 
 {% schema %}
