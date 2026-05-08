@@ -7,6 +7,8 @@
       padding-bottom: calc({{settings.media_shadow_vertical_offset | at_least: 0}}px + 2rem);
     }
   }
+  .collection-banner-nav { -ms-overflow-style: none; scrollbar-width: none; }
+  .collection-banner-nav::-webkit-scrollbar { display: none; }
 {%- endstyle -%}
 
 <div class='collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient'>
@@ -22,12 +24,12 @@
       {%- endif -%}
 
       {%- if section.settings.menu != blank -%}
-        <ul class='tw-pt-8 tw-pb-5 md:tw-py-20 tw-flex tw-items-center tw-gap-2'>
+        <ul class='collection-banner-nav tw-pt-8 tw-pb-5 md:tw-py-20 tw-flex tw-flex-nowrap tw-items-center tw-gap-2 tw-overflow-x-auto'>
           {%- for link in section.settings.menu.links -%}
-            <li>
+            <li class='tw-shrink-0'>
               <a
                 href='{{ link.url }}'
-                class='{% if link.active %} tw-border-yellow{% else %} tw-border-[#EFEBDF]{% endif %} tw-mr-6 tw-tracking-normal tw-text-[16px] tw-font-medium tw-pb-[2px] tw-border-b-2 tw-border-solid hover:tw-border-yellow tw-transition-colors tw-duration-300'
+                class='{% if link.active %} tw-border-yellow{% else %} tw-border-[#EFEBDF]{% endif %} tw-mr-6 tw-tracking-normal tw-text-[16px] tw-font-medium tw-pb-[2px] tw-border-b-2 tw-border-solid hover:tw-border-yellow tw-transition-colors tw-duration-300 tw-whitespace-nowrap'
               >
                 {{ link.title | escape }}
               </a>
