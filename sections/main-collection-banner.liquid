@@ -24,18 +24,20 @@
       {%- endif -%}
 
       {%- if section.settings.menu != blank -%}
-        <ul class='collection-banner-nav tw-pt-8 tw-pb-5 md:tw-py-20 tw-flex tw-flex-nowrap tw-items-center tw-gap-2 tw-overflow-x-auto'>
-          {%- for link in section.settings.menu.links -%}
-            <li class='tw-shrink-0'>
-              <a
-                href='{{ link.url }}'
-                class='{% if link.active %} tw-border-yellow{% else %} tw-border-[#EFEBDF]{% endif %} tw-mr-6 tw-tracking-normal tw-text-[16px] tw-font-medium tw-pb-[2px] tw-border-b-2 tw-border-solid hover:tw-border-yellow tw-transition-colors tw-duration-300 tw-whitespace-nowrap'
-              >
-                {{ link.title | escape }}
-              </a>
-            </li>
-          {%- endfor -%}
-        </ul>
+        <div class='collection-banner-nav tw-pt-8 tw-pb-5 md:tw-py-20 tw-w-full tw-min-w-0 tw-max-w-full tw-overflow-x-auto'>
+          <ul class='tw-flex tw-flex-nowrap tw-items-center tw-gap-2 tw-m-0 tw-p-0'>
+            {%- for link in section.settings.menu.links -%}
+              <li class='tw-shrink-0 tw-list-none'>
+                <a
+                  href='{{ link.url }}'
+                  class='{% if link.active %} tw-border-yellow{% else %} tw-border-[#EFEBDF]{% endif %} tw-mr-6 tw-tracking-normal tw-text-[16px] tw-font-medium tw-pb-[2px] tw-border-b-2 tw-border-solid hover:tw-border-yellow tw-transition-colors tw-duration-300 tw-whitespace-nowrap'
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
       {%- endif -%}
     </div>
 
