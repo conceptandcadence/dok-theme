@@ -125,13 +125,14 @@
 		>
 			{% assign skip_card_product_styles = false %}
 			{%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-				<swiper-slide
-					id='Slide-{{ section.id }}-{{ forloop.index }}'
-					class='tw-w-auto tw-h-full {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if settings.animations_reveal_on_scroll %}
-						data-cascade
-						style='--animation-order: {{ forloop.index }};'
-					{% endif %}'
-				>
+      <swiper-slide
+        id="Slide-{{ section.id }}-{{ forloop.index }}"
+        class="tw-w-auto tw-h-full{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+          style="--animation-order: {{ forloop.index }};"
+        {% endif %}
+      >
 					{% render 'card-product-flat',
 						card_product: product,
 						media_aspect_ratio: section.settings.image_ratio,
